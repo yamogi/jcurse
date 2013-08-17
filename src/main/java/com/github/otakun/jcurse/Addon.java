@@ -1,11 +1,10 @@
 package com.github.otakun.jcurse;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public final class Addon implements Comparable<Addon> {
 	
-	private String baseUrlId;
+	private String gameAddonNameId;
 	
 	private String lastZipFileName;
 	
@@ -21,18 +20,22 @@ public final class Addon implements Comparable<Addon> {
 	
 	public static Addon newWowInstance(String shortAddonName) {
 		Addon addon = new Addon();
-		addon.baseUrlId = "wow/" + shortAddonName;
+		addon.gameAddonNameId = "wow/" + shortAddonName;
 		return addon;
 	}
 	
 	public static Addon newInstance(String gameAddonName) {
 		Addon addon = new Addon();
-		addon.baseUrlId = gameAddonName;
+		addon.gameAddonNameId = gameAddonName;
 		return addon;
 	}
 
-	public String getIdBaseUrl() {
-		return baseUrlId;
+	public String getGameAddonNameId() {
+		return gameAddonNameId;
+	}
+
+	public void setGameAddonNameId(String gameAddonNameId) {
+		this.gameAddonNameId = gameAddonNameId;
 	}
 
 	public String getLastZipFileName() {
@@ -42,32 +45,33 @@ public final class Addon implements Comparable<Addon> {
 	public void setLastZipFileName(String lastZipFileName) {
 		this.lastZipFileName = lastZipFileName;
 	}
-	
+
 	public Set<String> getFolders() {
-		if (folders == null) {
-			folders = new HashSet<>();
-		}
 		return folders;
+	}
+
+	public void setFolders(Set<String> folders) {
+		this.folders = folders;
 	}
 
 	@Override
 	public int hashCode() {
-		return baseUrlId.hashCode();
+		return gameAddonNameId.hashCode();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		return baseUrlId.equals(obj);
+		return gameAddonNameId.equals(obj);
 	}
 
 	@Override
 	public int compareTo(Addon addon) {
-		return baseUrlId.compareTo(addon.baseUrlId);
+		return gameAddonNameId.compareTo(addon.gameAddonNameId);
 	}
 	
 	@Override
 	public String toString() {
-		return "Addon '" + baseUrlId + "', version '" + lastZipFileName + "'";
+		return "Addon '" + gameAddonNameId + "', version '" + lastZipFileName + "'";
 	}
 	
 }

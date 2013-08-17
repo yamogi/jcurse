@@ -57,11 +57,16 @@ public final class Configuration {
 		INSTANCE.wowFolder = properties.getProperty(WOW_FOLDER_KEY);
 	}
 
-	public String getWowFolder() {
+	private String getWowFolder() {
 		if (wowFolder.isEmpty()) {
 			throw new RuntimeException("No folder for WoW given in config file (home/.jcurse/config)");
 			//XXX better error handling
 		}
 		return wowFolder;
+	}
+	
+	public String getWowAddonFolder() {
+		return getWowFolder() 
+		+ File.separator + "Interface" + File.separator + "AddOns" + File.separator;
 	}
 }

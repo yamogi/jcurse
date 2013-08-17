@@ -1,20 +1,28 @@
 package com.github.otakun.jcurse;
 
 import java.util.Collection;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 
-public class AddonRepositoryManager {
+public final class AddonRepositoryManager {
 
 	private static final AddonRepositoryManager INSTANCE = new AddonRepositoryManager();
 	
-	private TreeSet<Addon> repository;
+	private TreeMap<Addon, Addon> repository;
 	
 	private static boolean toInitialize = true;
 	
+	private AddonRepositoryManager() {
+	}
+	
 	public static synchronized AddonRepositoryManager getInstance() {
 		if (toInitialize) {
-			INSTANCE.repository = AddonRepoPersistence.loadInstalledAddons();
+			Collection<Addon> addons = AddonRepoPersistence.loadInstalledAddons();
+			TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
+			for (Addon addon : addons) {
+				tmpTree.put(addon, addon);
+			}
+			INSTANCE.repository = tmpTree;
 			toInitialize = false;
 		}	
 		return INSTANCE;
@@ -26,31 +34,40 @@ public class AddonRepositoryManager {
 		
 		Addon newAddon = Addon.newWowInstance(addonName);
 
-		if (repository.contains(newAddon)) {
+		if (repository.containsKey(newAddon)) {
 			throw new RuntimeException("Addon '" + addonName + "' already added.");
 			//XXX better error handling
 		}
 		
-		String zipFilename = CurseHandler.downloadToWow(newAddon);
-		newAddon.setLastZipFileName(zipFilename);
+		CurseAddonFileHandler.downloadToWow(newAddon);
 		
-		repository.add(newAddon);
+		repository.put(newAddon, newAddon);
 		
-		AddonRepoPersistence.saveInstalledAddons(repository);
+		AddonRepoPersistence.saveInstalledAddons(repository.values());
 	}
 
 
 
-	public void remove(String string) {
-		// TODO Auto-generated method stub
-		
+	public void remove(String addonName) {
+		System.out.println("Remove addon " + addonName);
+		Addon newAddon = Addon.newWowInstance(addonName);
+		if (!repository.containsKey(newAddon)) {
+			throw new RuntimeException("Addon '" + addonName + "' does not exist to begin with.");
+			//XXX better error handling
+		}
+		CurseAddonFileHandler.removeAddonFolders(repository.get(newAddon).getFolders());
+		repository.remove(newAddon);
+		AddonRepoPersistence.saveInstalledAddons(repository.values());
+		System.out.println("Removed " + addonName);
 	}
 
 
 
 	public void updateAll() {
 		// TODO Auto-generated method stub
-		
+		for (Addon addons : repository.values()) {
+			
+		}
 	}
 
 
@@ -61,7 +78,7 @@ public class AddonRepositoryManager {
 	}
 
 	public Collection<Addon> getAddons() {
-		return repository;
+		return repository.values();
 	}
 
 }

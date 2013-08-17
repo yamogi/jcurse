@@ -4,19 +4,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class CurseHandler {
+public class CurseAddonFileHandler {
 	
-	public static String downloadToWow(Addon newAddon) {
+	public static void downloadToWow(Addon newAddon) {
 		WebDriver driver = new HtmlUnitDriver();
-		String url = "http://www.curse.com/addons/" + newAddon.getIdBaseUrl();
+		String url = "http://www.curse.com/addons/" + newAddon.getGameAddonNameId();
 		driver.get(url);
 		System.out.println("website of addon " + url);
 		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
@@ -30,8 +34,7 @@ public class CurseHandler {
 			throw new RuntimeException("Download url wrong"); //FIXME correct error handling
 		}
 		String zipFilename = downloadUrl.substring(lastIndexOf + 1);
-		
-
+		newAddon.setLastZipFileName(zipFilename);
 		try{
 			URL website = new URL(downloadUrl);
 
@@ -39,8 +42,7 @@ public class CurseHandler {
 
 
 			//create output directory is not exists
-			String outputFolder = Configuration.getConfiguration().getWowFolder() 
-									+ File.separator + "Interface" + File.separator + "AddOns" + File.separator;
+			String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
 			File folder = new File(outputFolder);
 			if(!folder.exists()){
 				folder.mkdirs();
@@ -50,10 +52,18 @@ public class CurseHandler {
 			ZipInputStream zis = new ZipInputStream(website.openStream());
 			//get the zipped file list entry
 			ZipEntry ze = zis.getNextEntry();
+			
+			Set<String> addonFolders = new HashSet<>();
 
 			while(ze!=null){
 
 				String fileName = ze.getName();
+				
+				//only one should be possible. The other one has -1
+				int index = Math.max(fileName.indexOf('/'), fileName.indexOf('\\'));
+				addonFolders.add(fileName.substring(0, index));
+				
+				
 				File newFile = new File(outputFolder + File.separator + fileName);
 
 				//create all non exists folders
@@ -74,11 +84,24 @@ public class CurseHandler {
 			zis.closeEntry();
 			zis.close();
 
+			newAddon.setFolders(addonFolders);
+			
 			System.out.println("Done unzipping");
 		} catch(IOException ex){
 			//TODO error handling
 			ex.printStackTrace(); 
 		}
-		return zipFilename;
+	}
+	
+	
+	public static void removeAddonFolders(Collection<String> toDelete) {
+		try {
+			for (String folderName : toDelete) {
+					FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
