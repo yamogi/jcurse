@@ -1,16 +1,49 @@
 package com.github.otakun.jcurse.console;
 
-import com.github.otakun.jcurse.AddonRepository;
+import java.util.Collection;
+
+import com.github.otakun.jcurse.Addon;
+import com.github.otakun.jcurse.AddonRepositoryManager;
 import com.github.otakun.jcurse.ErrorCode;
 
 public class Console {
 
 	public static void main(String[] args) {
-		if (args.length != 2) {
-			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+		switch (args[0]) {
+			case "add":
+				AddonRepositoryManager.getInstance().add(args[1]);
+				break;
+			case "remove":
+				AddonRepositoryManager.getInstance().remove(args[1]);
+				break;
+			case "update":
+				if ("all".equalsIgnoreCase(args[1])) {
+					AddonRepositoryManager.getInstance().updateAll();
+				} else {
+					AddonRepositoryManager.getInstance().update(args[1]);
+				}
+				break;
+			case "list":
+				listAddons();
+				break;
+			default:
+				printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+				break;
 		}
-		if ("add".equals(args[0])) {
-			AddonRepository.add(args[1]);
+	}
+
+	private static void listAddons() {
+		Collection<Addon> addons = AddonRepositoryManager.getInstance().getAddons();
+		System.out.println();
+		if (addons.isEmpty()) {
+			System.out.println("We don't know of any installed addon.");
+			return;
+		}
+		
+		System.out.println("Currently installed addons:");
+		
+		for (Addon addon : addons) {
+			System.out.println(addon);
 		}
 	}
 
