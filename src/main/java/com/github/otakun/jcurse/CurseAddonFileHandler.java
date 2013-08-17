@@ -19,22 +19,30 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class CurseAddonFileHandler {
 	
 	public static void downloadToWow(Addon newAddon) {
-		WebDriver driver = new HtmlUnitDriver();
-		String url = "http://www.curse.com/addons/" + newAddon.getGameAddonNameId();
-		driver.get(url);
-		System.out.println("website of addon " + url);
-		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
-		downloadButton.click();
-		WebElement directDownloadElement = driver.findElement(By.xpath("//*[@id=\"file-download\"]/div/div[2]/div/div/div[1]/p/a"));
-		String downloadUrl = directDownloadElement.getAttribute("data-href");
-		System.out.println("Downloading " + downloadUrl);
+		String downloadUrl = getDownloadUrl(newAddon.getGameAddonNameId());
+		String zipFilename = getZipFileName(downloadUrl);
 		
-		int lastIndexOf = downloadUrl.lastIndexOf("/");
-		if (lastIndexOf == -1) {
-			throw new RuntimeException("Download url wrong"); //FIXME correct error handling
-		}
-		String zipFilename = downloadUrl.substring(lastIndexOf + 1);
+		Set<String> addonFolders = downloadAndExtract(downloadUrl);
+		
 		newAddon.setLastZipFileName(zipFilename);
+		newAddon.setFolders(addonFolders);
+		
+		System.out.println("Done unzipping");
+	}
+
+	public static void downloadToWow(String downloadUrl, Addon addon) {
+		String zipFilename = getZipFileName(downloadUrl);
+		
+		Set<String> addonFolders = downloadAndExtract(downloadUrl);
+		
+		addon.setLastZipFileName(zipFilename);
+		addon.setFolders(addonFolders);
+		
+		System.out.println("Done unzipping");
+	}
+
+	private static Set<String> downloadAndExtract(String downloadUrl) {
+		Set<String> addonFolders = new HashSet<>();
 		try{
 			URL website = new URL(downloadUrl);
 
@@ -53,7 +61,6 @@ public class CurseAddonFileHandler {
 			//get the zipped file list entry
 			ZipEntry ze = zis.getNextEntry();
 			
-			Set<String> addonFolders = new HashSet<>();
 
 			while(ze!=null){
 
@@ -83,14 +90,35 @@ public class CurseAddonFileHandler {
 			//XXX close it the correct way
 			zis.closeEntry();
 			zis.close();
-
-			newAddon.setFolders(addonFolders);
-			
-			System.out.println("Done unzipping");
-		} catch(IOException ex){
+			return addonFolders;
+		} catch(IOException e){
 			//TODO error handling
-			ex.printStackTrace(); 
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
+	}
+
+
+	private static String getZipFileName(String downloadUrl) {
+		int lastIndexOf = downloadUrl.lastIndexOf("/");
+		if (lastIndexOf == -1) {
+			throw new RuntimeException("Download url wrong"); //FIXME correct error handling
+		}
+		String zipFilename = downloadUrl.substring(lastIndexOf + 1);
+		return zipFilename;
+	}
+
+
+	private static String getDownloadUrl(String gameAddonNameId) {
+		WebDriver driver = new HtmlUnitDriver();
+		String url = "http://www.curse.com/addons/" + gameAddonNameId;
+		driver.get(url);
+		System.out.println("website of addon " + url);
+		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
+		downloadButton.click();
+		WebElement directDownloadElement = driver.findElement(By.xpath("//*[@id=\"file-download\"]/div/div[2]/div/div/div[1]/p/a"));
+		String downloadUrl = directDownloadElement.getAttribute("data-href");
+		return downloadUrl;
 	}
 	
 	
@@ -103,5 +131,11 @@ public class CurseAddonFileHandler {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	public static String getCompressedFileName(String gameAddonNameId) {
+		String downloadUrl = getDownloadUrl(gameAddonNameId);
+		return getZipFileName(downloadUrl);
 	}
 }
