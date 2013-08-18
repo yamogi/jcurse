@@ -9,6 +9,10 @@ import com.github.otakun.jcurse.ErrorCode;
 public class Console {
 
 	public static void main(String[] args) {
+		if (args.length != 2) {
+			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+		}
+		
 		switch (args[0]) {
 			case "add":
 				AddonRepositoryManager.getInstance().add(args[1]);
