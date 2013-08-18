@@ -9,30 +9,36 @@ import com.github.otakun.jcurse.ErrorCode;
 public class Console {
 
 	public static void main(String[] args) {
-		if (args.length != 2) {
+		if (args.length < 1) {
 			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
 		}
 		
-		switch (args[0]) {
-			case "add":
-				AddonRepositoryManager.getInstance().add(args[1]);
-				break;
-			case "remove":
-				AddonRepositoryManager.getInstance().remove(args[1]);
-				break;
-			case "update":
-				if ("all".equalsIgnoreCase(args[1])) {
-					AddonRepositoryManager.getInstance().updateAll();
-				} else {
-					AddonRepositoryManager.getInstance().update(args[1]);
-				}
-				break;
-			case "list":
-				listAddons();
-				break;
-			default:
-				printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
-				break;
+		if (args.length == 1) {
+			switch (args[0]) {
+				case "list":
+					listAddons();
+					break;
+			}
+		}
+		if (args.length == 2) {
+			switch (args[0]) {
+				case "add":
+					AddonRepositoryManager.getInstance().add(args[1]);
+					break;
+				case "remove":
+					AddonRepositoryManager.getInstance().remove(args[1]);
+					break;
+				case "update":
+					if ("all".equalsIgnoreCase(args[1])) {
+						AddonRepositoryManager.getInstance().updateAll();
+					} else {
+						AddonRepositoryManager.getInstance().update(args[1]);
+					}
+					break;
+				default:
+					printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+					break;
+			}
 		}
 	}
 
