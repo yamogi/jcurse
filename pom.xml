@@ -6,6 +6,8 @@
 	<version>0.1.0-SNAPSHOT</version>
 	<name>JCurse</name>
 	<description>A simple curse client for all operating systems.</description>
+	
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -31,15 +33,15 @@
 				<version>2.4</version>
 				<executions>
 					<execution>
-						<id>jar-with-dependencies</id>
+						<id>runnable</id>
 						<phase>package</phase>
 						<goals>
 							<goal>single</goal>
 						</goals>
 						<configuration>
-							<descriptorRefs>
-								<descriptorRef>jar-with-dependencies</descriptorRef>
-							</descriptorRefs>
+							<descriptors>
+								<descriptor>src/main/assembly/runnable-jar-assembly.xml</descriptor>
+							</descriptors>
 							<archive>
 								<manifest>
 									<mainClass>com.github.otakun.jcurse.console.Console</mainClass>
