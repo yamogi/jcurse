@@ -48,7 +48,6 @@ public class CurseAddonFileHandler {
 
 			byte[] buffer = new byte[1024];
 
-
 			//create output directory is not exists
 			String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
 			File folder = new File(outputFolder);
@@ -63,9 +62,12 @@ public class CurseAddonFileHandler {
 			
 
 			while(ze!=null){
-
 				String fileName = ze.getName();
-				
+				if (fileName.endsWith("/") || fileName.endsWith("\\")) {
+					//directory
+					ze = zis.getNextEntry();
+					continue;
+				}
 				//only one should be possible. The other one has -1
 				int index = Math.max(fileName.indexOf('/'), fileName.indexOf('\\'));
 				addonFolders.add(fileName.substring(0, index));
@@ -75,7 +77,7 @@ public class CurseAddonFileHandler {
 
 				//create all non exists folders
 				//else you will hit FileNotFoundException for compressed folder
-				new File(newFile.getParent()).mkdirs();
+				newFile.getParentFile().mkdirs();
 				//overwrites all files
 				FileOutputStream fos = new FileOutputStream(newFile);             
 
