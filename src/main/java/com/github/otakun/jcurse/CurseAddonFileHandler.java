@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -123,6 +124,13 @@ public class CurseAddonFileHandler {
 		return downloadUrl;
 	}
 	
+	public static void removeAddons(Collection<Addon> toDelete) {
+		for (Addon addon : toDelete) {
+			removeAddonFolders(addon.getFolders());
+		}
+	}
+
+	
 	
 	public static void removeAddonFolders(Collection<String> toDelete) {
 		try {
@@ -139,5 +147,11 @@ public class CurseAddonFileHandler {
 	public static String getCompressedFileName(String gameAddonNameId) {
 		String downloadUrl = getDownloadUrl(gameAddonNameId);
 		return getZipFileName(downloadUrl);
+	}
+
+	public static void downloadToWow(List<Addon> toDownload) {
+		for (Addon addon : toDownload) {
+			downloadToWow(addon);
+		}
 	}
 }

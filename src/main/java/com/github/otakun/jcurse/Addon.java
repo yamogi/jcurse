@@ -1,5 +1,8 @@
 package com.github.otakun.jcurse;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public final class Addon implements Comparable<Addon> {
@@ -18,6 +21,14 @@ public final class Addon implements Comparable<Addon> {
 	private Addon() {
 	}
 	
+	public static List<Addon> newWowInstance(Collection<String> addonNames) {
+		List<Addon> addons = new ArrayList<>();
+		for (String addonName : addonNames) {
+			addons.add(newWowInstance(addonName));
+		}
+		return addons;
+	}
+
 	public static Addon newWowInstance(String shortAddonName) {
 		Addon addon = new Addon();
 		addon.gameAddonNameId = "wow/" + shortAddonName;
@@ -73,5 +84,6 @@ public final class Addon implements Comparable<Addon> {
 	public String toString() {
 		return "Addon '" + gameAddonNameId + "', version '" + lastZipFileName + "'";
 	}
+
 	
 }

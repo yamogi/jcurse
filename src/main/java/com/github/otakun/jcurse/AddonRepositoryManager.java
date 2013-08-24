@@ -1,6 +1,8 @@
 package com.github.otakun.jcurse;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.TreeMap;
 
 
@@ -30,35 +32,63 @@ public final class AddonRepositoryManager {
 
 
 
-	public void add(String addonName) {
-		
-		Addon newAddon = Addon.newWowInstance(addonName);
+	public void add(Collection<String> addonName) {
+		List<Addon> newAddons = Addon.newWowInstance(addonName);
 
-		if (repository.containsKey(newAddon)) {
-			throw new RuntimeException("Addon '" + addonName + "' already added.");
-			//XXX better error handling
+		List<Addon> toDownload = checkAddonAlreadyExists(newAddons);
+		
+		CurseAddonFileHandler.downloadToWow(toDownload);
+		
+		updateRepository(toDownload);
+	}
+
+	private void updateRepository(List<Addon> toDownload) {
+		for (Addon addon : toDownload) {
+			repository.put(addon, addon);
 		}
-		
-		CurseAddonFileHandler.downloadToWow(newAddon);
-		
-		repository.put(newAddon, newAddon);
-		
 		AddonRepoPersistence.saveInstalledAddons(repository.values());
+	}
+
+	private List<Addon> checkAddonAlreadyExists(List<Addon> newAddons) {
+		List<Addon> toDownload = new ArrayList<>();
+		for (Addon addon : newAddons) {
+			if (repository.containsKey(addon)) {
+				System.out.println("The Addon '" + addon.getGameAddonNameId() + "' is already installed.");
+			} else {
+				toDownload.add(addon);
+			}
+		}
+		return toDownload;
 	}
 
 
 
-	public void remove(String addonName) {
-		System.out.println("Remove addon " + addonName);
-		Addon newAddon = Addon.newWowInstance(addonName);
-		if (!repository.containsKey(newAddon)) {
-			throw new RuntimeException("Addon '" + addonName + "' does not exist to begin with.");
-			//XXX better error handling
-		}
-		CurseAddonFileHandler.removeAddonFolders(repository.get(newAddon).getFolders());
-		repository.remove(newAddon);
+	public void remove(List<String> addons) {
+		List<Addon> newAddons = Addon.newWowInstance(addons);
+		List<Addon> repoAddons = getCheckAddons(newAddons);
+		CurseAddonFileHandler.removeAddons(repoAddons);
+		removeAddonsFromRepo(repoAddons);
+		System.out.println("Removed " + newAddons);
+	}
+
+	private void removeAddonsFromRepo(List<Addon> repoAddons) {
+		for (Addon addon : repoAddons) {
+			repository.remove(addon);
+		}	
 		AddonRepoPersistence.saveInstalledAddons(repository.values());
-		System.out.println("Removed " + addonName);
+	}
+
+	private List<Addon> getCheckAddons(List<Addon> newAddons) {
+		List<Addon> addons = new ArrayList<>();
+		for (Addon addon : newAddons) {
+			Addon repoAddon = repository.get(addon);
+			if (repoAddon == null) {
+				throw new RuntimeException("The addon " + addon.getGameAddonNameId() + "is not in our repository.");
+				//XXX better error handling
+			}
+			addons.add(repoAddon);
+		}
+		return addons;
 	}
 
 
@@ -72,6 +102,12 @@ public final class AddonRepositoryManager {
 		System.out.println("done updating all addons");
 	}
 
+
+	private void updateInternal(List<Addon> repoAddons) {
+		for (Addon addon : repoAddons) {
+			updateInternal(addon);	
+		}
+	}
 
 	private void updateInternal(Addon addon) {
 		String fileName = CurseAddonFileHandler.getCompressedFileName(addon.getGameAddonNameId());
@@ -87,16 +123,13 @@ public final class AddonRepositoryManager {
 		System.out.println("updated " + addon.getGameAddonNameId());
 	}
 
-	public void update(String addonName) {
-		System.out.println("updating " + addonName);
-		Addon newAddon = Addon.newWowInstance(addonName);
-		if (!repository.containsKey(newAddon)) {
-			throw new RuntimeException("Addon '" + addonName + "' is not installed, use the add command to add it.");
-			//XXX better error handling
-		}
-		updateInternal(repository.get(newAddon));
+	public void update(List<String> addons) {
+		System.out.println("updating " + addons);
+		List<Addon> newAddon = Addon.newWowInstance(addons);
+		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon);
+		updateInternal(repoAddons);
 		AddonRepoPersistence.saveInstalledAddons(repository.values());
-		System.out.println("done updating " + addonName);
+		System.out.println("done updating " + addons);
 	}
 
 	public Collection<Addon> getAddons() {

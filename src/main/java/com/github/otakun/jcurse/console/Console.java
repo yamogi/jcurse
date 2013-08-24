@@ -1,6 +1,9 @@
 package com.github.otakun.jcurse.console;
 
+import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import com.github.otakun.jcurse.Addon;
 import com.github.otakun.jcurse.AddonRepositoryManager;
@@ -9,34 +12,41 @@ import com.github.otakun.jcurse.ErrorCode;
 public class Console {
 
 	public static void main(String[] args) {
-		if (args.length < 1) {
+		List<String> arguments = Arrays.asList(args);
+		args =null;
+		if (arguments.size() < 1) {
 			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
 		}
 		
-		if (args.length == 1) {
-			switch (args[0]) {
+		String command = arguments.get(0);
+		if (arguments.size() == 1) {
+			switch (command) {
 				case "list":
 					listAddons();
 					break;
+				default:
+					printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);		
 			}
 		}
-		if (args.length == 2) {
-			switch (args[0]) {
+		if (arguments.size() >= 2) {
+			List<String> addons = arguments.subList(1, arguments.size());
+			
+			switch (command) {
 				case "add":
-					AddonRepositoryManager.getInstance().add(args[1]);
+					AddonRepositoryManager.getInstance().add(addons);
 					break;
 				case "remove":
-					AddonRepositoryManager.getInstance().remove(args[1]);
+					AddonRepositoryManager.getInstance().remove(addons);
 					break;
 				case "update":
-					if ("all".equalsIgnoreCase(args[1])) {
+					if ("all".equalsIgnoreCase(arguments.get(1))) {
 						AddonRepositoryManager.getInstance().updateAll();
 					} else {
-						AddonRepositoryManager.getInstance().update(args[1]);
+						AddonRepositoryManager.getInstance().update(addons);
 					}
 					break;
 				default:
-					printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+					printHelpExit(ErrorCode.CONSOLE_UNKNOWN_OPTION, command);
 					break;
 			}
 		}
@@ -57,8 +67,13 @@ public class Console {
 		}
 	}
 
-	private static void printHelpExit(ErrorCode errorCode) {
-		System.err.println("Error: " + errorCode.getErrorMessage());
+	private static void printHelpExit(ErrorCode errorCode, String... messageParameter) {
+		if (messageParameter.length > 0) {
+			System.err.println("Error: " + MessageFormat.format(errorCode.getErrorMessage(), (Object[]) messageParameter));
+		} else {
+			System.err.println("Error: " + errorCode.getErrorMessage());
+		}
+		
 		System.out.println("\r\nUsage:");
 		System.out.println("jcurse [add | remove | update] [addon name | all]");
 		System.out.println("jcurse list");
