@@ -20,7 +20,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class CurseAddonFileHandler {
 	
 	public static void downloadToWow(Addon newAddon) {
-		String downloadUrl = getDownloadUrl(newAddon.getGameAddonNameId());
+		String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
 		String zipFilename = getZipFileName(downloadUrl);
 		
 		Set<String> addonFolders = downloadAndExtract(downloadUrl);
@@ -114,7 +114,7 @@ public class CurseAddonFileHandler {
 
 	private static String getDownloadUrl(String gameAddonNameId) {
 		WebDriver driver = new HtmlUnitDriver();
-		String url = "http://www.curse.com/addons/" + gameAddonNameId;
+		String url = "http://www.curse.com/addons/wow/" + gameAddonNameId;
 		driver.get(url);
 		System.out.println("website of addon " + url);
 		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));

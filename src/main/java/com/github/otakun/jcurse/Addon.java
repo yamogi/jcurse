@@ -7,7 +7,7 @@ import java.util.Set;
 
 public final class Addon implements Comparable<Addon> {
 	
-	private String gameAddonNameId;
+	private String addonNameId;
 	
 	private String lastZipFileName;
 	
@@ -21,32 +21,26 @@ public final class Addon implements Comparable<Addon> {
 	private Addon() {
 	}
 	
-	public static List<Addon> newWowInstance(Collection<String> addonNames) {
+	public static List<Addon> newInstance(Collection<String> addonNames) {
 		List<Addon> addons = new ArrayList<>();
 		for (String addonName : addonNames) {
-			addons.add(newWowInstance(addonName));
+			addons.add(newInstance(addonName));
 		}
 		return addons;
 	}
 
-	public static Addon newWowInstance(String shortAddonName) {
+	private static Addon newInstance(String shortAddonName) {
 		Addon addon = new Addon();
-		addon.gameAddonNameId = "wow/" + shortAddonName;
+		addon.addonNameId = shortAddonName;
 		return addon;
 	}
 	
-	public static Addon newInstance(String gameAddonName) {
-		Addon addon = new Addon();
-		addon.gameAddonNameId = gameAddonName;
-		return addon;
+	public String getAddonNameId() {
+		return addonNameId;
 	}
 
-	public String getGameAddonNameId() {
-		return gameAddonNameId;
-	}
-
-	public void setGameAddonNameId(String gameAddonNameId) {
-		this.gameAddonNameId = gameAddonNameId;
+	public void setAddonNameId(String addonNameId) {
+		this.addonNameId = addonNameId;
 	}
 
 	public String getLastZipFileName() {
@@ -67,22 +61,22 @@ public final class Addon implements Comparable<Addon> {
 
 	@Override
 	public int hashCode() {
-		return gameAddonNameId.hashCode();
+		return addonNameId.hashCode();
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		return gameAddonNameId.equals(obj);
+		return addonNameId.equals(obj);
 	}
 
 	@Override
 	public int compareTo(Addon addon) {
-		return gameAddonNameId.compareTo(addon.gameAddonNameId);
+		return addonNameId.compareTo(addon.addonNameId);
 	}
 	
 	@Override
 	public String toString() {
-		return "Addon '" + gameAddonNameId + "', version '" + lastZipFileName + "'";
+		return "Addon '" + addonNameId + "', version '" + lastZipFileName + "'";
 	}
 
 	

@@ -33,7 +33,7 @@ public final class AddonRepositoryManager {
 
 
 	public void add(Collection<String> addonName) {
-		List<Addon> newAddons = Addon.newWowInstance(addonName);
+		List<Addon> newAddons = Addon.newInstance(addonName);
 
 		List<Addon> toDownload = checkAddonAlreadyExists(newAddons);
 		
@@ -53,7 +53,7 @@ public final class AddonRepositoryManager {
 		List<Addon> toDownload = new ArrayList<>();
 		for (Addon addon : newAddons) {
 			if (repository.containsKey(addon)) {
-				System.out.println("The Addon '" + addon.getGameAddonNameId() + "' is already installed.");
+				System.out.println("The Addon '" + addon.getAddonNameId() + "' is already installed.");
 			} else {
 				toDownload.add(addon);
 			}
@@ -64,7 +64,7 @@ public final class AddonRepositoryManager {
 
 
 	public void remove(List<String> addons) {
-		List<Addon> newAddons = Addon.newWowInstance(addons);
+		List<Addon> newAddons = Addon.newInstance(addons);
 		List<Addon> repoAddons = getCheckAddons(newAddons);
 		CurseAddonFileHandler.removeAddons(repoAddons);
 		removeAddonsFromRepo(repoAddons);
@@ -83,7 +83,7 @@ public final class AddonRepositoryManager {
 		for (Addon addon : newAddons) {
 			Addon repoAddon = repository.get(addon);
 			if (repoAddon == null) {
-				throw new RuntimeException("The addon " + addon.getGameAddonNameId() + "is not in our repository.");
+				throw new RuntimeException("The addon " + addon.getAddonNameId() + "is not in our repository.");
 				//XXX better error handling
 			}
 			addons.add(repoAddon);
@@ -110,22 +110,22 @@ public final class AddonRepositoryManager {
 	}
 
 	private void updateInternal(Addon addon) {
-		String fileName = CurseAddonFileHandler.getCompressedFileName(addon.getGameAddonNameId());
+		String fileName = CurseAddonFileHandler.getCompressedFileName(addon.getAddonNameId());
 		if (addon.getLastZipFileName().equals(fileName)) {
-			System.out.println(addon.getGameAddonNameId() + " already up2date");
+			System.out.println(addon.getAddonNameId() + " already up2date");
 			return;
 		}
-		System.out.println("updating " + addon.getGameAddonNameId());
+		System.out.println("updating " + addon.getAddonNameId());
 		CurseAddonFileHandler.removeAddonFolders(repository.get(addon).getFolders());
 		CurseAddonFileHandler.downloadToWow(addon);
 		
 		repository.put(addon, addon);
-		System.out.println("updated " + addon.getGameAddonNameId());
+		System.out.println("updated " + addon.getAddonNameId());
 	}
 
 	public void update(List<String> addons) {
 		System.out.println("updating " + addons);
-		List<Addon> newAddon = Addon.newWowInstance(addons);
+		List<Addon> newAddon = Addon.newInstance(addons);
 		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon);
 		updateInternal(repoAddons);
 		AddonRepoPersistence.saveInstalledAddons(repository.values());
