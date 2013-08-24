@@ -11,9 +11,8 @@ import com.github.otakun.jcurse.ErrorCode;
 
 public class Console {
 
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		List<String> arguments = Arrays.asList(args);
-		args =null;
 		if (arguments.size() < 1) {
 			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
 		}
