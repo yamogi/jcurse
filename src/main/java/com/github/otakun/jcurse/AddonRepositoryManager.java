@@ -10,16 +10,18 @@ public final class AddonRepositoryManager {
 
 	private static final AddonRepositoryManager INSTANCE = new AddonRepositoryManager();
 	
-	private TreeMap<Addon, Addon> repository;
-	
 	private static boolean toInitialize = true;
+	
+	private static final AddonRepoPersistence persistence = new AddonRepoPersistence(Configuration.CONFIG_PATH + "repository");
+
+	private TreeMap<Addon, Addon> repository;
 	
 	private AddonRepositoryManager() {
 	}
 	
 	public static synchronized AddonRepositoryManager getInstance() {
 		if (toInitialize) {
-			Collection<Addon> addons = AddonRepoPersistence.loadInstalledAddons();
+			Collection<Addon> addons = persistence.loadInstalledAddons();
 			TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
 			for (Addon addon : addons) {
 				tmpTree.put(addon, addon);
@@ -46,7 +48,7 @@ public final class AddonRepositoryManager {
 		for (Addon addon : toDownload) {
 			repository.put(addon, addon);
 		}
-		AddonRepoPersistence.saveInstalledAddons(repository.values());
+		persistence.saveInstalledAddons(repository.values());
 	}
 
 	private List<Addon> checkAddonAlreadyExists(List<Addon> newAddons) {
@@ -75,7 +77,7 @@ public final class AddonRepositoryManager {
 		for (Addon addon : repoAddons) {
 			repository.remove(addon);
 		}	
-		AddonRepoPersistence.saveInstalledAddons(repository.values());
+		persistence.saveInstalledAddons(repository.values());
 	}
 
 	private List<Addon> getCheckAddons(List<Addon> newAddons) {
@@ -91,14 +93,12 @@ public final class AddonRepositoryManager {
 		return addons;
 	}
 
-
-
 	public void updateAll() {
 		System.out.println("updating all addons");
 		for (Addon addon : repository.values()) {
 			updateInternal(addon);
 		}
-		AddonRepoPersistence.saveInstalledAddons(repository.values());
+		persistence.saveInstalledAddons(repository.values());
 		System.out.println("done updating all addons");
 	}
 
@@ -128,7 +128,7 @@ public final class AddonRepositoryManager {
 		List<Addon> newAddon = Addon.newInstance(addons);
 		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon);
 		updateInternal(repoAddons);
-		AddonRepoPersistence.saveInstalledAddons(repository.values());
+		persistence.saveInstalledAddons(repository.values());
 		System.out.println("done updating " + addons);
 	}
 

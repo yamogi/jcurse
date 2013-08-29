@@ -1,9 +1,7 @@
 package com.github.otakun.jcurse;
 
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -13,15 +11,19 @@ import org.codehaus.jackson.type.TypeReference;
 
 public final class AddonRepoPersistence {
 
-	private static final Path PATH_REPO_FILE = Paths.get(Configuration.CONFIG_PATH + "repository");
+	private final File repoFile;
 	
-	public synchronized static Collection<Addon> loadInstalledAddons() {
+	public AddonRepoPersistence(String pathToRepoFile) {
+		this.repoFile = new File(pathToRepoFile);
+	}
+	
+	public synchronized Collection<Addon> loadInstalledAddons() {
 		try {
-			if (!Files.exists(PATH_REPO_FILE)) {
+			if (!repoFile.exists()) {//FIXME: check for file permission
 				return Collections.emptyList();
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			Object readValue = mapper.readValue(PATH_REPO_FILE.toFile(), new TypeReference<Collection<Addon>>() {});
+			Object readValue = mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});
 			@SuppressWarnings("unchecked")
 			Collection<Addon> result = (Collection<Addon>) readValue; 
 			return result;
@@ -32,10 +34,10 @@ public final class AddonRepoPersistence {
 		return null;
 	}
 	
-	public synchronized static void saveInstalledAddons(Collection<Addon> addons) {
+	public synchronized void saveInstalledAddons(Collection<Addon> addons) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			mapper.writeValue(PATH_REPO_FILE.toFile(), addons);
+			mapper.writeValue(repoFile, addons);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public final class Configuration {
 	
-	static final String CONFIG_PATH = System.getProperty("user.home") + File.separator 
+	static String CONFIG_PATH = System.getProperty("user.home") + File.separator 
 															+ ".jcurse" + File.separator;
 
 	public static final Charset CHARSET = Charset.forName("ASCII");
