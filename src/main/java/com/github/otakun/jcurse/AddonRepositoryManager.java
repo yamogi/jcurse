@@ -8,32 +8,19 @@ import java.util.TreeMap;
 
 public final class AddonRepositoryManager {
 
-	private static final AddonRepositoryManager INSTANCE = new AddonRepositoryManager();
-	
-	private static boolean toInitialize = true;
-	
-	private static final AddonRepoPersistence persistence = new AddonRepoPersistence(Configuration.CONFIG_PATH + "repository");
+	private final AddonRepoPersistence persistence = new AddonRepoPersistence(Configuration.CONFIG_PATH + "repository");
 
-	private TreeMap<Addon, Addon> repository;
+	private final TreeMap<Addon, Addon> repository;
 	
-	private AddonRepositoryManager() {
+	public AddonRepositoryManager() {
+		Collection<Addon> addons = persistence.loadInstalledAddons();
+		TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
+		for (Addon addon : addons) {
+			tmpTree.put(addon, addon);
+		}
+		repository = tmpTree;
 	}
 	
-	public static synchronized AddonRepositoryManager getInstance() {
-		if (toInitialize) {
-			Collection<Addon> addons = persistence.loadInstalledAddons();
-			TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
-			for (Addon addon : addons) {
-				tmpTree.put(addon, addon);
-			}
-			INSTANCE.repository = tmpTree;
-			toInitialize = false;
-		}	
-		return INSTANCE;
-	}
-
-
-
 	public void add(Collection<String> addonName) {
 		List<Addon> newAddons = Addon.newInstance(addonName);
 

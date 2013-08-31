@@ -16,12 +16,12 @@ public class Console {
 		if (arguments.size() < 1) {
 			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
 		}
-		
+		AddonRepositoryManager repositoryManager = new AddonRepositoryManager();
 		String command = arguments.get(0);
 		if (arguments.size() == 1) {
 			switch (command) {
 				case "list":
-					listAddons();
+					listAddons(repositoryManager.getAddons());
 					break;
 				default:
 					printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);		
@@ -32,16 +32,16 @@ public class Console {
 			
 			switch (command) {
 				case "add":
-					AddonRepositoryManager.getInstance().add(addons);
+					repositoryManager.add(addons);
 					break;
 				case "remove":
-					AddonRepositoryManager.getInstance().remove(addons);
+					repositoryManager.remove(addons);
 					break;
 				case "update":
 					if ("all".equalsIgnoreCase(arguments.get(1))) {
-						AddonRepositoryManager.getInstance().updateAll();
+						repositoryManager.updateAll();
 					} else {
-						AddonRepositoryManager.getInstance().update(addons);
+						repositoryManager.update(addons);
 					}
 					break;
 				default:
@@ -51,8 +51,7 @@ public class Console {
 		}
 	}
 
-	private static void listAddons() {
-		Collection<Addon> addons = AddonRepositoryManager.getInstance().getAddons();
+	private static void listAddons(Collection<Addon> addons) {
 		System.out.println();
 		if (addons.isEmpty()) {
 			System.out.println("We don't know of any installed addon.");
