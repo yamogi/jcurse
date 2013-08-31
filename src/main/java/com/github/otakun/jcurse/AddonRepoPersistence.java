@@ -28,10 +28,9 @@ public final class AddonRepoPersistence {
 			Collection<Addon> result = (Collection<Addon>) readValue; 
 			return result;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//TODO better error handling
+			return Collections.emptyList();
 		}
-		return null;
 	}
 	
 	public synchronized void saveInstalledAddons(Collection<Addon> addons) {
@@ -42,5 +41,10 @@ public final class AddonRepoPersistence {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return repoFile.toString();
 	}
 }
