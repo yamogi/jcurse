@@ -17,9 +17,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-public class CurseAddonFileHandler {
+public class CurseAddonFileHandler implements AddonFileHandler {
 	
-	public static void downloadToWow(Addon newAddon) {
+	@Override
+	public void downloadToWow(Addon newAddon) {
 		String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
 		String zipFilename = getZipFileName(downloadUrl);
 		
@@ -31,7 +32,8 @@ public class CurseAddonFileHandler {
 		System.out.println("Done unzipping");
 	}
 
-	public static void downloadToWow(String downloadUrl, Addon addon) {
+	@Override
+	public void downloadToWow(String downloadUrl, Addon addon) {
 		String zipFilename = getZipFileName(downloadUrl);
 		
 		Set<String> addonFolders = downloadAndExtract(downloadUrl);
@@ -42,7 +44,7 @@ public class CurseAddonFileHandler {
 		System.out.println("Done unzipping");
 	}
 
-	private static Set<String> downloadAndExtract(String downloadUrl) {
+	private Set<String> downloadAndExtract(String downloadUrl) {
 		Set<String> addonFolders = new HashSet<>();
 		try{
 			URL website = new URL(downloadUrl);
@@ -124,7 +126,8 @@ public class CurseAddonFileHandler {
 		return downloadUrl;
 	}
 	
-	public static void removeAddons(Collection<Addon> toDelete) {
+	@Override
+	public void removeAddons(Collection<Addon> toDelete) {
 		for (Addon addon : toDelete) {
 			removeAddonFolders(addon.getFolders());
 		}
@@ -132,7 +135,8 @@ public class CurseAddonFileHandler {
 
 	
 	
-	public static void removeAddonFolders(Collection<String> toDelete) {
+	@Override
+	public void removeAddonFolders(Collection<String> toDelete) {
 		try {
 			for (String folderName : toDelete) {
 					FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
@@ -143,13 +147,14 @@ public class CurseAddonFileHandler {
 		
 	}
 
-
-	public static String getCompressedFileName(String gameAddonNameId) {
+	@Override
+	public String getCompressedFileName(String gameAddonNameId) {
 		String downloadUrl = getDownloadUrl(gameAddonNameId);
 		return getZipFileName(downloadUrl);
 	}
 
-	public static void downloadToWow(List<Addon> toDownload) {
+	@Override
+	public void downloadToWow(List<Addon> toDownload) {
 		for (Addon addon : toDownload) {
 			downloadToWow(addon);
 		}

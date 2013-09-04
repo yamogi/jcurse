@@ -8,15 +8,18 @@ import java.util.Collections;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
+import com.github.otakun.jcurse.api.AddonRepoPersistence;
 
-public final class AddonRepoPersistence {
+
+public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
 
 	private final File repoFile;
 	
-	public AddonRepoPersistence(String pathToRepoFile) {
+	public AddonRepoPersistenceImpl(String pathToRepoFile) {
 		this.repoFile = new File(pathToRepoFile);
 	}
 	
+	@Override
 	public synchronized Collection<Addon> loadInstalledAddons() {
 		try {
 			if (!repoFile.exists()) {//FIXME: check for file permission
@@ -33,6 +36,7 @@ public final class AddonRepoPersistence {
 		}
 	}
 	
+	@Override
 	public synchronized void saveInstalledAddons(Collection<Addon> addons) {
 		ObjectMapper mapper = new ObjectMapper();
 		try {

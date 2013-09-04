@@ -5,14 +5,23 @@ import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
 
+import com.github.otakun.jcurse.api.AddonRepoPersistence;
+
 
 public final class AddonRepositoryManager {
 
-	private final AddonRepoPersistence persistence = new AddonRepoPersistence(Configuration.CONFIG_PATH + "repository");
+	private final AddonRepoPersistence persistence;
+	
+	private AddonFileHandler curse = new CurseAddonFileHandler();
 
 	private final TreeMap<Addon, Addon> repository;
 	
 	public AddonRepositoryManager() {
+		this(new AddonRepoPersistenceImpl(Configuration.CONFIG_PATH + "repository"));
+	}
+	
+	public AddonRepositoryManager(AddonRepoPersistence persistence) {
+		this.persistence = persistence;
 		Collection<Addon> addons = persistence.loadInstalledAddons();
 		TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
 		for (Addon addon : addons) {
@@ -26,7 +35,7 @@ public final class AddonRepositoryManager {
 
 		List<Addon> toDownload = checkAddonAlreadyExists(newAddons);
 		
-		CurseAddonFileHandler.downloadToWow(toDownload);
+		curse.downloadToWow(toDownload);
 		
 		updateRepository(toDownload);
 	}
@@ -55,7 +64,7 @@ public final class AddonRepositoryManager {
 	public void remove(List<String> addons) {
 		List<Addon> newAddons = Addon.newInstance(addons);
 		List<Addon> repoAddons = getCheckAddons(newAddons);
-		CurseAddonFileHandler.removeAddons(repoAddons);
+		curse.removeAddons(repoAddons);
 		removeAddonsFromRepo(repoAddons);
 		System.out.println("Removed " + newAddons);
 	}
@@ -97,14 +106,14 @@ public final class AddonRepositoryManager {
 	}
 
 	private void updateInternal(Addon addon) {
-		String fileName = CurseAddonFileHandler.getCompressedFileName(addon.getAddonNameId());
+		String fileName = curse.getCompressedFileName(addon.getAddonNameId());
 		if (addon.getLastZipFileName().equals(fileName)) {
 			System.out.println(addon.getAddonNameId() + " already up2date");
 			return;
 		}
 		System.out.println("updating " + addon.getAddonNameId());
-		CurseAddonFileHandler.removeAddonFolders(repository.get(addon).getFolders());
-		CurseAddonFileHandler.downloadToWow(addon);
+		curse.removeAddonFolders(repository.get(addon).getFolders());
+		curse.downloadToWow(addon);
 		
 		repository.put(addon, addon);
 		System.out.println("updated " + addon.getAddonNameId());
@@ -123,4 +132,8 @@ public final class AddonRepositoryManager {
 		return repository.values();
 	}
 
+	public void changeFileHandler(AddonFileHandler fileHandler) {
+		this.curse = fileHandler; 
+	}
+	
 }
