@@ -63,13 +63,46 @@ public class AddonRepositoryManagerTest {
 		assertEquals("test1",next.getAddonNameId());
 	}
 	
-	@Test
+	@Test (expected = RuntimeException.class)
 	public void testRemoveNotExisting() {
 		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
 				new AddonFileHandlerMock());
 		manager.remove(Arrays.asList("test3"));
 	}
 	
+	@Test
+	public void testUpdateAll() {
+		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+				new AddonFileHandlerMock());
+		manager.updateAll();
+		Collection<Addon> addons = manager.getAddons();
+		assertEquals(2, addons.size());
+		
+		Iterator<Addon> iterator = addons.iterator();
+		checkAddonZipFile(iterator, "test1-1.0.zip");
+		checkAddonZipFile(iterator, "test2-1.0.zip");
+	}
+
+	private void checkAddonZipFile(Iterator<Addon> iterator, String toCheck) {
+		Addon addon1 = iterator.next();
+		assertEquals(toCheck, addon1.getLastZipFileName());
+	}
 	
+	@Test
+	public void testUpdateSingle() {
+		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+				new AddonFileHandlerMock());
+		manager.update(Arrays.asList("test1"));
+		Iterator<Addon> iterator = manager.getAddons().iterator();
+		checkAddonZipFile(iterator, "test1-1.0.zip");
+		checkAddonZipFile(iterator, "test2-1.054.zip");
+		
+		manager.update(Arrays.asList("test2"));
+		
+		iterator = manager.getAddons().iterator();
+		checkAddonZipFile(iterator, "test1-1.0.zip");
+		checkAddonZipFile(iterator, "test2-1.054.zip");
+		
+	}
 
 }

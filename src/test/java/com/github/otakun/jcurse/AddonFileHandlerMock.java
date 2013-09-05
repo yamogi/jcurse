@@ -7,6 +7,7 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 
 	@Override
 	public void downloadToWow(Addon newAddon) {
+		newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
 	}
 
 	@Override
@@ -22,8 +23,8 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 	}
 
 	@Override
-	public String getCompressedFileName(String gameAddonNameId) {
-		return gameAddonNameId + "-1.0.zip";
+	public String getCompressedFileName(String addonNameId) {
+		return addonNameId + "-1.0.zip";
 	}
 
 	@Override
