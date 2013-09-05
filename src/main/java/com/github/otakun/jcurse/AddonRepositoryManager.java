@@ -12,16 +12,19 @@ public final class AddonRepositoryManager {
 
 	private final AddonRepoPersistence persistence;
 	
-	private AddonFileHandler curse = new CurseAddonFileHandler();
+	private final AddonFileHandler curse;
 
 	private final TreeMap<Addon, Addon> repository;
 	
 	public AddonRepositoryManager() {
-		this(new AddonRepoPersistenceImpl(Configuration.CONFIG_PATH + "repository"));
+		this(new AddonRepoPersistenceImpl(Configuration.CONFIG_PATH + "repository"),
+				new CurseAddonFileHandler());
 	}
 	
-	public AddonRepositoryManager(AddonRepoPersistence persistence) {
+	AddonRepositoryManager(AddonRepoPersistence persistence,
+			AddonFileHandler addonFileHandler) {
 		this.persistence = persistence;
+		this.curse = addonFileHandler;
 		Collection<Addon> addons = persistence.loadInstalledAddons();
 		TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
 		for (Addon addon : addons) {
@@ -131,9 +134,4 @@ public final class AddonRepositoryManager {
 	public Collection<Addon> getAddons() {
 		return repository.values();
 	}
-
-	public void changeFileHandler(AddonFileHandler fileHandler) {
-		this.curse = fileHandler; 
-	}
-	
 }
