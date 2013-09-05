@@ -15,6 +15,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import com.github.otakun.jcurse.api.AddonRepoPersistence;
+
 public class AddonRepoPersistenceTest {
 	
     @Rule
@@ -22,7 +24,7 @@ public class AddonRepoPersistenceTest {
     
 	@Test
 	public void testReadWriteJsonFile() throws IOException {
-		AddonRepoPersistence persistence = new AddonRepoPersistence(folder.newFile().getAbsolutePath());
+		AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
 		List<Addon> addons = Addon.newInstance(Arrays.asList("test1","test2","test3"));
 		persistence.saveInstalledAddons(addons);
 		
@@ -35,7 +37,7 @@ public class AddonRepoPersistenceTest {
 	
 	@Test
 	public void testReadWriteJsonFileEmpty() throws IOException {
-		AddonRepoPersistence persistence = new AddonRepoPersistence(folder.newFile().getAbsolutePath());
+		AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
 		persistence.saveInstalledAddons(new ArrayList<Addon>());
 		
 		Collection<Addon> loadInstalledAddons = persistence.loadInstalledAddons();
@@ -45,13 +47,13 @@ public class AddonRepoPersistenceTest {
 	
 	@Test
 	public void testWriteJsonFileNull() throws IOException {
-		AddonRepoPersistence persistence = new AddonRepoPersistence(folder.newFile().getAbsolutePath());
+		AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
 		persistence.saveInstalledAddons(null);
 	}
 	
 	@Test
 	public void testReadJsonFileNull() throws IOException {
-		AddonRepoPersistence persistence = new AddonRepoPersistence(folder.newFile().getAbsolutePath());
+		AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
 		persistence.saveInstalledAddons(null);
 		Collection<Addon> loadInstalledAddons = persistence.loadInstalledAddons();
 		assertNull(loadInstalledAddons);
@@ -59,7 +61,7 @@ public class AddonRepoPersistenceTest {
 	
 	@Test 
 	public void testReadJsonFileNotExisting() throws IOException    {
-		AddonRepoPersistence persistence = new AddonRepoPersistence(folder.newFile().getAbsolutePath());
+		AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
 		Collection<Addon> loadInstalledAddons = persistence.loadInstalledAddons();
 		
 		assertTrue(loadInstalledAddons.isEmpty());
