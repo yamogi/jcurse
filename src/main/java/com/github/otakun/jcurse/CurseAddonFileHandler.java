@@ -17,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import com.github.otakun.jcurse.api.AddonFileHandler;
+
 public class CurseAddonFileHandler implements AddonFileHandler {
 	
 	@Override
