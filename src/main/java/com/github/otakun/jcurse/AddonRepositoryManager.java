@@ -5,9 +5,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
 
-import com.github.otakun.jcurse.api.AddonFileHandler;
-import com.github.otakun.jcurse.api.AddonRepoPersistence;
-
 
 public final class AddonRepositoryManager {
 

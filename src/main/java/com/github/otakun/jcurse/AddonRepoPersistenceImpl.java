@@ -8,8 +8,6 @@ import java.util.Collections;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
-import com.github.otakun.jcurse.api.AddonRepoPersistence;
-
 
 public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
 

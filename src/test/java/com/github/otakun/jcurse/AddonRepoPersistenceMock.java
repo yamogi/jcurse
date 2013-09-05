@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.otakun.jcurse.api.AddonRepoPersistence;
-
 public class AddonRepoPersistenceMock implements AddonRepoPersistence {
 
 	private final List<Addon> list = new ArrayList<>();

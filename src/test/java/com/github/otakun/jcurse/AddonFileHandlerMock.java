@@ -3,8 +3,6 @@ package com.github.otakun.jcurse;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.otakun.jcurse.api.AddonFileHandler;
-
 public class AddonFileHandlerMock implements AddonFileHandler {
 
 	@Override

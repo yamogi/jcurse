@@ -1,8 +1,6 @@
-package com.github.otakun.jcurse.api;
+package com.github.otakun.jcurse;
 
 import java.util.Collection;
-
-import com.github.otakun.jcurse.Addon;
 
 public interface AddonRepoPersistence {
 

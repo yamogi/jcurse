@@ -15,8 +15,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.github.otakun.jcurse.api.AddonRepoPersistence;
-
 public class AddonRepoPersistenceTest {
 	
     @Rule

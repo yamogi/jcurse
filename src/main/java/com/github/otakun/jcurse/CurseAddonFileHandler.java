@@ -17,8 +17,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
-import com.github.otakun.jcurse.api.AddonFileHandler;
-
 public class CurseAddonFileHandler implements AddonFileHandler {
 	
 	@Override
@@ -111,8 +109,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 		if (lastIndexOf == -1) {
 			throw new RuntimeException("Download url wrong"); //FIXME correct error handling
 		}
-		String zipFilename = downloadUrl.substring(lastIndexOf + 1);
-		return zipFilename;
+		return downloadUrl.substring(lastIndexOf + 1);
 	}
 
 
