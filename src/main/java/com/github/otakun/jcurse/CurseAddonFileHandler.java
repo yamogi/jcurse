@@ -129,7 +129,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 					FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace();//FIXME error handling
 		}
 		
 	}
