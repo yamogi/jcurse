@@ -1,0 +1,67 @@
+__ADTECH_CODE__ = "";
+__theDocument = document;
+__theWindow = window;
+__bCodeFlushed = false;
+
+function __flushCode() {
+	if (!__bCodeFlushed) {
+		var span = parent.document.createElement("SPAN");
+		span.innerHTML = __ADTECH_CODE__;
+		window.frameElement.parentNode.appendChild(span);
+		__bCodeFlushed = true;
+	}
+}
+
+if (typeof inFIF != "undefined") {
+	document.write = function(str) {
+		__ADTECH_CODE__ += str;
+	};
+	document.writeln = function(str) {
+		document.write(str + "\n");
+	};
+	__theDocument = parent.document;
+	__theWindow = parent;
+}
+document.write("<div class=\"atf-ad-badge\">\n");
+
+document.write("<a href=\"http://adserver.adtechus.com/adlink/5259/2360705/0/1199/AdId=4669073;BnId=1;itime=569274667;key=group=projectfile+page=details+game=wow+lang=en;nodecode=yes;link=http://ad.doubleclick.net/clk;275912782;102863260;g\" target=\"_blank\"><img src=\"http://aka-cdn-ns.adtechus.com/apps/145/Ad4669073St3Sz1199Sq22827471V0Id1/Rift_Badge240x90_01.jpg\" border=\"0\" alt=\"\" title=\"\"></a>\n");
+ecp2360705y = new Image();ecp2360705y.src='http://ad.doubleclick.net/ad/N4518.CurseNetwork/B7862296.9;sz=1x1;ord=569274667?';
+document.write("</div>\n");
+function cleanUp() {
+ if (typeof __parent.swappedRefs2360705 == "undefined") {
+   __parent.swappedRefs2360705 = new Array();
+ }
+   
+ while (__parent.swappedRefs2360705.length > 0) {
+   var ref = __parent.swappedRefs2360705.pop();
+   if (ref != "swappedRefs2360705") {
+     __parent[ref] = null;
+   }
+ }
+}
+
+if (typeof inFIF != "undefined" && inFIF == true) {
+ __parent = window.parent;
+ window.onunload = cleanUp;
+ cleanUp();
+
+ for (var ref in window) {
+   if ((typeof __parent[ref] == "undefined" || __parent[ref] == null) 
+         && ref != "frameElement" && ref != "event" && ref != "swappedRefs2360705" && ref != "onunload") {
+     try {__parent[ref] = window[ref]; __parent.swappedRefs2360705.push(ref);} catch (e) {}
+  } 
+ }  
+}
+
+
+if (typeof inFIF != "undefined" && inFIF) {
+	__flushCode();
+}
+
+if (typeof inFIF != "undefined" && inFIF == true) {
+try {parent.write = write;
+} catch (e) {}try {parent.writeln = writeln;
+} catch (e) {}try {parent.__flushCode = __flushCode;
+} catch (e) {}}
+
+

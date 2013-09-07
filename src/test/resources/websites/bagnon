@@ -1,0 +1,3414 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://www.curse.com/addons/wow/bagnon -->
+<html lang="en-us" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms no-csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths wf-droidsans-n4-active wf-droidsans-n7-active wf-fjallaone-n4-active wf-active"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><title>
+	Bagnon - Bags &amp; Inventory - World of Warcraft Addons - Curse
+</title> 
+
+    <link rel="shortcut icon" href="http://static-curse.cursecdn.com/1-0-4989-18153/Skins/Radon/images/favicon.ico" type="image/x-icon">    
+
+    <meta property="fb:app_id" content="232356843485828">
+<meta property="og:title" content="Bagnon">
+<meta property="og:url" content="http://www.curse.com/addons/wow/bagnon">
+<meta property="og:site_name" content="Curse">
+<meta property="og:image" content="http://media-curse.cursecdn.com/attachments/15/87/61c3df0b8c0ae5dfdc4665de2eacf1e9.png">
+<meta property="og:locale" content="en_US">
+
+
+    <!-- Custom Fonts -->    
+    <link href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/css" rel="stylesheet" type="text/css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/compiled.css">
+<link rel="stylesheet" type="text/css" href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/compiled(1).css">
+<style type="text/css">
+.body-post-tagdetails {
+ background: #000 url("http://media-curse.cursecdn.com/attachments/95/773/alienware_02b_blue_siteskin.jpg") no-repeat center 25px;
+}
+.body-post-tagdetails .atf-ad-badge,
+.body-post-tagdetails .atf-ad-leaderboard,
+.body-post-tagdetails .atf-ad-medRect,
+.body-post-tagdetails .btf-ad-medRect,
+.body-post-tagdetails .footer-ad { display: none; }
+
+.body-post-tagdetails .atflb {
+    background: url("http://media-curse.cursecdn.com/attachments/95/786/aliuenware-gamescome_header.jpg") no-repeat center center;
+    margin: 0px auto;
+    width: 980px;
+    height: 66px;
+}
+
+
+
+
+
+
+
+
+
+.footer-ad-leaderboard {
+    margin: 0 auto;
+    width: 728px;
+}
+*/
+
+.ad-med-rect { z-index:4 !important; }
+#ivw { display: none; }
+
+div#sweepstakes-details div.keys-remaining p span { display: none; }
+
+a.quote-author { display: none; }
+
+#offer-content #secondary-content > div:nth-child(3) { display: none; }
+
+
+
+.grid-view .post,
+.grid-view .page { clear: none; }
+
+
+div#game-selector ul.game-list { height: 240px; }
+.game-worldoftanks div#game-search ul.game-asset-count li { margin-left: 30px; }
+
+
+
+.naga-red-offer,
+.discounts .sponsors div:nth-child(3) { clear: left; }
+
+
+div#sweepstakes-details div#entry-info { margin: 0; float: left; }
+
+
+#soar-media-result { background-color:#fff; }
+
+#soar-media-result b a {
+font-size:18px;
+text-decoration:underline;
+color:#FF7A01;
+}
+
+#soar-media-result span {
+font-size:14px;
+}
+
+#soar-media-result em {
+font-size:14px;
+color:blue;
+}
+
+.t-premium-plan-details { color: #FFFFFF; }
+.t-premium-plan-details h3 { font-size: 18px; }
+
+
+#beta-callout { display: none !important; }
+.hide-ads #beta-callout.premium-show { display: none !important; }
+.show-ads #beta-callout.premium-show {
+    top: 78px !important;
+    left: 50% !important;
+    margin-left: -200px !important;
+    display: block !important;
+}
+.show-ads #beta-callout::before { display: none; }
+
+
+#available-promotions .promotion-cta { display:none; }
+
+
+
+#primary-nav ul li.nav-icon-twitter a,
+#primary-nav ul li.nav-icon-facebook a,
+#primary-nav ul li.nav-icon-youtube a {
+display: block;
+width:60px;
+height: 18px;
+text-indent: -99999px;
+padding: 16px 0 0 0;
+}
+#primary-nav ul li.nav-icon-twitter a {
+background: url("http://media-curse.cursecdn.com/attachments/79/59/nav-icon-twitter.png") no-repeat right center;
+}
+#primary-nav ul li.nav-icon-facebook a {
+background: url("http://media-curse.cursecdn.com/attachments/79/57/nav-icon-facebook.png") no-repeat right center;
+}
+#primary-nav ul li.nav-icon-youtube a {
+background: url("http://media-curse.cursecdn.com/attachments/79/63/nav-icon-youtube.png") no-repeat right center;
+width: 46px;
+}
+
+
+
+div#netbar .suckerfish > ul li a i {
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  height: 12px;
+  line-height: 0;
+  vertical-align: middle;
+  width: 12px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+div#netbar div#discover li.suckerfish ul li a { padding-left: 10px; } 
+div#netbar .suckerfish > ul li a i.u-icon-mmoc { background-image: url("http://media-curse.cursecdn.com/attachments/81/178/mmoc.png") }
+div#netbar .suckerfish > ul li a i.u-icon-arenajunkies { background-image: url("http://media-curse.cursecdn.com/attachments/81/177/aj.png") }
+div#netbar .suckerfish > ul li a i.u-icon-gamepedia { background-image: url("http://media-curse.cursecdn.com/attachments/81/171/gamepedia.png") }
+div#netbar .suckerfish > ul li a i.u-icon-rog { background-image: url("http://media-curse.cursecdn.com/attachments/81/176/rog.png") }
+div#netbar .suckerfish > ul li a i.u-icon-lolpro { background-image: url("http://media-curse.cursecdn.com/attachments/81/175/lolpro.png") }
+div#netbar .suckerfish > ul li a i.u-icon-minecraftforums { background-image: url("http://media-curse.cursecdn.com/attachments/81/174/mcf.png") }
+div#netbar .suckerfish > ul li a i.u-icon-guildwars2guru { background-image: url("http://media-curse.cursecdn.com/attachments/81/173/guildwars2guru.png") }
+div#netbar .suckerfish > ul li a i.u-icon-fpsg { background-image: url("http://media-curse.cursecdn.com/attachments/81/172/fpsgeneral.png") }
+
+
+
+.p-uploader-a.upload .p-uploader-content .p-uploader-title { margin: 1em 0; } 
+
+
+
+  .t-footer .t-footer-curseNetwork .t-footer-featured .t-footer-featureItem.site-gw2g h4 {
+        background-image: url("http://media-curse.cursecdn.com/attachments/73/537/featured-gw2g.png"); }
+.t-footer .t-footer-curseNetwork .t-footer-featured .t-footer-featureItem.site-gw2db h4 {
+        background-image: url("http://media-curse.cursecdn.com/attachments/75/387/featured-gw2db.png"); }
+
+.t-footer .t-footer-curseInfo hgroup h1 {
+    background: url("http://media-curse.cursecdn.com/attachments/87/963/curse-logo.png") no-repeat;
+}
+
+
+
+
+
+.hide-ads #footer .footer-ad-medRect { display: none; }
+
+
+
+.show-ads #footer {
+    position: relative;
+}
+
+
+
+.t-footer .t-footer-wrapper { padding: 40px 0; }
+
+
+
+.show-ads .t-footer .t-footer-curseNetwork {
+    border-top: none;
+}
+
+.show-ads .t-footer-curseNetwork > header:first-child {
+    border-top: 1px solid #333;
+    width: 50%;
+}
+
+.show-ads .t-footer-curseNetwork > header:first-child .t-footer-jumpLink {
+    margin-right: 10px;
+    position: relative;
+}
+
+.show-ads .t-footer-curseNetwork > header:first-child .t-footer-jumpLink:after {
+    background: #151515;
+    content: "";
+    height: 100%;
+    position: absolute;
+    left: 100%;
+    width: 10px;
+}
+
+
+
+.show-ads .t-footer .t-footer-curseNetwork .t-footer-featured .t-footer-featureItem {
+    float: none;
+    margin-left: 0;
+    overflow: hidden;
+    width: 50%;
+}
+
+.show-ads .t-footer .t-footer-curseNetwork .t-footer-featured .t-footer-featureItem h4 {
+    float: left;
+    position: relative;
+    z-index: 2;
+}
+
+.show-ads .t-footer .t-footer-curseNetwork .t-footer-featured .t-footer-featureItem dl {
+    border-radius: 0 8px 8px 0;
+    height: 91px;
+    overflow: hidden;
+    padding-left: 28px;
+    position: relative;
+    top: 11px; left: -10px;
+    width: auto;
+}
+
+
+
+.show-ads .t-footer .t-footer-featureItem:nth-child(3),
+.show-ads .t-footer .t-footer-featureItem:nth-child(4) {
+    position: absolute;
+    left: -99999px;
+}
+
+
+
+.show-ads #footer .footer-ad-medRect {
+    margin-right: -490px;
+    position: absolute;
+    top: 45px; right: 50%;
+    z-index: 2;
+}
+
+.client-download-mac
+{
+   display: none;
+}
+
+.client-download-pc
+{
+    margin-left: 60px;
+    margin-top: -3px;
+}</style><style type="text/css"></style>
+
+
+    <!-- JavaScript -->
+    <script id="LR1" type="text/javascript" async="" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/client.js"></script><script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/8371.js" async="" type="text/javascript"></script><script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/webfont.js" type="text/javascript" async=""></script><script async="" type="text/javascript" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/gpt.js"></script><script type="text/javascript" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/core.js"></script>
+    
+
+    
+    <meta property="fb:admins" content="100002398520713">
+    <script type="text/javascript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+(function() {
+var gads = document.createElement('script');
+gads.async = true;
+gads.type = 'text/javascript';
+var useSSL = 'https:' == document.location.protocol;
+gads.src = (useSSL ? 'https:' : 'http:') + 
+'//www.googletagservices.com/tag/js/gpt.js';
+var node = document.getElementsByTagName('script')[0];
+node.parentNode.insertBefore(gads, node);
+})();
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1025841/Test_Dec_728x90', [728, 90], 'div-gpt-ad-1369280490967-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1025841/Test_Dec_300x250', [300, 250], 'div-gpt-ad-1369341269982-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1025841/728x90_btf', [728, 90], 'div-gpt-ad-1369280622844-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script>
+
+
+<script type="text/javascript">
+googletag.cmd.push(function() {
+googletag.defineSlot('/1025841/300x250_btf', [300, 250], 'div-gpt-ad-1369280651562-0').addService(googletag.pubads());
+googletag.enableServices();
+});
+</script><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700%7CFjalla+One&subset=latin,latin"><script async="" type="text/javascript" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/pubads_impl_26.js"></script><script id="facebook-jssdk" async="" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/all.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_reset > div{overflow:hidden}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.xx.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}
+.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_fluid span{width:100%}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.xx.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+.fbpluginrecommendationsbarleft{left:10px}
+.fbpluginrecommendationsbarright{right:10px}</style></head>
+
+<body class="grid-a game-wow user-anon  non-premium-user  show-ads  site-curse body-project body-project-details lang-en site-lang-en template-none skin-light-on-dark allows-widgets-left allows-widgets-right allows-widgets-top allows-widgets-dashboard" data-user-lang="1" data-twttr-rendered="true"><iframe id="twttrHubFrameSecure" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrameSecure" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/hub(1).html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/hub.html" style="position: absolute; top: -9999em; width: 10px; height: 10px;"></iframe><noscript>
+    &lt;div class="no-js-error"&gt;
+        &lt;span&gt;Curse.com requires Javascript to be enabled. Please enable JavaScript or upgrade to a JavaScript-capable browser.&lt;/span&gt;
+    &lt;/div&gt;
+</noscript>
+
+
+    
+    
+    
+    <div id="top"></div>
+
+    <!-- NETBAR -->
+    
+
+<!-- Curse Strip -->
+<span class="curse-stripe"></span>
+
+<!-- NETBAR -->
+<div id="netbar" class="t-netbar u-icon u-icon-z">
+    
+    <!-- CURSE INFO -->
+    <div class="t-netbar-curseInfo">
+        <!-- DISCOVER -->
+        <ul class="t-netbar-discover t-netbar-section u-dropdown" role="directory">
+  <li>
+    <a href="http://www.curse.com/addons/wow/bagnon#" class="t-netbar-label">Curse Sites <i class="u-icon-dropDown"></i></a>
+      <ul>
+            <li class="break">Top Sites</li>
+            <li><a href="http://www.mmo-champion.com/"><i class="u-icon-mmoc"></i>MMO-Champion</a></li>
+            <li><a href="http://www.arenajunkies.com/"><i class="u-icon-arenajunkies"></i>Arena Junkies</a></li>
+            <li><a href="http://www.reignofgaming.net/"><i class="u-icon-rog"></i>Reign of Gaming</a></li>
+            <li><a href="http://www.lolpro.com/"><i class="u-icon-lolpro"></i>LoL Pro</a></li>
+            <li><a href="http://www.minecraftforums.net/"><i class="u-icon-minecraftforums"></i>Minecraft Forums</a></li>
+            <li><a href="http://www.guildwars2guru.com/"><i class="u-icon-guildwars2guru"></i>Guild Wars 2 Guru</a></li>
+            <li><a href="http://www.fpsgeneral.com/"><i class="u-icon-fpsg"></i>FPS General</a></li>
+           <li class="featured"><a href="http://www.curse.com/">Curse.com</a></li>
+    </ul>
+  </li>
+</ul>
+        
+    <!-- LOGGED OUT -->
+    
+
+        <!-- HELP -->
+        <ul class="t-netbar-help t-netbar-section">
+            <li>
+                <a href="http://support.curse.com/" class="t-netbar-label">Help</a>
+            </li>
+        </ul>
+        <a class="t-netbar-premium" href="http://www.curse.com/premium">Get an Epic Experience with Premium</a>
+    </div> <!-- // END CURSE INFO -->
+    <script language="javascript">
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn/3.0/5259.1/2279927/0/544/ADTECH;loc=100;target=_blank;key=key1+key2+key3+key4;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ADTECH;loc=100;target=_blank;key=key1+key2+key3+key4;grp=88"></script>
+
+    <!-- USER INFO -->
+    <div class="t-netbar-userInfo">
+
+        <!-- AUTHORIZE -->
+        <ul class="t-netbar-authorize t-netbar-section">
+            <li class="t-netbar-login">        
+			    <a href="http://www.curse.com/login?returnUrl=%252faddons%252fwow%252fbagnon" id="login-link" class="t-netbar-label"><strong>Login</strong></a>
+		    </li>
+		    <li class="t-netbar-register">
+                <a href="http://www.curse.com/register" class="t-netbar-label">Don't have an account? <strong>Register</strong></a>
+            </li>                
+        </ul>
+
+    </div>
+
+    <!-- LOGGED IN -->
+    
+</div>
+
+
+
+    <div class="site">
+        <div id="header">
+            <h1><a href="http://www.curse.com/">Curse</a></h1>            
+            <div id="primary-nav">
+                <ul>
+                    
+<li class=" selected"><a href="http://www.curse.com/"><span>Home</span></a>
+
+</li>
+
+<li class="feature-nav suckerfish downloads-link"><a href="http://www.curse.com/addons/wow/bagnon#"><span>Downloads</span></a>
+        
+    <ul class="section-drop group">
+        <li>
+            <h3>Addons &amp; Mods</h3>
+            <div class="featured-addon-mod-drop">
+                <strong>Featured</strong>
+                <a href="http://www.curse.com/addons/wow">
+                    <span class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/634841026816885209.jpg" alt=""></span>
+                    World of Warcraft
+                </a>
+                6,299 Addons
+            </div>
+            <ul class="game-projects">
+                
+                    <li>
+                        <a href="http://www.curse.com/addons/wow" class="game-name">World of Warcraft</a>
+                        <a href="http://www.curse.com/addons/wow">Addons</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                        <a href="http://www.curse.com/addon-packs/wow">Addon Packs</a>
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/bukkit-plugins/minecraft" class="game-name">Minecraft</a>
+                        <a href="http://www.curse.com/bukkit-plugins/minecraft">Bukkit Plugins</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/addons/rift" class="game-name">Rift</a>
+                        <a href="http://www.curse.com/addons/rift">Addons</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/mods/skyrim" class="game-name">Skyrim</a>
+                        <a href="http://www.curse.com/mods/skyrim">Mods</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/wot-skins/worldoftanks" class="game-name">World of Tanks</a>
+                        <a href="http://www.curse.com/wot-skins/worldoftanks">Skins</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/maps/terraria" class="game-name">Terraria</a>
+                        <a href="http://www.curse.com/maps/terraria">Maps</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/maps/sc2" class="game-name">StarCraft II</a>
+                        <a href="http://www.curse.com/maps/sc2">Maps</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/addons/rom" class="game-name">Runes of Magic</a>
+                        <a href="http://www.curse.com/addons/rom">Addons</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/tsw-mods/tsw" class="game-name">The Secret World</a>
+                        <a href="http://www.curse.com/tsw-mods/tsw">Mods</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+                    <li>
+                        <a href="http://www.curse.com/ff-addons/firefall" class="game-name">Firefall</a>
+                        <a href="http://www.curse.com/ff-addons/firefall">Addons</a>
+                        <!-- if addon packs exists, show below -->
+                        
+                    </li>
+                
+            </ul>
+        </li>
+        <li>
+            <h3>Popular Downloads</h3>
+            <ul class="popular-list">
+                
+					<li><a href="http://www.curse.com/addons/wow/downloads" class="no-tooltip">Top World of Warcraft Addons</a></li>
+				
+					<li><a href="http://www.curse.com/bukkit-plugins/minecraft/downloads" class="no-tooltip">Top Minecraft Bukkit Plugins</a></li>
+				
+					<li><a href="http://www.curse.com/addons/rift/downloads" class="no-tooltip">Top Rift Addons</a></li>
+				
+					<li><a href="http://www.curse.com/mods/skyrim/downloads" class="no-tooltip">Top Skyrim Mods</a></li>
+				
+					<li><a href="http://www.curse.com/wot-skins/worldoftanks/downloads" class="no-tooltip">Top World of Tanks Skins</a></li>
+				
+					<li><a href="http://www.curse.com/maps/terraria/downloads" class="no-tooltip">Top Terraria Maps</a></li>
+				
+					<li><a href="http://www.curse.com/maps/sc2/downloads" class="no-tooltip">Top StarCraft II Maps</a></li>
+				
+					<li><a href="http://www.curse.com/addons/rom/downloads" class="no-tooltip">Top Runes of Magic Addons</a></li>
+				
+					<li><a href="http://www.curse.com/tsw-mods/tsw/downloads" class="no-tooltip">Top The Secret World Mods</a></li>
+				
+					<li><a href="http://www.curse.com/ff-addons/firefall/downloads" class="no-tooltip">Top Firefall Addons</a></li>
+				
+            </ul>
+            <em class="cta-button road-sign-small"><a href="http://www.curse.com/games">Browse all Games</a></em>
+        </li>
+    </ul>
+
+</li>
+
+<li class="feature-nav"><a href="http://www.curse.com/client"><span>Curse Client</span></a>
+
+</li>
+
+<li class="feature-nav premium-nav"><a href="http://www.curse.com/premium"><span>Premium</span></a>
+
+</li>
+
+<li class=""><a href="http://www.curse.com/news"><span>News</span></a>
+
+</li>
+
+<li class="callout-target"><a href="http://www.curse.com/giveaways"><span>Giveaways</span></a>
+
+</li>
+
+<li class=""><a href="http://www.curse.com/forums"><span>Forums</span></a>
+
+</li>
+
+<li class=""><a href="http://store.teamcurse.net/" target="_blank"><span>Store</span></a>
+
+</li>
+
+<li class="nav-icon-youtube"><a href="http://www.youtube.com/user/curseentertainment"><span>Videos</span></a>
+
+</li>
+
+<li class="nav-icon-twitter"><a href="https://twitter.com/cursenetwork"><span>Twitter</span></a>
+
+</li>
+
+<li class="nav-icon-facebook"><a href="http://www.facebook.com/CurseNetwork"><span>Facebook</span></a>
+
+</li>
+
+                </ul>
+            </div>            
+            <div id="primary-search">
+                <form action="http://www.curse.com/search" method="get" id="global-search-form">
+                    <input type="search" name="search" placeholder="Search" data-autocomplete-url="/projects/find?gameID=1" autocomplete="off" class="ac_input">
+                    <input type="submit">
+                </form>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#global-search-form input[type=search]').setOptions({
+                        selectFirst: false
+                    });
+                });
+            </script>
+        </div>
+
+        <!-- Super LeaderBoard Top -->
+        <div class="atf atflb">
+            <div class="atf-ad-badge">
+                <style>
+.atf .atf-ad-badge {margin-right: 0px !important;}
+</style>
+<script language="javascript">
+
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn/3.0/5259.1/2360705/0/1199/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88"></script>
+            </div>
+            <div class="atf-ad-leaderboard">
+                <script language="javascript">
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn|3.0|5259|1248409|0|225|ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/addyn-3.0-5259-1248409-0-225-ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88"></script>
+            </div>
+        </div>
+
+        <div id="content">
+            
+<div id="breadcrumbs-wrapper">
+    <ul class="breadcrumbs group">
+    <li><a href="http://www.curse.com/">Home</a></li>
+     
+        <li>
+        
+                <a href="http://www.curse.com/addons/wow"><span>World of Warcraft Addons</span></a>
+        
+        </li>
+     
+        <li>
+        
+                <a href="http://www.curse.com/addons/wow/category/bags-inventory"><span>Bags &amp; Inventory</span></a>
+        
+        </li>
+     
+        <li>
+        
+                <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html"><span>Bagnon</span></a>
+        
+        </li>
+     
+    </ul>
+</div>
+
+
+
+<!-- Project Overview -->
+<div id="project-overview" class="overview">
+    
+    
+<div class="module group">
+    <!-- Outside Caption -->
+    
+<div class="caption-container h2  no-sub no-nav">
+ 
+    <!-- Navigation -->
+    
+    
+    <!-- Main Title -->
+    <h2 class="caption">
+        <span class="bg">
+			<span class="left">            
+				<span class="right">Bagnon</span>
+			</span>
+		</span>				
+    </h2>         
+    <!-- Sub title -->
+    
+    
+</div>
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                
+        <div class="main-details">
+            <div class="screenshots">
+                <ul>
+                    <li class="main-screenshot">
+                        <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png" class="content-image lightbox"><img class="primary-project-attachment" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9.png"></a>
+                        <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png">Click for larger image</a>
+                    </li>
+
+                    
+                    <li><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png" thumbnailsrc="http://media-curse.cursecdn.com/attachments/thumbnails/15/87/190/130/61c3df0b8c0ae5dfdc4665de2eacf1e9.png" class="content-image seconday-project-attachment" lightbox-type="top"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(1).png"></a></li>                        
+                    
+                    <li><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/5d561cc6895fe3791d64e2fee5c7a2ad(1).jpeg" thumbnailsrc="http://media-curse.cursecdn.com/attachments/thumbnails/25/634/190/130/5d561cc6895fe3791d64e2fee5c7a2ad.jpeg" class="content-image seconday-project-attachment" lightbox-type="top"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/5d561cc6895fe3791d64e2fee5c7a2ad.jpeg"></a></li>                        
+                    
+                    <li><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/dbfb91b5ee73395bb0f4f5aad0e33db2.jpeg" thumbnailsrc="http://static-curse.cursecdn.com/1-0-4989-18153/skins/global/images/ui/document-generic.png" class="content-image seconday-project-attachment" lightbox-type="top"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/document-generic.png"></a></li>                        
+                    
+                </ul>
+                <a href="javascript:Radon.Addons.SelectScreenshotTab()">See All</a>
+            </div>
+
+            <div class="main-info">
+            
+                <a href="http://www.curse.com/addons/wow/category/bags-inventory" class="tip main-category"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bag2.png" alt="Bags &amp; Inventory"></a>
+                <em class="cta-button secondary favorites">
+                    <a class="" href="http://www.curse.com/addons/wow/bagnon#" data-favorite-url="/favorites/add-favorite/10001/1592" data-unfavorite-url="/favorites/remove-favorite/10001/1592">Login to Add Favorites</a>
+                </em>
+                <div class="appreciate">
+                    <ul>
+                        <li class="sharing">
+   <div class="social-sharing">
+
+        <div class="social-share facebook">
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/xd_arbiter.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/xd_arbiter(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+<script type="text/javascript">
+    Cobalt.Constants.FacebookAppID = "232356843485828";    
+</script>
+<fb:like send="false" href="http://www.curse.com/addons/wow/bagnon" layout="button_count" width="90" show_faces="false" font="" fb-xfbml-state="rendered" class="fb_edge_widget_with_comment fb_iframe_widget"><span style="height: 20px; width: 82px;"><iframe id="f2fbb0a73" name="ff86b75e4" scrolling="no" title="Like this content on Facebook." class="fb_ltr" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/like.html" style="border: none; overflow: hidden; height: 20px; width: 82px;"></iframe></span></fb:like></div>
+
+        <div class="social-share twitter">
+<script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/widgets.js" type="text/javascript"></script>
+<iframe allowtransparency="true" frameborder="0" scrolling="no" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/tweet_button.1378258117.html" class="twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
+<!-- Track Twitter on Google Analytics -->
+<script type="text/javascript">
+    if (_ga)
+        _ga.trackTwitter();
+</script></div>
+
+   </div>
+</li>
+                        <li class="grats" title=""><span data-type-id="10001" data-id="1592" class="project-rater">181 Likes</span></li>
+                    </ul>
+                </div>
+                <ul class="authors group">
+                    <li>Project Manager: <a href="http://www.curse.com/users/Tuller">Tuller</a></li>
+                    
+                            <li>Author: <a href="http://www.curse.com/users/Jaliborc">Jaliborc</a></li>
+                                           
+                </ul>
+                <ul class="details-list">
+                    <li class="game"><a href="http://www.curse.com/addons/wow">World of Warcraft</a></li>
+                    <li class="average-downloads">199,797 Monthly Downloads</li>
+                    <li class="version version-up-to-date">Supports: 5.3.0</li>
+                    <li class="downloads">18,405,696 Total Downloads</li>
+                    <li class="updated">Updated <abbr class="standard-date" title="Sun, 14 Jul 2013 04:54:36 CDT (UTC-5:00)" data-epoch="1373795676">14 July 2013</abbr></li>
+                    <li class="updated">Created <abbr class="standard-date" title="Mon, 26 Dec 2005 09:04:58 CDT (UTC-6:00)" data-epoch="1135609498">26 December 2005</abbr></li>
+                    <li class="favorited">14,730 Favorites</li>
+                    <li class="curseforge"><a href="http://www.curseforge.com/projects/1592/">Project Site</a></li>
+                    
+                    <li class="comments"><a href="http://www.curse.com/addons/wow/bagnon#comments">Comments</a></li>
+                    
+                    <li class="release">Release Type: Release</li>
+                    <li class="license">License: All Rights Reserved </li>
+                    
+                       <li class="newest-file">Newest File: 5.3.6</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+
+        
+<div class="download-options">
+    <ul class="regular-dl ">
+        
+        
+            <li><em class="cta-button download-large"><a href="5.3.6Bagnon.html">Download Now</a></em></li>
+        
+            <li><em class="cta-button download-cc-large"><a href="http://www.curse.com/addons/wow/bagnon/718727-client">Install via Curse Client</a></em></li>
+        
+    </ul>
+    <div class="premium-upsell">
+        <em><span>or</span></em>
+        <ul class="premium-dl premium-info">
+            <li>Download at premium <em>fast</em> speed <a href="http://www.curse.com/premium">Learn More</a></li>
+        </ul>
+    </div>
+</div>
+
+                <div class="meta-info">
+                    <span class="tip" title="** 100% of donations go to the author(s) of this addon and are not handled by Curse, Inc.">Support development! **</span>
+                    <div>
+                        <a href="https://www.paypal.com/cgi-bin/webscr?hosted_button_id=JVA9GGJJ75K3J&item_name=Bagnon+%28from+Curse.com%29&cmd=_s-xclick"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/btn_donate_LG.gif" alt="Donate"></a>
+                    </div>
+                </div>
+        
+            </div>  
+        </div>            
+    </div>
+</div>
+</div>
+
+<!-- Primary Content -->
+<div id="primary-content">
+    <!-- About Project -->
+    <div id="about-project">
+        
+<div class="module group">
+    <!-- Outside Caption -->
+    
+<div class="caption-container h2  no-sub no-nav">
+ 
+    <!-- Navigation -->
+    
+    
+    <!-- Main Title -->
+    <h2 class="caption">
+        <span class="bg">
+			<span class="left">            
+				<span class="right">About Bagnon</span>
+			</span>
+		</span>				
+    </h2>         
+    <!-- Sub title -->
+    
+    
+</div>
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                
+            <div class="tabbed-container">
+                <ul class="tabbed-tabs">
+                    <li class="selected"><a><span>Description</span></a></li>
+                    
+                        <li><a><span>Changes</span></a></li>
+                    
+                    <li><a><span>Other Downloads</span></a></li>
+                    
+                        <li><a id="screenshot-tab-link"><span>Screenshots</span></a></li>    
+                    
+                </ul>
+                <div class="tabbed-content">
+                    <div class="tabbed-content-wrap"> 
+                        <div id="tab-description">
+                            
+                            <div class="project-description text no-tooltip">
+                                <p><span style="font-size:150.0%">Doing pet battles? Check out my latest addon, <a href="http://www.curse.com/addons/wow/pettracker">PetTracker</a>!</span></p>
+<h2 id="w-overview">Overview</h2>
+<p>Bagnon merges all of your bags into three windows: inventory, bank and guild bank. Beyond the basic <em>all-in-one</em> functionality, Bagnon also provides:</p>
+<ul><li><em>Flash Find</em> searching <sup><a href="https://github.com/Jaliborc/LibItemSearch-1.1/wiki/Search-Syntax">(see syntax)</a></sup>
+</li><li>Coloring based on <span style="color:#008000">quality</span>, being a <span style="color:#ffa500">quest</span> or <span style="color:#ff0000">unusable</span> item
+</li><li>Ability to view the inventory &amp; bank of any character, from anywhere <span style="color:#a9a9a9"><span style="font-size:80.0%">*</span></span>
+</li><li>Databroker, <a href="http://www.curse.com/addons/wow/itemrack">ItemRack</a> and <a href="http://www.curse.com/addons/wow/wardrobe-al">Wardrobe</a> support
+</li><li>Highly customizable
+</li></ul>
+<p><span style="color:#a9a9a9"><span style="font-size:75.0%">* <em>- Requires the player to login and visit the bank once at each character</em></span></span></p>
+<h2 id="w-useful-addons">Useful Addons</h2>
+<p>You may use these addons to enhance Bagnon functionality:</p>
+<ul><li><a href="http://www.wowinterface.com/downloads/info13001-CurrencyTracker.html">CurrencyTracker</a> - Allows you to track up to 3 currencies on any window
+</li><li><a href="http://wow.curse.com/downloads/wow-addons/details/bagnon-scrap.aspx">Bagnon Scrap</a> - Colors your <a href="http://wow.curse.com/downloads/wow-addons/details/scrap.aspx">Scrap</a> on all windows
+</li><li><a href="http://wow.curse.com/downloads/wow-addons/details/bagnon-facade.aspx">Bagnon Facade</a> - Allows windows to be skinned with <a href="http://wow.curse.com/downloads/wow-addons/details/masque.aspx">ButtonFacade</a>
+</li><li><a href="http://wow.curse.com/downloads/wow-addons/details/bagnon_accountsearch.aspx">Bagnon AccountSearch</a> - Allows you to search trough all your characters items at once
+</li></ul>
+<h2 id="w-notes">Notes</h2>
+<ul><li>Have a question? Check the <a href="https://github.com/tullamods/Bagnon/wiki/Frequently-Asked-Questions">FAQ</a>!
+</li><li>Please submit bugs and feature requests at <a href="http://github.com/tullamods/Bagnon/issues">GitHub</a>. You may post comments as well, but you will get our attention much faster there.
+</li><li>Visit me at <a href="http://www.jaliborc.com/">jaliborc.com</a>.</li></ul>
+
+                            </div>
+                            
+                        </div>
+                        <div id="tab-changes">
+                            5.3.6
+<ul><li>Hotfix of issue on upload system.
+</li></ul>
+5.3.5
+<ul><li>Flash Find is back, behaving exacty as on previous patches! Yet, it now uses a different animation system, as the previous one could lead to taints in combat.* Alt-clicking an item link in the chat now automatically opens the inventory and searches for the selected item.
+</li></ul>
+5.3.4
+<ul><li>Updated LibCustomSearch.
+</li></ul>
+5.3.3
+<ul><li>Fixed issue with the settings version upgrade system.
+</li></ul>
+5.3.2
+<ul><li>Flash Find now behaves like standard text search. Search bars react accordingly.
+</li><li>Now using LibItemSearch-1.2.
+</li><li>Fixed bug causing error message on rare login situations.
+</li></ul>
+5.3
+<ul><li>Updated for patch Escalation!
+</li></ul>
+5.2.5
+<ul><li>Fixed issue causing some cached item icons to not be properly displayed.
+</li></ul>
+5.2.4
+<ul><li>Closing the bank window now properly releases the banker.
+</li></ul>
+5.2.3
+<ul><li>Fixed an issue causing caged pets to not be properly displayed in offline mode.
+</li><li>Added caged pet tooltip support for the guild bank.
+</li></ul>
+5.2.2
+<ul><li>Updated chinese translations.
+</li></ul>
+5.2.1
+<ul><li>Added option to color items belonging to equipment sets. Packed with ItemRack and Wardrobe support!<strong> Idea and initial prototype by Omee - Proudmoore (US).</strong>
+</li><li>Upgraded item search engine.* Updated italian translations.
+</li></ul>
+5.2
+<ul><li>Updated for patch 5.2: The Thunder King
+</li></ul>
+5.1.3
+<ul><li>Added italian translations.
+</li></ul>
+5.1.2
+<ul><li>Reduced chance of tainting issues with popup dialogs.
+</li><li>Fixed bug with option to close inventory when leaving vendor.
+</li></ul>
+5.1.1
+<ul><li>Added support for cooking bags.
+</li></ul>
+5.1.0
+<ul><li>Updated for patch 5.1: Landfall!
+</li><li>The realm money tooltip now displays class colors.
+</li></ul>
+5.0.9
+<ul><li>Quick hotfix.
+</li></ul>
+5.0.8
+<ul><li>Bagnon is now fully localized in French (by Noaah) and Russian (by Vgorishny).
+</li></ul>
+5.0.7
+<ul><li>Small bug fix.
+</li></ul>
+5.0.6
+<ul><li>Fixed bug causing item icons to not always display.
+</li></ul>
+5.0.5
+<ul><li>Offline view of caged pets is now supported.
+</li><li>For now, disabled support for Armory and Baggins caching systems. Very few players use them, were costly yo maintain, and made bug reports harder to decipher.
+</li></ul>
+5.0.4
+<ul><li>Fixed bug causing guild money display to behave incorrectly for users with no withdraw limit.
+</li></ul>
+5.0.3
+<ul><li>Fixed bug causing void storage purchase dialog to sometimes show up when vewing void storage offline.* Fixed error causing "Failed to load void storage items." message to show up.
+</li><li>Fixed bug causing tooltips to now show for cached void storage items.
+</li></ul>
+5.0.2
+<ul><li>Tagging as release.
+</li></ul>
+5.0.1 (beta)
+<ul><li>Updated for compatibility with latest Scrap version.
+</li></ul>
+5.0.0 (beta)
+<ul><li>Updated and tested for Mists of Pandaria.
+</li><li>Added monk class and pandaren race.
+</li><li>Bug fixes and internal improvements.
+</li></ul>
+4.3.25
+<ul><li>Now it is possible to drag items into the void storage for deposit
+</li><li>Now tooltip counts track items deposited in the void storage
+</li><li>Now tooltip counts can be enabled with BagBrother disabled.
+</li><li>Added option to show inventory while socketing items.
+</li></ul>
+4.3.24
+<ul><li>Small bug fix
+</li></ul>
+4.3.23
+<ul><li>Chinese translations update
+</li></ul>
+4.3.22
+<ul><li>Hacky hotfix of bug caused by unknown reasons
+</li></ul>
+4.3.21
+<ul><li>Fixed bug when depositing money on guild bank
+</li></ul>
+4.3.20
+<ul><li>Added binding to toggle Void Storage
+</li><li>Fixed bug causing GuildBank money frame to be unresponsive to clicks
+</li></ul>
+4.3.19
+<ul><li>VoidStorage and GuildBank hotfixes
+</li><li>Tagging as release
+</li></ul>
+4.3.18 (beta)
+<ul><li>Guild Bank and Void Storage now displays items in the same order as in the default interface
+</li><li>German and Portuguese localizations update
+</li><li>Void Storage bugfixes
+</li><li>Money frame tooltip redesigned
+</li></ul>
+4.3.17 (beta)
+<ul><li>Fixed a bug causing weird behavior when the void storage was configured while transferring items.
+</li><li>Fixed bugs related with the order of items being deposited/withdrawn
+</li><li>Many GuildBank hotfixes
+</li></ul>
+4.3.16 (beta)
+<ul><li>After asking the mafia for money, Bagnon was able to buy a Void Storage support for itself, packed up with offline viewing capabilities.
+</li><li>Many tweaks and improvements were made to bring you this piece of joy and get the mafia approval.
+</li></ul>
+4.3.15 (beta)
+<ul><li>Hotfix
+</li></ul>
+4.3.14 (beta)
+<ul><li>Fixed bug causing "quest bangs" to show up at the guild bank items
+</li><li>Fixed bug causing default Guild Bank to show up
+</li></ul>
+4.3.13 (beta)
+<ul><li>Prevention of code taint
+</li></ul>
+4.3.12 (beta)
+<ul><li>Locked guild bank tabs behavior improvements
+</li><li>Chinese localization update
+</li><li>Delicious tweaks and goodies
+</li></ul>
+4.3.11
+<ul><li>Fixed bug causing tooltip searches to not work properly
+</li><li>Enabled search tags that were disabled for unknown reasons.
+</li></ul>
+4.3.10
+<ul><li>BagBrother no longer disables itself when BagSync or Armory are enabled (could confuse users)
+</li></ul>
+4.3.9
+<ul><li>Added guild bank german and portuguese translations
+</li><li>Small money tooltip bug prevention
+</li><li>Fixed bug causing logs to appear and overlap items on odd situations
+</li></ul>
+4.3.8
+<ul><li>German translations updated (thanks to Reinhard Griedelbach)
+</li><li>Tooltip item count now also displays the sum of all characters on the server
+</li><li>Tooltip item count syntax improved
+</li></ul>
+4.3.7
+<ul><li>Added support for viewing and editing Guild Bank tab information
+</li></ul>
+4.3.6
+<ul><li>The ability to hide individual bag slots can now be toggled at the General Options and is disabled by default
+</li></ul>
+4.3.5
+<ul><li>Fixed a bug with Flash Find
+</li><li>Flash Find now also works for cached items
+</li></ul>
+4.3.4
+<ul><li>More bug fixing
+</li><li>Tagging as release
+</li></ul>
+4.3.3
+<ul><li>Updated LibItemCache - fixes a bug causing money to not be correctly tracked with BagSync.
+</li></ul>
+4.3.2
+<ul><li>Critical bug fix
+</li></ul>
+4.3.1
+<ul><li>Updated for WoW 4.3
+</li><li>Finalized portuguese translations
+</li></ul>
+4.2.14
+<ul><li>Fixed a bug causing Bagnon to request already bought bag slots to be purchased over and over
+</li><li>Fixed bug causing bag slot icons to not show for the first time on cached players
+</li><li>Fixed bug causing bag items to be incorrectly counted on item tooltips
+</li></ul>
+4.2.13
+<ul><li>Jaliborc: Now when opening the bank window by right clicking in the "bag toggle" button at the inventory one, the selected player will be the same on both
+</li><li>Jaliborc: Windows no longer change position when viewing other characters items
+</li><li>Jaliborc: Should have fixed a bug causing BagBrother to loose bank data on some situations
+</li><li>Jaliborc: Fixed a bug causing the items in the guild bank to show the cool-down of the items in your bags
+</li><li>Jaliborc: No more "Jaliborc:" tag from now on. If no tag is here, it means it was me.
+</li></ul>
+4.2.12
+<ul><li>Jaliborc: Several bug fixes
+</li><li>Jaliborc: Guild bank now should work like a charm
+</li><li>Thank you to thelucid for borrowing me his guild bank
+</li></ul>
+4.2.11
+<ul><li>Jaliborc: Several bug fixes
+</li><li>Jaliborc: Started to implement portuguese translations
+</li><li>Jaliborc: Tweaked guild bank log position in the window
+</li></ul>
+4.2.10
+<ul><li>Jaliborc: Bagnon_Forever has been replaced by BagBrother, an item cache which will be shared with Combuctor
+</li><li>Jaliborc: Now comes bundled with LibItemCache, a library that adds support for other item caches, such as BagSync and Armory
+</li><li>Jaliborc: With the new cache approach, Bagnon_Tooltips is no more. Now you can toggle the feature at the Interface Options.
+</li><li>Jaliborc: The character selector now changes depending on the selected character and has much better icons
+</li><li>Jaliborc: BagnonFacade now should work properly with the guild bank
+</li><li>Jaliborc: The tooltip item count is now colored by class
+</li><li>Jaliborc: Updated LibIemCache, providing many improvements in the search syntax
+</li></ul>
+4.2.9
+<ul><li>Jaliborc: Fixed a bug with the Traditional Chinese translations
+</li></ul>
+4.2.8
+<ul><li>Jaliborc: Tackle boxes can now be colored separately
+</li><li>Jaliborc: Updated Traditional Chinese translations (thank you Seraveegd@鬼霧峰)
+</li></ul>
+4.2.7
+<ul><li>Jaliborc: Buttonfacade support has been removed and is now available as a separate plug-in - <a href="http://wow.curse.com/downloads/wow-addons/details/bagnon-facade.aspx" rel="nofollow">Bagnon Facade</a>
+</li><li>Jaliborc: Each type of trade bag can now be colored separately
+</li><li>Jaliborc: Reduced download size by about 70%
+</li></ul>
+4.2.6a
+<ul><li>Jaliborc: Zip file appears to have been corrupted by unknown reason. New attempt to upload.
+</li></ul>
+4.2.6
+<ul><li>Jaliborc: Fixed a bug causing ButtonFacade settings to not be properly loaded
+</li></ul>
+4.2.5
+<ul><li>Jaliborc: Fixed bug when clicking the money frame
+</li><li>Jaliborc: Hearthstones should not have tooltip counts... again
+</li><li>Jaliborc: Fixed undead portrait.. again
+</li><li>Jaliborc: Fixed a bug causing Bagnon_Forever data to reset when updating
+</li></ul>
+4.2.4
+<ul><li>Jaliborc: Fixed a bug causing some options to not show up in the config menu
+</li><li>Jaliborc: The bags toggle button now shows the bank window on right-click
+</li></ul>
+4.2.3
+<ul><li>Jaliborc: ButtonFacade support improvements and bugfixing
+</li></ul>
+4.2.2
+<ul><li>Jaliborc: Added ButtonFacade support
+</li></ul>
+4.2.1
+<ul><li>Tuller: Fixed a bug causing the lock checkbox to not show up in the config menu
+</li></ul>
+4.2.0
+<ul><li>Jaliborc: Removed keyring code, since the keyring is gone with WoW 4.2
+</li><li>Jaliborc: Implemented options for hiding frames when entering combat/entering a vehicle.
+</li></ul>
+4.1.1
+<ul><li>Tuller: Fixed missing undead portraits.
+</li></ul>
+4.1.0
+<ul><li>Tuller: Hearthstones should now no longer have tooltip counts.
+</li></ul>
+2.19.2
+<ul><li>Tuller: Updated TOC reference to LibItemSearch to make it load on demand properly
+</li></ul>
+2.19.1
+<ul><li>Tuller: Updated LibItemSearch to fix searching for bind on account items
+</li></ul>
+2.19.0
+<ul><li>Jaliborc: Added unsuable item highlighting as an option.
+</li></ul>
+2.18.0
+<ul><li>Tuller: Updated TOC for 4.1
+</li></ul>
+2.17.0
+<ul><li>Jaliborc: Added log views to the GuildBank
+</li><li>Tuller: Fixed tackle box highlighting
+</li><li>Tuller: Added some basic compatibility code for 4.1
+</li></ul>
+2.16.1
+<ul><li>Added Bagnon_GuildBank back, in a disabled state
+</li><li>Fixed the quest item issue in the guild bank module
+</li><li>Adjusted the money frame default for the guild bank from disabled to enabled
+</li><li>Adjusted the text for the auto vendor display option to better reflect what it actually does
+</li><li>Fixed tackle box coloring
+</li><li>Removed some lingering ammo/soul shard detection code
+</li></ul>
+2.16.0
+<ul><li>4.0.6 fixes
+</li></ul>
+2.15.2
+<ul><li>Altered portrait display so that it should now work for Worgen/Goblins
+</li></ul>
+2.15.1
+<ul><li>Added flash find options
+</li><li>Removed ammo + shard color options, since they have no use anymore.
+</li></ul>
+2.15.0
+<ul><li>Added FlashBind - Alt-Click a link or item to highlight it in your inventory (thanks Rueben)
+</li></ul>
+2.14.0b
+<ul><li>Added back missing Bagnon_Forever + Tooltips
+</li></ul>
+2.14.0
+<ul><li>First Cataclysm beta
+</li></ul>
+2.13.3
+<ul><li>Updated localization
+</li></ul>
+2.13.2b
+<ul><li>Bagnon for WoW 3.3.3, without the guild bank
+</li></ul>
+2.13.2
+<ul><li>Fixed a typo that resulted in a redbox error when hovering over the guild bank money frame.
+</li></ul>
+2.13.1
+<ul><li>Maybe if I enable right clicks on the guild bank money frame, you'll be able to withdraw via right click :P
+</li></ul>
+2.13.0
+<ul><li>Implemented support for Blizzard's quest item highlighting in WoW 3.3.3
+</li></ul>
+2.12.6
+<ul><li>Updated LibItemSearch, adding wardrobe support.
+</li><li>Added a potential bugfix for the nil frame settings issue.
+</li></ul>
+2.12.5b
+<ul><li>Added missing externals.
+</li></ul>
+2.12.5
+<ul><li>Put a fix in for the withdraw bug.
+</li></ul>
+2.12.4
+<ul><li>Initial guild bank support implemented.  Things not supported at the moment: Guild master management &amp; offline viewing.
+</li></ul>
+2.12.3
+<ul><li>Removed Bagnon_GuildBank.  I did not intend on including it quite yet, but my build process did :P
+</li></ul>
+2.12.2
+<ul><li>Updated TOC for 3.3
+</li></ul>
+2.12.1
+<ul><li>Added comparison operators to item level and quality searches (you can now do things like q&gt;=rare, q!=0, etc)
+</li><li>Added itemlevel searching: ilvl&lt;op&gt;&lt;number&gt; (ex, ilvl&gt;200 or ilvl:200)
+</li></ul>
+2.12.0
+<ul><li>Added new options for item slot colors and item border brightness
+</li></ul>
+2.11.0
+<ul><li>Added a new option to automatically display your inventory when opening the player frame
+</li><li>Added a new frame specific option: Enable bag break layout
+</li><li>Fixed a bug causing quest item highlighting to not work properly for non English locales
+</li></ul>
+2.10.0
+<ul><li>Added support for equipment set searching via s:&lt;setName&gt;
+</li><li>Made it easier for me to define new typed searches via Bagnon.ItemSearch.RegisterTypedSearch(typedSearchObj)
+</li></ul>
+2.9.3
+<ul><li>Updated for 3.2
+</li><li>Disabled search text syncing to prevent issues with Chinese clients
+</li></ul>
+2.9.2
+<ul><li>Fixed a bug causing the options menu to show up when displaying the world map
+</li></ul>
+2.9.1
+<ul><li>Added a new modifier to search by name:  n:search.  For example, typing "n:pants" will find all items named "pants"
+</li><li>A search without modifiers, ex "gem" will now perform a smart search, like in 1.x versions of Bagnon.  For example, typing "gem" will now find items of type "gem" as  well as items named "gem"
+</li></ul>
+2.9.0
+<ul><li>Added a keyring bag back to the inventory's bag frame.  Its hidden by default.
+</li><li>Keyring slots are now colored
+</li><li>Made text searching global
+</li><li>Made the text search box close when the enter key is pressed
+</li><li>The searching with uppercase text bug should now be fixed.
+</li></ul>
+2.8.1
+<ul><li>Localization bugfix
+</li></ul>
+2.8.0
+<ul><li>Added a new option to disable the options toggle button
+</li><li>Adjusted a few default settings for the automatic display of the inventory frame
+</li><li>Adjusted priority of quest highlighting so that Uncommon+ items are not marked as quest items
+</li><li>Updated localization
+</li></ul>
+2.7.0
+<ul><li>Added new frame strata options: MEDIUMLOW, MEDIUMHIGH.  These are equivalent to Low + Toplevel and Medium + Toplevel
+</li><li>Added new option: Display Blizzard bag frames for disabled bags.
+</li><li>Added the ability to right click the title frame to display the options menu.
+</li></ul>
+2.6.3
+<ul><li>Fixed a bug causing it to not be possible to disable auto display settings
+</li><li>Fixed a bug causing it to not be possible to search on other characters/your bank when not at the bank
+</li><li>Fixed a bug with hiding the default bank frame
+</li><li>Made the general options panel a sub panel of the main Bagnon panel. This should hopefully make it easier to spot when configuring frames.
+</li></ul>
+2.6.2
+<ul><li>Added a bugfix to the default settings clearing code
+</li></ul>
+2.6.1
+<ul><li>Miscellaneous bug fixes
+</li><li>Updated localization
+</li></ul>
+2.6.0
+<ul><li>Added a new options panel to configure automatic display settings for the inventory frame
+</li><li>More performance optimizations to the item frame
+</li><li>More bug fixes to the item frame
+</li></ul>
+2.5.2
+<ul><li>Added an assertion to catch the nil slot issue, if it exists.
+</li><li>Fixed a bug with item frame event registering causing items to appear to not move, etc
+</li><li>Updated localization
+</li></ul>
+2.5.1
+<ul><li>Added some bugfixes to item event handling
+</li><li>Added some bugfixes to broker tooltip handling
+</li><li>Updated localization
+</li></ul>
+2.5.0
+<ul><li>Moved item slot event handling to the item frame.
+</li><li>Fixed a display issue with the player selector for undead characters
+</li><li>Added in settings to disable the inventory, bank and keyring frames
+</li><li>Fixed some bugs related to saving and loading default settings
+</li><li>Updated localization
+</li></ul>
+2.4.1
+<ul><li>Fixed a redbox error from hiding a frame when viewing another character
+</li></ul>
+2.4.0
+<ul><li>Fixed a bug with frame/border coloring
+</li><li>The player filter will now reset to the current player when a frame is closed
+</li><li>Made reverse bag slot ordering a per frame setting, instead of a global one
+</li><li>Added per frame option: Enable bag frame (disabled for the keyring for semi obvious reasons)
+</li><li>Added per frame option: Enable money frame
+</li><li>Added per frame option: Enable databroker frame
+</li><li>Added per frame option: Enable search frame toggle button
+</li></ul>
+2.3.1
+<ul><li>Implemented a fix that should resolve the wacky frame position thing
+</li><li>Implemented a fix that should resolve the "for limit must be a number" bug
+</li><li>Updated localization
+</li><li>Added per frame option: Frame Layer - Controls frames appearing above or below other frames.
+</li></ul>
+2.3.0
+<ul><li>Rewrote saved settings back end to make it easier for me to adjust defaults.  Your settings have been reset.
+</li><li>Frame settings are now saved on per character basis
+</li><li>Global settings (stuff on the main options panel) are saved globally.
+</li><li>Adjusted a few default settings (frame border color, frame position)
+</li></ul>
+2.2.1
+<ul><li>Updated localization
+</li><li>Added option: highlight item slots by bag type
+</li><li>Fixed a frame display bug when closing frames via pressing escape
+</li><li>You can now double click to search once again.
+</li></ul>
+2.2.0
+<ul><li>Added option: show empty item slot textures
+</li><li>Added option: highlight items by quality
+</li><li>Added option: highlight quest items
+</li><li>Added option: reverse item slot ordering
+</li><li>Added option: lock frame positions
+</li><li>Added a databroker launcher for Bagnon
+</li><li>Fixed a few bugs related to the databroker plugin
+</li></ul>
+2.1.0
+<ul><li>Started implementaton of the new options menu. Added options for color, border color, columns, spacing, opacity, and scale.
+</li><li>Added new slash command, /bgn options
+</li><li>Added a button to all frames as a shortcut to the options menu
+</li><li>I'm calling this version a beta, since I want more feedback.
+</li></ul>
+2.0.3
+<ul><li>Reimplemented slash commands: /bgn|/bagnon bank, /bgn bags, /bgn keys, and /bgn version
+</li></ul>
+2.0.2
+<ul><li>Fixed bank frame tool tips
+</li><li>Fixed quality display for certain items
+</li><li>Removed a file that was not being called anymore.
+</li></ul>
+2.0.1
+<ul><li>Fixed bank frame closing
+</li><li>Fixed an error when hovering over a bank item when at the bank
+</li><li>Fixed an error when clicking on a databroker object with no click event
+</li><li>Added sounds when opening/closing frames.</li></ul>
+
+                        </div>
+                        <div id="tab-other-downloads">
+                            <div class="listing-container listing-container-table">
+<div class="listing-header">
+    
+<span class="tablesorter-pager">
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="First" class="pager-first pager-hidden">First</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Previous" class="pager-prev pager-hidden">Previous</a>
+    <span class="pager-display">Page 1 of 5</span>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Next" class="pager-next pager-visible">Next</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Last" class="pager-last">Last</a>
+</span>
+</div><div class="listing-body">
+
+<table class="listing listing-client-side listing-project-file project-file-listing listing-auto-link listing-auto-link-enabled" data-viewstate="" data-page-size="10" data-row-selector="&gt;tbody&gt;tr" data-default-sort-slug="date" data-default-sort-order="desc">
+
+    <thead>
+        <tr>
+            
+                <th class="asc" data-default-sort-order="asc">
+                
+                      <a href="http://www.curse.com/addons/wow/bagnon#">File Name</a>
+                   
+                </th>
+            
+                <th class="asc" data-default-sort-order="asc" data-sort-slug="release-type" data-sort-value-type="int">
+                
+                      <a href="http://www.curse.com/addons/wow/bagnon#">Release Type</a>
+                   
+                </th>
+            
+                <th class="desc" data-default-sort-order="desc" data-sort-slug="version" data-sort-value-type="float">
+                
+                      <a href="http://www.curse.com/addons/wow/bagnon#">Game Version</a>
+                   
+                </th>
+            
+                <th class="asc" data-default-sort-order="asc" data-sort-slug="downloads" data-sort-value-type="int">
+                
+                      <a href="http://www.curse.com/addons/wow/bagnon#">Downloads</a>
+                   
+                </th>
+            
+                <th class="asc" data-default-sort-order="asc" data-sort-slug="date" data-sort-value-type="float">
+                
+                      <a href="http://www.curse.com/addons/wow/bagnon#" class="desc selected">Date</a>
+                   
+                </th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+        
+    <tr class="even"><td><a href="http://www.curse.com/addons/wow/bagnon/718727">5.3.6</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="507829">507,829</td><td data-sort-value="1373795676000"><abbr class="standard-date" title="Sun, 14 Jul 2013 04:54:36 CDT (UTC-5:00)" data-epoch="1373795676">14 July 2013</abbr></td></tr><tr class="odd"><td><a href="http://www.curse.com/addons/wow/bagnon/718594">5.3.5</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="46581">46,581</td><td data-sort-value="1373744948000"><abbr class="standard-date" title="Sat, 13 Jul 2013 14:49:08 CDT (UTC-5:00)" data-epoch="1373744948">13 July 2013</abbr></td></tr><tr class="even"><td><a href="http://www.curse.com/addons/wow/bagnon/714325">5.3.4</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="289036">289,036</td><td data-sort-value="1372370145000"><abbr class="standard-date" title="Thu, 27 Jun 2013 16:55:45 CDT (UTC-5:00)" data-epoch="1372370145">27 June 2013</abbr></td></tr><tr class="odd"><td><a href="http://www.curse.com/addons/wow/bagnon/714008">5.3.3</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="114957">114,957</td><td data-sort-value="1372263021000"><abbr class="standard-date" title="Wed, 26 Jun 2013 11:10:21 CDT (UTC-5:00)" data-epoch="1372263021">26 June 2013</abbr></td></tr><tr class="even"><td><a href="http://www.curse.com/addons/wow/bagnon/713993">5.3.2</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="10251">10,251</td><td data-sort-value="1372259410000"><abbr class="standard-date" title="Wed, 26 Jun 2013 10:10:10 CDT (UTC-5:00)" data-epoch="1372259410">26 June 2013</abbr></td></tr><tr class="odd"><td><a href="http://www.curse.com/addons/wow/bagnon/704176">5.3</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1369094400000">5.3.0</td><td data-sort-value="474536">474,536</td><td data-sort-value="1369183887000"><abbr class="standard-date" title="Tue, 21 May 2013 19:51:27 CDT (UTC-5:00)" data-epoch="1369183887">22 May 2013</abbr></td></tr><tr class="even"><td><a href="http://www.curse.com/addons/wow/bagnon/699072">5.2.5</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1362441600000">5.2.0</td><td data-sort-value="309593">309,593</td><td data-sort-value="1367636764000"><abbr class="standard-date" title="Fri, 3 May 2013 22:06:04 CDT (UTC-5:00)" data-epoch="1367636764">4 May 2013</abbr></td></tr><tr class="odd"><td><a href="http://www.curse.com/addons/wow/bagnon/696359">5.2.4</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1362441600000">5.2.0</td><td data-sort-value="250771">250,771</td><td data-sort-value="1366648872000"><abbr class="standard-date" title="Mon, 22 Apr 2013 11:41:12 CDT (UTC-5:00)" data-epoch="1366648872">22 April 2013</abbr></td></tr><tr class="even"><td><a href="http://www.curse.com/addons/wow/bagnon/695959">5.2.3</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1362441600000">5.2.0</td><td data-sort-value="107498">107,498</td><td data-sort-value="1366517924000"><abbr class="standard-date" title="Sat, 20 Apr 2013 23:18:44 CDT (UTC-5:00)" data-epoch="1366517924">21 April 2013</abbr></td></tr><tr class="odd"><td><a href="http://www.curse.com/addons/wow/bagnon/683025">5.2.1</a>
+</td><td data-sort-value="1">Release</td><td data-sort-value="1362441600000">5.2.0</td><td data-sort-value="504401">504,401</td><td data-sort-value="1363115177000"><abbr class="standard-date" title="Tue, 12 Mar 2013 14:06:17 CDT (UTC-5:00)" data-epoch="1363115177">12 March 2013</abbr></td></tr></tbody>
+</table>
+</div>
+<div class="listing-footer">
+    
+<span class="tablesorter-pager">
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="First" class="pager-first pager-hidden">First</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Previous" class="pager-prev pager-hidden">Previous</a>
+    <span class="pager-display">Page 1 of 5</span>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Next" class="pager-next pager-visible">Next</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Last" class="pager-last">Last</a>
+</span>
+</div></div>
+
+                            <!-- If Premium User... "Download" cell
+                            <td class="download">
+                                <ul>
+                                    <li><em class="cta-button"><a href="#">Manual Download</a></em></li>
+                                    <li><em class="cta-button"><a href="#">Curse Client</a></em></li>
+                                </ul>
+                            </td>
+                            -->
+
+                        </div>
+                        <div id="tab-screenshots">
+                            
+<div id="screenshot-gallery">
+        
+<div class="module group">
+    <!-- Outside Caption -->
+    
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                
+                        <div class="gallery-viewer">
+                            <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png" alt="">
+                        </div>
+                        <div class="gallery-list">
+                            <div class="listing-container listing-container-ul">
+<div class="listing-header">
+    
+<span class="tablesorter-pager">
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="First" class="pager-first pager-hidden">First</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Previous" class="pager-prev pager-hidden">Previous</a>
+    <span class="pager-display">Page 1 of 2</span>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Next" class="pager-next pager-visible">Next</a>
+    <a href="http://www.curse.com/addons/wow/bagnon#" title="Last" class="pager-last">Last</a>
+</span>
+</div><div class="listing-body">
+<ul class="listing listing-client-side listing-attachment attachment-listing" data-page-size="5" data-row-selector="&gt;li">
+     
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="even"><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png" rel="lightbox[gallery]" lightbox-type="gallery" class="lightbox"><img height="60px" width="90px" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/61c3df0b8c0ae5dfdc4665de2eacf1e9(2).png" alt=""></a></li><li class="odd"><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/5d561cc6895fe3791d64e2fee5c7a2ad(1).jpeg" rel="lightbox[gallery]" lightbox-type="gallery" class="lightbox"><img height="60px" width="90px" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/5d561cc6895fe3791d64e2fee5c7a2ad(1).jpeg" alt=""></a></li><li class="even"><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/dbfb91b5ee73395bb0f4f5aad0e33db2.jpeg" rel="lightbox[gallery]" lightbox-type="gallery" class="lightbox"><img height="60px" width="90px" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/dbfb91b5ee73395bb0f4f5aad0e33db2.jpeg" alt=""></a></li><li class="odd"><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/e049d3fae1bc1a61ee0046facf57e1f4.jpeg" rel="lightbox[gallery]" lightbox-type="gallery" class="lightbox"><img height="60px" width="90px" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/e049d3fae1bc1a61ee0046facf57e1f4.jpeg" alt=""></a></li><li class="even"><a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/a96a15acfbccfa9a47c938697532a0af.jpg" rel="lightbox[gallery]" lightbox-type="gallery" class="lightbox"><img height="60px" width="90px" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/a96a15acfbccfa9a47c938697532a0af.jpg" alt=""></a></li></ul>
+</div></div>
+                        </div>
+                        <div class="gallery-meta">
+                            6 Screenshots
+                        </div>
+                
+            </div>  
+        </div>            
+    </div>
+</div>
+    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        
+            </div>  
+        </div>            
+    </div>
+</div>
+    </div>
+    
+        <!-- Addon Packs Containing This... -->
+          
+            <div class="project-pack">
+                
+<div class="module group">
+    <!-- Outside Caption -->
+    
+<div class="caption-container h2  no-sub no-nav">
+ 
+    <!-- Navigation -->
+    
+    
+    <!-- Main Title -->
+    <h2 class="caption">
+        <span class="bg">
+			<span class="left">            
+				<span class="right">Addon Packs Containing This...</span>
+			</span>
+		</span>				
+    </h2>         
+    <!-- Sub title -->
+    
+    
+</div>
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                <div class="listing-container listing-container-ul"><div class="listing-body">
+<ul class="listing listing-client-side listing-project-pack project-pack-listing" data-page-size="5" data-row-selector="&gt;li">
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="even">
+    <a href="http://www.curse.com/addon-packs/wow/hawkes-beginner-154" class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/WoWScrnShot_011210_025336.jpg" alt=""></a>
+    <h4><a href="http://www.curse.com/addon-packs/wow/hawkes-beginner-154">Hawke's beginner</a></h4>
+    
+</li><li class="odd">
+    <a href="http://www.curse.com/addon-packs/wow/pushes-random-keys-raiding-218" class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/WoWScrnShot_120709_211235.jpg" alt=""></a>
+    <h4><a href="http://www.curse.com/addon-packs/wow/pushes-random-keys-raiding-218">Pushes Random Keys - Raiding Pack</a></h4>
+    
+</li><li class="even">
+    <a href="http://www.curse.com/addon-packs/wow/respectz-raid-ui-241" class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/WoWScrnShot_120409_231854.jpg" alt=""></a>
+    <h4><a href="http://www.curse.com/addon-packs/wow/respectz-raid-ui-241">Respectz' Raid UI</a></h4>
+    
+</li><li class="odd">
+    <a href="http://www.curse.com/addon-packs/wow/ferrals-pack-847" class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/WoWScrnShot_121009_143732.jpg" alt=""></a>
+    <h4><a href="http://www.curse.com/addon-packs/wow/ferrals-pack-847">Ferral's Pack</a></h4>
+    
+</li><li class="even">
+    <a href="http://www.curse.com/addon-packs/wow/moonkin-raiding-ui-870" class="content-image"><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/WoWScrnShot_121009_140700.jpg" alt=""></a>
+    <h4><a href="http://www.curse.com/addon-packs/wow/moonkin-raiding-ui-870">Moonkin Raiding UI</a></h4>
+    
+</li></ul>
+</div></div>
+            </div>  
+        </div>            
+    </div>
+</div>
+            </div>
+        
+
+    <!-- Project Comments -->
+    
+    <div id="project-comments" class="module user-comments">
+        
+
+<!-- Comment Form Top -->            
+
+
+<!-- Comment Listing -->
+
+<div class="module comment-listing" id="comments">
+    <!--- Comment Listing -->
+    
+<div class="module group">
+    <!-- Outside Caption -->
+    
+<div class="caption-container h2  no-sub no-nav">
+ 
+    <!-- Navigation -->
+    
+    
+    <!-- Main Title -->
+    <h2 class="caption">
+        <span class="bg">
+			<span class="left">            
+				<span class="right">Comments</span>
+			</span>
+		</span>				
+    </h2>         
+    <!-- Sub title -->
+    
+    
+</div>
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                <div class="listing-container listing-container-ul">
+<div class="listing-header">
+    
+<span class="tablesorter-pager">
+    <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html" title="First" class="pager-first pager-hidden">First</a>
+    <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html" title="Previous" class="pager-prev pager-hidden">Previous</a>
+    <span class="pager-display">Page 1 of 293</span>
+    <a href="http://www.curse.com/addons/wow/bagnon?page=2" title="Next" class="pager-next pager-visible">Next</a>
+    <a href="http://www.curse.com/addons/wow/bagnon?page=293" title="Last" class="pager-last pager-visible">Last</a>
+</span>
+</div><div class="listing-body">
+<ul class="listing listing-comment comment-listing" id="comments" data-row-selector="&gt;li">
+     
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5084" id="c5084" data-surrogate-type="user" data-surrogate-id="2610896" data-author-id="2610896" data-id="2041491">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Wed, 4 Sep 2013 18:52:44 CDT (UTC-5:00)" data-epoch="1378338764">3 days ago</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5084">#5084</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/icedragn43"><span class="user">icedragn43</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/icedragn43" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=icedragn43&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=icedragn43" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/icedragn43">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/4e0280ca8825501d46309b47bbd6439a" alt="icedragn43&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 3</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5084" class="forum-post-body-content text"><p>New/old/"reverted"&nbsp; Flash Find is not working correctly. For example if i alt+click on &nbsp;[Discerning Eye of the Beast] it will flash both, but if i alt+click on materials like cloth, ore, bars etc etc.. it will NOT flash them and only flashes the one i clicked. Please fix this, or do I need to some how do a clean install? I just keep up to date on curse client (after the flash find was restored).</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5083" id="c5083" data-surrogate-type="user" data-surrogate-id="292588" data-author-id="292588" data-id="2038972">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Sun, 25 Aug 2013 04:20:59 CDT (UTC-5:00)" data-epoch="1377422459">25 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5083">#5083</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/Veis"><span class="user">Veis</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/Veis" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=veis&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=Veis" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/Veis">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/d03d20d4fb90b5de0c0e82e41134b162" alt="Veis&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 109</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5083" class="forum-post-body-content text"><p>Any chance the show count number options could also&nbsp;include items that are in the mailbox ?</p>
+<p>This would be a great enchancement for me.</p>
+<p>Thanks</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5082" id="c5082" data-surrogate-type="user" data-surrogate-id="11246767" data-author-id="11246767" data-id="2038874">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Sat, 24 Aug 2013 14:11:34 CDT (UTC-5:00)" data-epoch="1377371494">24 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5082">#5082</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/Stigmund"><span class="user">Stigmund</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/Stigmund" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=stigmund&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=Stigmund" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/Stigmund">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/f5310f5941aefbdfe258187fa0872d2b" alt="Stigmund&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 4</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <div class="forum-post-subject">                
+                <span>Currencies</span>                
+            </div>
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5082" class="forum-post-body-content text"><p>I realy like this addon, makes bag searching far simpler and less "fiddly".</p>
+<p>It would be nice to have an option to display your 3 chosen currencies (perhaps as a option in the databroker frame?)</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5079" id="c5079" data-surrogate-type="user" data-surrogate-id="9910308" data-author-id="9910308" data-id="2036377">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Thu, 8 Aug 2013 21:33:23 CDT (UTC-5:00)" data-epoch="1376015603">9 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5079">#5079</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/vegetalinkz"><span class="user">vegetalinkz</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/vegetalinkz" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=vegetalinkz&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=vegetalinkz" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/vegetalinkz">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/635115944634397057.jpg" alt="vegetalinkz&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 1</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5079" class="forum-post-body-content text"><p>Can't seem to change the icon/name of slots in my guild bank when I'm using this addon, otherwise I like it.</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user user-role-premium  comment-depth-0" data-index="5078" id="c5078" data-surrogate-type="user" data-surrogate-id="4427652" data-author-id="4427652" data-id="2036264">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Thu, 8 Aug 2013 10:24:38 CDT (UTC-5:00)" data-epoch="1375975478">8 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5078">#5078</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/petergunn"><span class="user user-role-premium">petergunn</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/petergunn" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=petergunn&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=petergunn" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user user-role-premium">
+    <a href="http://www.curse.com/users/petergunn">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/634584711510080525.jpg" alt="petergunn&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 83</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5078" class="forum-post-body-content text"><p>Agree with the previous posting. I don't use Bagnon, but if it had a sorting feature I most definatly would. Been trying to get Genie to work, but without any support it is a pain with a ton of LUA errors.</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5076" id="c5076" data-surrogate-type="user" data-surrogate-id="8189917" data-author-id="8189917" data-id="2035984">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Tue, 6 Aug 2013 18:45:51 CDT (UTC-5:00)" data-epoch="1375832751">7 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5076">#5076</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/MrPygmyHippo"><span class="user">MrPygmyHippo</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/MrPygmyHippo" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=mrpygmyhippo&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=MrPygmyHippo" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/MrPygmyHippo">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/b911f26a64171c590ce7786ca7ed178b" alt="MrPygmyHippo&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 5</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5076" class="forum-post-body-content text"><p>sorting would be nice</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5074" id="c5074" data-surrogate-type="user" data-surrogate-id="1851709" data-author-id="1851709" data-id="2035816">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Mon, 5 Aug 2013 19:34:01 CDT (UTC-5:00)" data-epoch="1375749241">6 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5074">#5074</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/dhn"><span class="user">dhn</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/dhn" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=dhn&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=dhn" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/dhn">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/93fe8aeb347bf47e78f3cb6af1836419" alt="dhn&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 11</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5074" class="forum-post-body-content text"><p>Is it possible to add some feature like Sorting?</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user user-role-premium  comment-depth-0" data-index="5073" id="c5073" data-surrogate-type="user" data-surrogate-id="183314" data-author-id="183314" data-id="2035409">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Sat, 3 Aug 2013 13:00:55 CDT (UTC-5:00)" data-epoch="1375552855">3 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5073">#5073</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/brykrys"><span class="user user-role-premium">brykrys</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/brykrys" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=brykrys&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=brykrys" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user user-role-premium">
+    <a href="http://www.curse.com/users/brykrys">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/bf35ec4d409f9b52b7e09123da84b99e" alt="brykrys&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 294</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <div class="forum-post-subject">                
+                <span>Flash Find</span>                
+            </div>
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5073" class="forum-post-body-content text"><p>Flash Find (by Alt-clicking item in bag) only finds other items where the itemLink is identical down to the uniqueID. Generally this means it will only find multiple items that have been split from the same stack.</p>
+<p>I'm not sure if it should actually be comparing the links for everything <em>except</em> the uniqueID, or comparing itemIDs, or just comparing the item names.</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user user-role-premium  comment-depth-0" data-index="5071" id="c5071" data-surrogate-type="user" data-surrogate-id="337023" data-author-id="337023" data-id="2034588">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Tue, 30 Jul 2013 14:46:26 CDT (UTC-5:00)" data-epoch="1375213586">30 July 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5071">#5071</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/DaCreature"><span class="user user-role-premium">DaCreature</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/DaCreature" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=dacreature&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=DaCreature" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user user-role-premium">
+    <a href="http://www.curse.com/users/DaCreature">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/5d521649e940f34af66aefff2528b491" alt="DaCreature&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 13</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5071" class="forum-post-body-content text"><p>Bagnon continues to have issues with the void storage vendors.<br>When opening the void storage bag; it is non-interactive, I am unable to add items.&nbsp;</p>
+<p>Otherwise, it's a wonderful addon. &nbsp;I think the gods of WoW every day I found your addon. :)</p>
+<p>Gnashtooth<br>ShangHaiku<br>RexNoel&nbsp;</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                    <div class="form-post-body-edited-by">Last edited by <a href="http://www.curse.com/users/DaCreature"><span class="user user-role-premium">DaCreature</span></a> on <abbr class="standard-date standard-datetime" title="Tue, 30 Jul 2013 14:51:49 CDT (UTC-5:00)" data-epoch="1375213909">30 July 2013</abbr></div>
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-1" data-index="5072" id="c5072" data-surrogate-type="user" data-surrogate-id="5082502" data-author-id="5082502" data-id="2034933" data-depth="1" data-parent-comment="2034588">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Thu, 1 Aug 2013 08:31:44 CDT (UTC-5:00)" data-epoch="1375363904">1 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5072">#5072</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/user_828374"><span class="user">user_828374</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/user_828374" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=user_828374&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=user_828374" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/user_828374">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/79023ea1e5af939a031ed2f92a6d4985" alt="user_828374&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 1</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5072" class="forum-post-body-content text"><p>It works, it's just a little different than the bank. You can't drag the items over. Try it this way:</p>
+<p>1. Right click the item(s) in your inventory.</p>
+<p>2. Notice the bagnon void storage window now has a price to deposit the item(s).</p>
+<p>3. Click the button on the void storage window.</p>
+<p>4. Click the window in the popup to confirm you want to deposit the item(s)</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5070" id="c5070" data-surrogate-type="user" data-surrogate-id="1689732" data-author-id="1689732" data-id="2033700">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Fri, 26 Jul 2013 17:15:49 CDT (UTC-5:00)" data-epoch="1374876949">27 July 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5070">#5070</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/Thirdwish"><span class="user">Thirdwish</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/Thirdwish" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=thirdwish&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=Thirdwish" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/Thirdwish">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/634887133293628518.jpg" alt="Thirdwish&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 7</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5070" class="forum-post-body-content text"><p>From the last version bags will stuck on open if a boss is engaged while have them like this or open bags&nbsp; in mid fight, the only way to close them is to press exit to bring up the game menu, which will close all active frames then do a reload ui or relog after fight&nbsp; fo fix this bag issue. Any ideea?</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-1" data-index="5081" id="c5081" data-surrogate-type="user" data-surrogate-id="8752009" data-author-id="8752009" data-id="2038657" data-depth="1" data-parent-comment="2033700">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Fri, 23 Aug 2013 02:17:31 CDT (UTC-5:00)" data-epoch="1377242251">23 August 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5081">#5081</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/rayvio"><span class="user">rayvio</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/rayvio" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=rayvio&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=rayvio" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/rayvio">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/634820615473388727.jpg" alt="rayvio&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 17</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5081" class="forum-post-body-content text"><p>yep it's a very annoying issue, it's not just in boss fights either, sometimes happens against trash in dungeons and raids</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user  comment-depth-0" data-index="5069" id="c5069" data-surrogate-type="user" data-surrogate-id="8350095" data-author-id="8350095" data-id="2033631">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Fri, 26 Jul 2013 12:31:55 CDT (UTC-5:00)" data-epoch="1374859915">26 July 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5069">#5069</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/ImPennytoo"><span class="user">ImPennytoo</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/ImPennytoo" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=impennytoo&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=ImPennytoo" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user">
+    <a href="http://www.curse.com/users/ImPennytoo">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/219fc4f183d7f03192b1c910b46d6423" alt="ImPennytoo&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 1</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5069" class="forum-post-body-content text"><p>I Updated baggon today and now my bags are sperate. &nbsp;is there a way to change it back to one big bag? &nbsp;or is it another issue with the new update</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user user-role-premium  comment-depth-0" data-index="5067" id="c5067" data-surrogate-type="user" data-surrogate-id="9042" data-author-id="9042" data-id="2033546">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Fri, 26 Jul 2013 03:48:27 CDT (UTC-5:00)" data-epoch="1374828507">26 July 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5067">#5067</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/hshh"><span class="user user-role-premium">hshh</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/hshh" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=hshh&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=hshh" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user user-role-premium">
+    <a href="http://www.curse.com/users/hshh">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ca4fcdcaf10d686cc6f4602b40a617ba" alt="hshh&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 12</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5067" class="forum-post-body-content text"><p>I modified some code.</p>
+<p>Bagnon\components\item.lua</p>
+<p>function ItemSlot:FLASH_SEARCH_UPDATE(event, item)<br> self.flash:Stop()</p>
+<p>-- flash search also effect both bag and bank<br> -- if item == self:GetItem() then<br> local search = item and item:match('^|c%x+|Hitem.+|h%[(.*)%]')<br> local link = self:GetItem()<br> if item == link or ( search and search ~= '' and ItemSearch:Matches(link, search) ) then<br>self.flash:Play()<br> end<br>end</p>
+<p>function ItemSlot:OnHide()<br> self.flash:Stop() -- stop flash after frame hide(close)<br> self:HideStackSplitFrame()<br>end</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+<li>        
+    <div class="forum-post comment comment-normal comment-user user-role-content-manager user-role-premium user-role-author comment-depth-1" data-index="5068" id="c5068" data-surrogate-type="user" data-surrogate-id="291351" data-author-id="291351" data-id="2033589" data-depth="1" data-parent-comment="2033546">
+        <div class="forum-post-content">
+        <div class="forum-post-header">            
+            <span class="post-date">Posted <abbr class="standard-date standard-datetime" title="Fri, 26 Jul 2013 09:56:15 CDT (UTC-5:00)" data-epoch="1374850575">26 July 2013</abbr></span>
+            <span class="post-index"><a href="http://www.curse.com/addons/wow/bagnon?comment=5068">#5068</a></span>
+        </div>
+        <div class="forum-post-info">
+            <!-- Author -->
+            <div class="forum-post-author">
+                <!-- Username -->
+                <div class="username">
+                    <a href="http://www.curse.com/users/Jaliborc"><span class="user user-role-content-manager user-role-premium">Jaliborc</span></a>
+                    
+<ul class="user-actions  user-actions-forum-post-author-menu modal  covert-list">
+<li class="user-action style-link"><a href="http://www.curse.com/users/Jaliborc" class="link"><span>View User Profile</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/forums/search?by-author=jaliborc&show-as-posts=on" class="link"><span>View Posts</span></a></li><li class="user-action style-link"><a href="http://www.curse.com/private-messages/send?recipient=Jaliborc" class="link"><span>Send Message</span></a></li>
+</ul>
+
+                </div>
+                <!-- Avatar -->                
+                
+<div class="avatar avatar-100 user user-role-content-manager user-role-premium">
+    <a href="http://www.curse.com/users/Jaliborc">
+        <img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/634539504591916579.jpg" alt="Jaliborc&#39;s avatar">
+    </a>
+</div>
+            </div>
+            <!-- Title -->
+            <div class="title">
+                
+            </div>
+            
+            <div class="stats">
+                <ul class="flat-list">
+                    
+                    <li>Posts: 566</li>
+                    
+                </ul>
+            </div>
+            
+        </div>
+        <div class="forum-post-body-container">
+            
+            <!-- Body -->
+            <div class="forum-post-body">
+                <!-- Content -->
+                <div id="forum-post-body-5068" class="forum-post-body-content text"><p>And which behaviour does your change induces?</p></div>
+            
+                <!-- Attachments -->
+                
+                <!-- Edited By -->
+                
+                <!-- Signature -->
+                
+                <div class="forum-post-body-signature"><p>Developer of addons such as Bagnon, OmniCC, PetTracker and Scrap.<br>Visit me at <a href="http://www.curse.com/linkout?remoteUrl=http%253a%252f%252fwww.jaliborc.com%252f" rel="nofollow">jaliborc.com</a>.</p></div>
+                
+            </div>
+        </div>
+        <div class="forum-post-footer">
+            
+            <div class="forum-post-actions">
+                
+            </div>
+                        
+        </div>
+        </div>
+    </div>
+</li>
+    <li class="no-results">To post a comment, please <a href="http://www.curse.com/login">login</a> or <a href="http://www.curse.com/register">register</a> a new account.</li>
+
+</ul>
+</div>
+<div class="listing-footer">
+    
+<span class="tablesorter-pager">
+    <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html" title="First" class="pager-first pager-hidden">First</a>
+    <a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html" title="Previous" class="pager-prev pager-hidden">Previous</a>
+    <span class="pager-display">Page 1 of 293</span>
+    <a href="http://www.curse.com/addons/wow/bagnon?page=2" title="Next" class="pager-next pager-visible">Next</a>
+    <a href="http://www.curse.com/addons/wow/bagnon?page=293" title="Last" class="pager-last pager-visible">Last</a>
+</span>
+</div></div>
+            </div>  
+        </div>            
+    </div>
+</div>
+</div>
+
+<!-- Comment Preview -->
+<div id="comment-preview" class="module comment-preview"></div>
+
+<!-- Comment Form Bottom -->            
+
+    </div>
+    
+</div>
+
+<!-- Secondary Content -->
+<div id="secondary-content"> 
+
+
+    <!-- Med Rect Example -->
+    <div class="atf-ad-medRect">
+        <script language="javascript">
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn|3.0|5259|1248391|0|170|ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/addyn-3.0-5259-1248391-0-170-ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88"></script>
+        
+    </div>
+        
+    
+        <!-- Pack Callout -->
+        <div class="pack-callout module game-wow">
+            <h3><a href="http://www.curse.com/addon-packs/wow">Get a head start with Addon Packs</a></h3>
+        <span class="view-all no-bg"><a href="http://www.curse.com/addon-packs/wow">Browse now</a></span>
+        </div>
+    
+
+     
+    <!-- Top Downloads -->
+    
+<div class="top-downloads block-view">
+    
+<div class="module group">
+    <!-- Outside Caption -->
+    
+<div class="caption-container h2  no-sub no-nav">
+ 
+    <!-- Navigation -->
+    
+    
+    <!-- Main Title -->
+    <h2 class="caption">
+        <span class="bg">
+			<span class="left">            
+				<span class="right">Top Downloads</span>
+			</span>
+		</span>				
+    </h2>         
+    <!-- Sub title -->
+    
+    
+</div>
+    <div class="module-content">  
+        <div class="module-content-inner">
+            <div class="module-inner-wrap group">           
+                 <!-- Inside Caption -->
+                <div class="listing-container listing-container-ol"><div class="listing-body">
+<ol start="1" class="listing listing-project project-listing textScroll" data-row-selector="&gt;li">
+     
+<li>
+	<a href="http://www.curse.com/addons/wow/deadly-boss-mods">
+		<dl>
+		   <dt>Deadly Boss Mods</dt>
+		   <dd>Combat, PvP, and Boss Encounters</dd>
+		   <dd class="download-total">885,939 Monthly Downloads</dd>
+		</dl>
+	</a>
+</li>
+<li>
+	<a href="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Bagnon - Bags & Inventory - World of Warcraft Addons - Curse.html">
+		<dl>
+		   <dt>Bagnon</dt>
+		   <dd>Bags &amp; Inventory</dd>
+		   <dd class="download-total">368,564 Monthly Downloads</dd>
+		</dl>
+	</a>
+</li>
+<li>
+	<a href="http://www.curse.com/addons/wow/heal-bot-continued">
+		<dl>
+		   <dt>HealBot Continued</dt>
+		   <dd>Healer and Unit Frames</dd>
+		   <dd class="download-total">309,131 Monthly Downloads</dd>
+		</dl>
+	</a>
+</li>
+<li>
+	<a href="http://www.curse.com/addons/wow/dbm-bc">
+		<dl>
+		   <dt>Deadly Boss Mods - Burning Crusade and Vanilla mods</dt>
+		   <dd>Combat and Boss Encounters</dd>
+		   <dd class="download-total">295,635 Monthly Downloads</dd>
+		</dl>
+	</a>
+</li>
+<li>
+	<a href="http://www.curse.com/addons/wow/recount">
+		<dl>
+		   <dt>Recount</dt>
+		   <dd>Combat</dd>
+		   <dd class="download-total">269,284 Monthly Downloads</dd>
+		</dl>
+	</a>
+</li>
+</ol>
+</div></div>
+        <span class="view-all">
+            <a href="http://www.curse.com/addons/wow/downloads" class="no-tooltip">See More</a>
+        </span> 
+
+    
+            </div>  
+        </div>            
+    </div>
+</div>
+ </div>         
+
+    <!-- Med Rect Example -->
+    <div class="btf-ad-medRect">
+        <script language="javascript">
+<!--
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn/3.0/5259.1/2799169/0/170/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+//-->
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88(1)"></script>
+        
+    </div>
+
+</div>
+
+            
+        </div>
+
+        <!-- FOOTER AD -->
+        <section class="footer-ad" aria-hidden="true">
+            <div class="footer-ad-leaderboard"><script language="javascript">
+<!--
+if (window.adgroupid == undefined) {
+ window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn|3.0|5259|1248424|0|225|ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+//-->
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/addyn-3.0-5259-1248424-0-225-ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88"></script></div>
+        </section>
+
+        <div class="btf btf-ad-anchor">
+            <!-- Curse -->
+<script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/anchor.js"></script>
+        </div>
+
+        
+        
+        
+
+<script type="text/javascript">
+
+    Radon.Constants.initialize({ "CurrentGameSlug": "WoW" });
+
+    var NiceDatesSettings = [120, 2880, 4320];
+
+</script>        
+    </div>
+
+    
+
+    <!-- FOOTER -->
+    <div id="footer">
+        <div class="footer-ad-medRect"><script language="javascript">
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn|3.0|5259|1248436|0|170|ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/addyn-3.0-5259-1248436-0-170-ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88"></script></div>
+        <!-- Footer -->
+<footer class="main t-footer u-icon u-icon-a group" id="footer" role="complimentary">
+	<div class="t-footer-wrapper">	
+		<div class="t-footer-curseInfo">
+			<hgroup>
+				<h1>Curse</h1>
+				<h2><strong>Enjoy the game</strong></h2>
+			</hgroup>
+			<div class="t-footer-signUp">
+				<h4>Not a Member?</h4>
+				<h5>Get your Free Account!</h5>
+				<a href="http://www.curse.com/" class="u-button u-button-a">Sign up for Free!</a>
+			</div>
+			<ul class="t-footer-socialLinks">
+				<li><a href="http://www.youtube.com/curseentertainment"><i class="u-icon-youtube"></i></a></li>
+				<li><a href="http://www.twitter.com/#!/cursenetwork"><i class="u-icon-twitter"></i></a></li>
+				<li><a href="http://www.facebook.com/CurseNetwork"><i class="u-icon-facebook"></i></a></li>
+				<li><a href="http://www.curse.com/news.rss"><i class="u-icon-rss"></i></a></li>
+			</ul>
+		</div>
+		<div class="t-footer-curseNetwork">
+			<header><h4>Featured Sites</h4><a href="http://www.curse.com/" class="t-footer-jumpLink">More</a></header>
+			<ul class="t-footer-featured group">
+				<li class="t-footer-featureItem site-gw2g">
+					<a href="http://www.guildwars2guru.com/">
+						<h4>Guild Wars 2 Guru</h4>
+						<dl>
+							<dt><i class="u-icon-gw2g"></i>Guild Wars 2 Guru</dt>
+							<dd>The latest and greatest on Tyria.</dd>
+						</dl>
+					</a>
+				</li>
+				<li class="t-footer-featureItem site-lolpro">
+					<a href="http://www.lolpro.com/">
+						<h4>LoL Pro</h4>
+						<dl>
+							<dt><i class="u-icon-lolpro"></i>LoL Pro</dt>
+							<dd>Dominate with Pro LoL guides.</dd>
+						</dl>
+					</a>
+				</li>
+				<li class="t-footer-featureItem site-mmoc">
+					<a href="http://www.mmo-champion.com/">
+						<h4>MMO-Champion</h4>
+						<dl>
+							<dt><i class="u-icon-mmoc"></i>MMO-Champion</dt>
+							<dd>Keep ahead with the champions of WoW coverage.</dd>
+						</dl>
+					</a>
+				</li>
+				<li class="t-footer-featureItem site-gw2db">
+					<a href="http://www.gw2db.com/">
+						<h4>GW2DB</h4>
+						<dl>
+							<dt><i class="u-icon-gw2db"></i>GW2DB</dt>
+							<dd>Explore Tyria with Curse and GW2DB.</dd>
+						</dl>
+					</a>
+				</li>
+			</ul>
+			<header><h4>Browse</h4><!--<a href="http://www.curse.com" class="t-footer-jumpLink">More</a>--></header>
+			<ul class="t-footer-browse">
+				<li class="j-footer-item t-footer-coreLinks">
+					<a href="" class="j-selected">Core</a>
+					<ul class="j-list-selected">
+						<li><a href="http://www.curse.com/">Curse</a></li>
+						<li><a href="http://www.mmo-champion.com/">MMO-Champion</a></li>
+						<li><a href="http://www.curseforge.com/">CurseForge</a></li>
+						<li><a href="http://www.wowace.com/">WowAce</a></li>
+						<li><a href="http://www.skyrimforge.com/">SkyrimForge</a></li>
+						<li><a href="http://www.sc2mapster.com/">SC2Mapster</a></li>
+                                                <li><a href="http://www.lolpro.com/">LoLPro</a></li>
+                                                <li><a href="http://www.exilepro.com/">ExilePro</a></li>
+					</ul>
+				</li>
+				<li class="j-footer-item t-footer-communityLinks">
+					<a href="">Community</a>
+					<ul>
+						<li><a href="http://www.minecraftforum.net/">Minecraft Forum</a></li>
+						<li><a href="http://www.terrariaonline.com/">Terraria Online</a></li>
+						<li><a href="http://www.arenajunkies.com/">Arena Junkies</a></li>
+                                                <li><a href="http://www.eqnextfans.com/">EQNext Fans</a></li>
+						<li><a href="http://guildwars2guru.com/">Guild Wars 2 Guru</a></li>
+						<li><a href="http://www.diablofans.com/">DiabloFans</a></li>
+						<li><a href="http://www.fpsgeneral.com/">FPS General</a></li>
+						<li><a href="http://www.darthhater.com/">DarthHater</a></li>
+                                                <li><a href="http://www.wildstarforums.com/">Wildstar Forums</a></li>
+					</ul>
+				</li>
+				<li class="j-footer-item t-footer-databaseLinks">
+					<a href="">Database</a>
+					<ul>
+                                                <li><a href="http://www.gw2db.com/">Guild Wars 2 DB</a></li>
+						<li><a href="http://www.zybez.net/">Zybez</a></li>
+						<li><a href="http://www.muthead.com/">Muthead</a></li>
+						<li><a href="http://www.aionarmory.com/">Aion Armory</a></li>
+						<li><a href="http://www.wowdb.com/">WoW Database</a></li>
+                                                <li><a href="http://www.marriland.com/">Marriland</a></li>
+					</ul>
+				</li>
+				<li class="j-footer-item t-footer-wikiLinks">
+					<a href="">Wiki</a>
+					<ul>
+						<li><a href="http://www.gamepedia.com/">Gamepedia</a></li>
+						<li><a href="http://www.minecraftwiki.net/">Minecraft Wiki</a></li>						
+						<li><a href="http://www.dota2wiki.com/">Dota 2 Wiki</a></li>
+						<li><a href="http://www.wowpedia.org/">Wowpedia</a></li>
+						<li><a href="http://wiki.terrariaonline.com/">Terraria Wiki</a></li>						
+						<li><a href="http://neverwinter.gamepedia.com/">Neverwinter Wiki</a></li>
+						<li><a href="http://dayz.gamepedia.com/">DayZ Wiki</a></li>
+						<li><a href="http://hearthstone.gamepedia.com/">Hearthstone Wiki</a></li>
+						<li><a href="http://wildstar.gamepedia.com/">Wildstar Wiki</a></li>						
+						<li><a href="http://madden25.gamepedia.com/">Madden 25 Wiki</a></li>						
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<span class="return-to-top"><a href="http://www.curse.com/addons/wow/bagnon#top">Back to Top</a></span>
+		</div>
+		<div class="t-footer-curseLinks">
+			<ul>
+				<li><a href="http://www.curse.com/about">About Us</a></li>
+				<li><a href="http://www.curse.com/advertising/overview">Advertising</a></li>
+				<li><a href="http://www.curse.com/privacy">Privacy Policy</a></li>
+				<li><a href="http://www.curse.com/terms">Terms of Service</a></li>
+				<li><a href="http://www.curse.com/premiumterms">Premium Terms of Service</a></li>
+				<li><a href="http://www.curse.com/newsletter">Curse Newsletter</a></li>
+				<li><a href="http://www.curse.com/jobs">Jobs at Curse</a></li>
+			</ul>
+		</div>
+		<div class="t-footer-createdBy">
+			<div class="curse-logo">Curse Logo</div>
+			<p class="happy-pants">Handcrafted in San Francisco <span>&amp;</span> Huntsville</p>
+		</div>
+</footer>
+<!-- Update -->
+
+    </div>
+
+    
+
+
+
+    <div class="flash-messages"></div>
+
+    
+
+    
+    <div id="analytics">
+        <!-- Start Quantcast tag -->
+
+                <script type="text/javascript">
+
+                _qoptions={
+
+                qacct:"p-d2K9aGgyU-tIA"
+
+                };
+
+                </script>
+
+                <script type="text/javascript">
+
+                    var quantHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+
+                    document.write(unescape("%3Cscript src='" + quantHost + "edge.quantserve.com/quant.js' type='text/javascript'%3E%3C/script%3E"));
+
+                </script><script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/quant.js" type="text/javascript"></script>                
+
+                <noscript>
+
+                &lt;a href="http://www.quantcast.com/p-d2K9aGgyU-tIA" target="_blank"&gt;&lt;img src="http://pixel.quantserve.com/pixel/p-d2K9aGgyU-tIA.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/&gt;&lt;/a&gt;
+
+                </noscript>
+
+                <!-- End Quantcast tag -->
+
+
+
+                <!-- Google Analytics Tag -->
+
+                <script type="text/javascript">
+
+                    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+
+                    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+
+                </script><script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ga.js" type="text/javascript"></script>
+
+                <script type="text/javascript">
+
+                    try {
+
+                        var pageTracker = _gat._getTracker("UA-1045810-1");
+
+                        pageTracker._trackPageview();
+
+                    } catch (err) { }
+
+                    try {
+
+                        var pageTracker = _gat._getTracker("UA-1045810-22");
+
+                        pageTracker._trackPageview();
+
+                    } catch (err) { }
+
+                </script>                
+
+                <!-- End Another Analytics Tag -->
+
+                
+
+                <!-- Begin comScore Tag -->
+
+                <script>
+
+                    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+
+                </script><script src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/beacon.js"></script>
+
+
+
+                <script>
+
+                  COMSCORE.beacon({
+
+                    c1:2,
+
+                    c2:6035118,
+
+                    c3:"",
+
+                    c4:"",
+
+                    c5:"",
+
+                    c6:"",
+
+                    c15:""
+
+                  });
+
+                </script>
+
+                <noscript>
+
+                  &lt;img src="http://b.scorecardresearch.com/b?c1=2&amp;c2=6035118&amp;c3=&amp;c4=&amp;c5=&amp;c6=&amp;c15=&amp;cv=1.3&amp;cj=1" style="display:none" width="0" height="0" alt="" /&gt;
+
+                </noscript>
+
+                <!-- End comScore Tag -->
+
+                
+
+                <!-- START Nielsen Online SiteCensus V6.0 -->
+
+                <!-- COPYRIGHT 2010 Nielsen Online -->
+
+                <script type="text/javascript">
+
+                  (function () {
+
+                    var d = new Image(1, 1);
+
+                    d.onerror = d.onload = function () {
+
+                      d.onerror = d.onload = null;
+
+                    };
+
+                    d.src = ["//secure-us.imrworldwide.com/cgi-bin/m?ci=us-603339h&cg=0&cc=1&si=", escape(window.location.href), "&rp=", escape(document.referrer), "&ts=compact&rnd=", (new Date()).getTime()].join('');
+
+                  })();
+
+                </script>
+
+                <noscript>
+
+                  &lt;div&gt;
+
+                    &lt;img src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-603339h&amp;amp;cg=0&amp;amp;cc=1&amp;amp;ts=noscript"
+
+                    width="1" height="1" alt="" /&gt;
+
+                  &lt;/div&gt;
+
+                </noscript>
+
+                <!-- END Nielsen Online SiteCensus V6.0 -->
+
+                
+
+                <!-- Google Wowstead Promotion Targeting -->
+
+                <script type="text/javascript">
+
+                /* <![CDATA[ */
+
+                var google_conversion_id = 989002608;
+
+                var google_conversion_language = "en";
+
+                var google_conversion_format = "3";
+
+                var google_conversion_color = "666666";
+
+                var google_conversion_label = "h2JXCJjZiAIQ8PbL1wM";
+
+                var google_conversion_value = 0;
+
+                /* ]]> */
+
+                </script>
+
+                <script type="text/javascript" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/conversion.js">
+
+                </script><img height="1" width="1" border="0" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/saved_resource">
+
+                <noscript>
+
+                &lt;div style="display:inline;"&gt;
+
+                &lt;img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/989002608/?label=h2JXCJjZiAIQ8PbL1wM&amp;amp;guid=ON&amp;amp;script=0"/&gt;
+
+                &lt;/div&gt;
+
+                </noscript>
+
+                <!-- End Google Wowstead Promotion Targeting -->
+
+<!-- ADTECH ReTargeting -->
+<script language="javascript">
+
+if (window.adgroupid == undefined) {
+	window.adgroupid = Math.round(Math.random() * 1000);
+}
+document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechus.com/addyn/3.0/5259.1/2731917/0/277/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp='+window.adgroupid+';misc='+new Date().getTime()+'"></scri'+'pt>');
+
+</script><script language="javascript1.1" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/ADTECH;loc=100;target=_blank;key=group=project+page=details+game=wow+project_name=Bagnon+lang=en;grp=88(2)"></script>
+<!-- End ADTECH ReTargeting -->
+
+<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'Droid+Sans:400,700:latin', 'Fjalla+One::latin' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); </script>
+    </div>
+     <div id="ivw">
+        <!-- SZM VERSION="1.5" -->
+<script type="text/javascript">
+<!--
+var IVW="http://cursecom.ivwbox.de/cgi-bin/ivw/CP/Curse_D1142-Curse-Downloads;Kommentar";
+document.write("<img src=\""+IVW+"?r="+escape(document.referrer)+"&d="+(Math.random()*100000)+"\" width=\"1\" height=\"1\" alt=\"szmtag\" />");
+//-->
+</script><img src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/Curse_D1142-Curse-Downloads" width="1" height="1" alt="szmtag">
+<noscript>
+&lt;img src="http://cursecom.ivwbox.de/cgi-bin/ivw/CP/Curse_D1142-Curse-Downloads;Kommentar" width="1" height="1" alt="szmtag" /&gt;
+</noscript>
+<!-- /SZM -->
+    </div>
+    <!-- Crazyegg  -->
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName('script')[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0011/8371.js";
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+<script type="text/javascript" src="./Bagnon - Bags & Inventory - World of Warcraft Addons - Curse_files/extooltips.js"></script>
+
+
+
+
+
+
+    
+    <div id="queued-ads"><script type="text/javascript">Cobalt.Advertising.processAds();</script></div>
+
+    
+<script type="text/javascript">
+    Cobalt.Constants.initialize({"StaticURL":"http://static-curse.cursecdn.com/1-0-4989-18153","MediaURL":"http://media-curse.cursecdn.com","AvatarURL":"http://media-curse.cursecdn.com/avatars","AttachmentURL":"http://media-curse.cursecdn.com/attachments","ActiveConfiguration":"production"});
+    Cobalt.Constants.ServerTimestamp = 1378565332303.47
+    Cobalt.User.EnabledLanguageIDs = [1];
+    
+        Cobalt.TinyMCE.fontColorEnabled = false;
+    
+    $.ajaxSetup({
+        data: {},
+        timeout: 30000
+    });
+    
+    
+    
+        Cobalt.CMS.CobaltCss = ["http://static-curse.cursecdn.com/1-0-4989-18153/Skins/Global-TinyMCE/css/compiled.css"];    
+        Cobalt.CMS.ProjectCss = ["http://static-curse.cursecdn.com/1-0-4989-18153/Skins/Radon/css/compiled.css"];
+</script>
+
+<script type="text/javascript">
+
+    Cobalt.runOnLoad(function () {
+        Cobalt.initialize([{dependency:Radon.Common, priority:99, name:'Radon.Common'},{dependency:Radon.Rating, priority:99, name:'Radon.Rating'},{dependency:Radon.Addons, priority:99, name:'Radon.Addons'},{dependency:Cobalt.Favorites, priority:99, name:'Cobalt.Favorites'},{dependency:Radon.Demos, priority:99, name:'Radon.Demos'},{dependency:Cobalt.Social_Facebook, priority:99, name:'Cobalt.Social_Facebook'},{dependency:Cobalt.Listing, priority:99, name:'Cobalt.Listing'},{dependency:Cobalt.Tabs, priority:99, name:'Cobalt.Tabs'},{dependency:Cobalt.NiceDates, priority:99, name:'Cobalt.NiceDates'},{dependency:Cobalt.Core, priority:99, name:'Cobalt.Core'},{dependency:Cobalt.Forms, priority:99, name:'Cobalt.Forms'},{dependency:Cobalt.UI, priority:99, name:'Cobalt.UI'},{dependency:Cobalt.Auth, priority:99, name:'Cobalt.Auth'}]);
+    });
+
+</script>
+
+<div id="tooltip-container" class="p-tooltip p-tooltip-a" style="position: absolute; left: 180px; top: 252px; display: none;">Bags &amp; Inventory</div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-login-modal" style="display: none; z-index: 4; outline: 0px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-login-modal">&nbsp;</span><a href="http://www.curse.com/addons/wow/bagnon#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="login-modal" data-width="510" class="ui-dialog-content ui-widget-content" style="display: block;">
+        
+<div id="login-modal-forms">
+    <form method="post" action="https://www.curse.com/login">
+        <input id="field-returnUrl" name="fdd240f4388671a31a5ec4a381c641899" type="hidden" value="/addons/wow/bagnon"><input id="field-security-token" name="security-token" type="hidden" value="5c7be252b1d769bf6f8aa408f068621a">
+        <fieldset>
+            <legend>Login to <strong>Curse</strong></legend>
+            <label for="login-modal-username">
+                <span class="input-label">Username/Email Address</span>
+                
+
+<input type="text" name="fd6c990a3c0dc240ebd952a7b82d8fcef" id="field-username" value="" autocomplete="off" placeholder="Email Address" data-validation-required="true" data-validation-required-message="Please enter your username.">
+
+            </label>
+            <label for="login-modal-password">
+                <span class="input-label">Password</span>
+                
+
+<input type="password" name="f90ab2444c5979f3d090230010b29ffd1" id="field-loginFormPassword" placeholder="Password" data-validation-required="true" data-validation-required-message="Please enter your password.">
+
+                <a href="http://www.curse.com/recover-account">Forgot?</a>
+            </label>
+        </fieldset>
+        <div>
+            <input type="submit" value="Login" name="login" class="cta-button">
+            <p>Don't have an account? <a href="http://www.curse.com/register">Create One.</a></p>
+        </div>
+    </form>
+</div>
+<div id="login-modal-premium-upsell">
+    <h6>Get an epic experience with <strong>Curse Premium</strong></h6>
+    <ul>
+    <li>Faster addon downloads</li>
+    <li>Premium-Only Beta Giveaways</li>
+    <li>Ad-Free Curse experience</li>
+    <li>Premium Curse Client</li>
+    <li>and many More Features</li>
+    <li class="cta-button"><a href="http://www.curse.com/premium">Learn More »</a></li>
+    </ul>
+</div>
+
+        </div><div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"><div class="ui-dialog-buttonset"><button type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Cancel</span></button></div></div></div><div class="curse-addon-tooltip" style="display: none;"></div></body></html>
