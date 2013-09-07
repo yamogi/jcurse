@@ -25,7 +25,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 		String zipFilename = getZipFileName(downloadUrl);
 		
 		Set<String> addonFolders = downloadAndExtract(downloadUrl);
-		
 		newAddon.setLastZipFileName(zipFilename);
 		newAddon.setFolders(addonFolders);
 		
@@ -42,7 +41,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 			//create output directory is not exists
 			String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
 			File folder = new File(outputFolder);
-			if(!folder.exists()){
+			if (!folder.exists()){
 				folder.mkdirs();
 			}
 
@@ -52,7 +51,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 			ZipEntry ze = zis.getNextEntry();
 			
 
-			while(ze!=null){
+			while (ze!=null){
 				String fileName = ze.getName();
 				if (fileName.endsWith("/") || fileName.endsWith("\\")) {
 					//directory
@@ -86,7 +85,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 			return addonFolders;
 		} catch(IOException e){
 			//TODO error handling
-			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
@@ -103,14 +101,13 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
 	private static String getDownloadUrl(String gameAddonNameId) {
 		WebDriver driver = new HtmlUnitDriver();
-		String url = "http://www.curse.com/addons/wow/" + gameAddonNameId;
+		String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId;
 		driver.get(url);
 		System.out.println("website of addon " + url);
 		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
 		downloadButton.click();
 		WebElement directDownloadElement = driver.findElement(By.xpath("//*[@id=\"file-download\"]/div/div[2]/div/div/div[1]/p/a"));
-		String downloadUrl = directDownloadElement.getAttribute("data-href");
-		return downloadUrl;
+		return directDownloadElement.getAttribute("data-href");
 	}
 	
 	@Override
@@ -129,7 +126,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 					FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
 			}
 		} catch (IOException e) {
-			e.printStackTrace();//FIXME error handling
+			throw new RuntimeException(e);//FIXME error handling
 		}
 		
 	}
