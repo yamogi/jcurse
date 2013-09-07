@@ -74,6 +74,13 @@ public class CurseAddonFileHandlerTest {
 	}
 	
 	@Test
+	public void testGetCompressedFileName() {
+		CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+		String fileName = fileHandler.getCompressedFileName("bagnon");
+		assertEquals("Bagnon_5.3.6.zip", fileName);
+	}
+	
+	@Test
 	public void testRemoveFolders() throws IOException {
 		File root = folder.getRoot();
 		String addonPath = root.getAbsolutePath() + File.separator + "Interface" + File.separator + "AddOns";
