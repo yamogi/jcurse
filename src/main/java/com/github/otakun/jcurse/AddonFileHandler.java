@@ -7,8 +7,6 @@ public interface AddonFileHandler {
 
 	public abstract void downloadToWow(Addon newAddon);
 
-	public abstract void downloadToWow(String downloadUrl, Addon addon);
-
 	public abstract void removeAddons(Collection<Addon> toDelete);
 
 	public abstract void removeAddonFolders(Collection<String> toDelete);

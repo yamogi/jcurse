@@ -32,18 +32,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 		System.out.println("Done unzipping");
 	}
 
-	@Override
-	public void downloadToWow(String downloadUrl, Addon addon) {
-		String zipFilename = getZipFileName(downloadUrl);
-		
-		Set<String> addonFolders = downloadAndExtract(downloadUrl);
-		
-		addon.setLastZipFileName(zipFilename);
-		addon.setFolders(addonFolders);
-		
-		System.out.println("Done unzipping");
-	}
-
 	private Set<String> downloadAndExtract(String downloadUrl) {
 		Set<String> addonFolders = new HashSet<>();
 		try{

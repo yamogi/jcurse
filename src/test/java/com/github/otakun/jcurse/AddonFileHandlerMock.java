@@ -11,10 +11,6 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 	}
 
 	@Override
-	public void downloadToWow(String downloadUrl, Addon addon) {
-	}
-
-	@Override
 	public void removeAddons(Collection<Addon> toDelete) {
 	}
 
