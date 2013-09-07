@@ -11,7 +11,7 @@ public final class Configuration {
 	
 	static String CONFIG_PATH = System.getProperty("user.home") + File.separator 
 															+ ".jcurse" + File.separator;
-
+	
 	public static final Charset CHARSET = Charset.forName("ASCII");
 	
 	private static final String CONFIG_FILE_LOCATION = CONFIG_PATH + "config";
@@ -21,6 +21,8 @@ public final class Configuration {
 	private static Configuration INSTANCE = new Configuration();
 	
 	private String wowFolder;
+
+	private String curseBaseUrl = "http://www.curse.com/addons/wow/"; 
 	
 	private static boolean toInitialize = true;
 	
@@ -69,4 +71,18 @@ public final class Configuration {
 		return getWowFolder() 
 		+ File.separator + "Interface" + File.separator + "AddOns" + File.separator;
 	}
+
+	public String getCurseBaseUrl() {
+		return curseBaseUrl;
+	}
+
+	public void setCurseBaseUrl(String curseBaseUrl) {
+		this.curseBaseUrl = curseBaseUrl;
+	}
+
+	void setWowFolder(String wowFolder) {
+		this.wowFolder = wowFolder;
+	}
+	
+	
 }
