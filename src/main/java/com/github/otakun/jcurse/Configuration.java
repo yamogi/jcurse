@@ -31,33 +31,38 @@ public final class Configuration {
 	
 	public synchronized static Configuration getConfiguration() {
 		if (toInitialize) {
-			loadProperties();
+			loadProperties(CONFIG_FILE_LOCATION);
 			toInitialize = false;
 		}
 		return INSTANCE;
 	}
 	
-	private static void loadProperties() {
-		File propertyFile = new File(CONFIG_FILE_LOCATION);
-		propertyFile.getParentFile().mkdirs();
+	static Configuration loadProperties(String fileLocation) {
+		File propertyFile = new File(fileLocation);
 		Properties properties = new Properties();
 		if (!propertyFile.exists()) {
-			properties.put(WOW_FOLDER_KEY, "");
-			try (FileOutputStream fos = new FileOutputStream(propertyFile)) {
-				properties.store(fos, null);
-			} catch (IOException e) {
-				//TODO error handling
-				e.printStackTrace();
+			File parentDirectory = propertyFile.getParentFile();
+			if (!parentDirectory.exists() && !parentDirectory.mkdirs()) {
+				System.err.println("Couldn't create parent directories of config file in '" + propertyFile + "'");
+			} else {
+				properties.put(WOW_FOLDER_KEY, "");
+				try (FileOutputStream fos = new FileOutputStream(propertyFile)) {
+					properties.store(fos, null);
+				} catch (IOException e) {
+					//TODO error handling
+					throw new RuntimeException(e);
+				}
 			}
 		} else {
 			try (FileInputStream fis = new FileInputStream(propertyFile)) {
 				properties.load(fis);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			}
 		}
 		INSTANCE.wowFolder = properties.getProperty(WOW_FOLDER_KEY);
+		return INSTANCE;
 	}
 
 	private String getWowFolder() {
