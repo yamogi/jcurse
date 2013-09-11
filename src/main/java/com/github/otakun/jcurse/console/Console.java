@@ -16,7 +16,10 @@ public class Console {
 		if (arguments.size() < 1) {
 			printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
 		}
-		AddonRepositoryManager repositoryManager = new AddonRepositoryManager();
+		executeArguments(arguments, new AddonRepositoryManager());
+	}
+
+	static void executeArguments(List<String> arguments, AddonRepositoryManager repositoryManager) {
 		String command = arguments.get(0);
 		if (arguments.size() == 1) {
 			switch (command) {
@@ -33,15 +36,19 @@ public class Console {
 			switch (command) {
 				case "add":
 					repositoryManager.add(addons);
+					System.out.println("added " + addons);
 					break;
 				case "remove":
 					repositoryManager.remove(addons);
+					System.out.println("removed " + addons);
 					break;
 				case "update":
 					if ("all".equalsIgnoreCase(arguments.get(1))) {
 						repositoryManager.updateAll();
+						System.out.println("updated all addons");
 					} else {
 						repositoryManager.update(addons);
+						System.out.println("updated " + addons);
 					}
 					break;
 				default:

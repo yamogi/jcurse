@@ -34,7 +34,7 @@ public final class AddonRepositoryManager {
 	public void add(Collection<String> addonName) {
 		List<Addon> newAddons = Addon.newInstance(addonName);
 
-		List<Addon> toDownload = checkAddonAlreadyExists(newAddons);
+		List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
 		
 		curse.downloadToWow(toDownload);
 		
@@ -48,16 +48,28 @@ public final class AddonRepositoryManager {
 		persistence.saveInstalledAddons(repository.values());
 	}
 
-	private List<Addon> checkAddonAlreadyExists(List<Addon> newAddons) {
+	private List<Addon> checkAddonAlreadyExists(List<Addon> newAddons, boolean getExistingAddons) {
 		List<Addon> toDownload = new ArrayList<>();
+		List<Addon> toUpdate = new ArrayList<>();
 		for (Addon addon : newAddons) {
-			if (repository.containsKey(addon)) {
-				System.out.println("The Addon '" + addon.getAddonNameId() + "' is already installed.");
+			Addon repoAddon = repository.get(addon);
+			if (repoAddon != null) {
+				toUpdate.add(repoAddon);
 			} else {
 				toDownload.add(addon);
 			}
 		}
-		return toDownload;
+		if (getExistingAddons) {
+			if (!toDownload.isEmpty()) {
+				System.out.println("The Addon(s) " + toDownload + "are not added.");
+			}
+			return toUpdate;
+		} else {
+			if (!toUpdate.isEmpty()) {
+				System.out.println("The Addon(s) " + toUpdate + " are already installed.");
+			}
+			return toDownload;
+		}
 	}
 
 
@@ -67,7 +79,6 @@ public final class AddonRepositoryManager {
 		List<Addon> repoAddons = getCheckAddons(newAddons);
 		curse.removeAddons(repoAddons);
 		removeAddonsFromRepo(repoAddons);
-		System.out.println("Removed " + newAddons);
 	}
 
 	private void removeAddonsFromRepo(List<Addon> repoAddons) {
@@ -123,7 +134,7 @@ public final class AddonRepositoryManager {
 	public void update(List<String> addons) {
 		System.out.println("updating " + addons);
 		List<Addon> newAddon = Addon.newInstance(addons);
-		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon);
+		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon, true);
 		updateInternal(repoAddons);
 		persistence.saveInstalledAddons(repository.values());
 		System.out.println("done updating " + addons);

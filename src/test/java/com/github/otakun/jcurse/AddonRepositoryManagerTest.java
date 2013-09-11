@@ -101,7 +101,7 @@ public class AddonRepositoryManagerTest {
 		
 		iterator = manager.getAddons().iterator();
 		checkAddonZipFile(iterator, "test1-1.0.zip");
-		checkAddonZipFile(iterator, "test2-1.054.zip");
+		checkAddonZipFile(iterator, "test2-1.0.zip");
 		
 	}
 
