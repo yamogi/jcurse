@@ -39,6 +39,7 @@ public final class Configuration {
 	
 	private static void loadProperties() {
 		File propertyFile = new File(CONFIG_FILE_LOCATION);
+		propertyFile.getParentFile().mkdirs();
 		Properties properties = new Properties();
 		if (!propertyFile.exists()) {
 			properties.put(WOW_FOLDER_KEY, "");
