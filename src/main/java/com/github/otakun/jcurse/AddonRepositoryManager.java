@@ -19,7 +19,7 @@ public final class AddonRepositoryManager {
 				new CurseAddonFileHandler());
 	}
 	
-	AddonRepositoryManager(AddonRepoPersistence persistence,
+	public AddonRepositoryManager(AddonRepoPersistence persistence,
 			AddonFileHandler addonFileHandler) {
 		this.persistence = persistence;
 		this.curse = addonFileHandler;
@@ -82,7 +82,7 @@ public final class AddonRepositoryManager {
 		for (Addon addon : newAddons) {
 			Addon repoAddon = repository.get(addon);
 			if (repoAddon == null) {
-				throw new RuntimeException("The addon " + addon.getAddonNameId() + "is not in our repository.");
+				throw new RuntimeException("The addon " + addon.getAddonNameId() + " is not in our repository.");
 				//XXX better error handling
 			}
 			addons.add(repoAddon);
