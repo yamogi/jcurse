@@ -6,11 +6,11 @@
     <!-- encoders are assigned the type
          ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
     <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+      <pattern>%msg%n</pattern>
     </encoder>
   </appender>
 
-  <logger name="com.bitbucket.keiki.jcurse" level="INFO" additivity="false">
+  <logger name="org.bitbucket.keiki.jcurse" level="INFO" additivity="false">
    <appender-ref ref="STDOUT" />
   </logger>
 

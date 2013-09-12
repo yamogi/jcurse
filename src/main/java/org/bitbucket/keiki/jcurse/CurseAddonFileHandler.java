@@ -16,8 +16,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
 	
 	@Override
 	public void downloadToWow(Addon newAddon) {
@@ -28,7 +32,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 		newAddon.setLastZipFileName(zipFilename);
 		newAddon.setFolders(addonFolders);
 		
-		System.out.println("Done unzipping");
+		LOG.info("Done unzipping");
 	}
 
 	private Set<String> downloadAndExtract(String downloadUrl) {
@@ -102,8 +106,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 	private static String getDownloadUrl(String gameAddonNameId) {
 		WebDriver driver = new HtmlUnitDriver();
 		String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId;
+		LOG.debug("The website to access is {}", url);
 		driver.get(url);
-		System.out.println("website of addon " + url);
 		WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
 		downloadButton.click();
 		WebElement directDownloadElement = driver.findElement(By.xpath("//*[@id=\"file-download\"]/div/div[2]/div/div/div[1]/p/a"));
