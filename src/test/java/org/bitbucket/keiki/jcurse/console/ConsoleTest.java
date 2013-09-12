@@ -79,8 +79,7 @@ public class ConsoleTest {
 		AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
 				new AddonFileHandlerMock());
 		Console.executeArguments(Arrays.asList("list"), repositoryManager);
-		assertEquals(System.lineSeparator() + 
-				"Currently installed addons:" + System.lineSeparator() +
+		assertEquals("Currently installed addons:" + System.lineSeparator() +
 				"Addon 'test1', version 'test1-1.0.zip'" + System.lineSeparator() +
 				"Addon 'test2', version 'test2-1.054.zip'" + System.lineSeparator(), log.getLog());
 	}
