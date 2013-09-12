@@ -77,9 +77,9 @@ public class Console {
 
 	private static void printHelpExit(ErrorCode errorCode, String... messageParameter) {
 		if (messageParameter.length > 0) {
-			System.err.println("Error: " + MessageFormat.format(errorCode.getErrorMessage(), (Object[]) messageParameter));
+			LOG.error("Error: " + MessageFormat.format(errorCode.getErrorMessage(), (Object[]) messageParameter));
 		} else {
-			System.err.println("Error: " + errorCode.getErrorMessage());
+			LOG.error("Error: " + errorCode.getErrorMessage());
 		}
 		
 		LOG.info("\r\nUsage:");
