@@ -5,8 +5,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public final class AddonRepositoryManager {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AddonRepositoryManager.class);
 
 	private final AddonRepoPersistence persistence;
 	
@@ -61,12 +66,12 @@ public final class AddonRepositoryManager {
 		}
 		if (getExistingAddons) {
 			if (!toDownload.isEmpty()) {
-				System.out.println("The Addon(s) " + toDownload + "are not added.");
+				LOG.info("The Addon(s) " + toDownload + "are not added.");
 			}
 			return toUpdate;
 		} else {
 			if (!toUpdate.isEmpty()) {
-				System.out.println("The Addon(s) " + toUpdate + " are already installed.");
+				LOG.info("The Addon(s) " + toUpdate + " are already installed.");
 			}
 			return toDownload;
 		}
@@ -102,12 +107,12 @@ public final class AddonRepositoryManager {
 	}
 
 	public void updateAll() {
-		System.out.println("updating all addons");
+		LOG.info("updating all addons");
 		for (Addon addon : repository.values()) {
 			updateInternal(addon);
 		}
 		persistence.saveInstalledAddons(repository.values());
-		System.out.println("done updating all addons");
+		LOG.info("done updating all addons");
 	}
 
 
@@ -120,24 +125,24 @@ public final class AddonRepositoryManager {
 	private void updateInternal(Addon addon) {
 		String fileName = curse.getCompressedFileName(addon.getAddonNameId());
 		if (addon.getLastZipFileName().equals(fileName)) {
-			System.out.println(addon.getAddonNameId() + " already up2date");
+			LOG.info(addon.getAddonNameId() + " already up2date");
 			return;
 		}
-		System.out.println("updating " + addon.getAddonNameId());
+		LOG.info("updating " + addon.getAddonNameId());
 		curse.removeAddonFolders(repository.get(addon).getFolders());
 		curse.downloadToWow(addon);
 		
 		repository.put(addon, addon);
-		System.out.println("updated " + addon.getAddonNameId());
+		LOG.info("updated " + addon.getAddonNameId());
 	}
 
 	public void update(List<String> addons) {
-		System.out.println("updating " + addons);
+		LOG.info("updating " + addons);
 		List<Addon> newAddon = Addon.newInstance(addons);
 		List<Addon> repoAddons = checkAddonAlreadyExists(newAddon, true);
 		updateInternal(repoAddons);
 		persistence.saveInstalledAddons(repository.values());
-		System.out.println("done updating " + addons);
+		LOG.info("done updating " + addons);
 	}
 
 	public Collection<Addon> getAddons() {

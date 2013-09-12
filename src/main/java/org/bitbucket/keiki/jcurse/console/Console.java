@@ -8,9 +8,13 @@ import java.util.List;
 import org.bitbucket.keiki.jcurse.Addon;
 import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
 import org.bitbucket.keiki.jcurse.ErrorCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Console {
 
+	private static final Logger LOG = LoggerFactory.getLogger(Console.class);
+	
 	public static void main(String... args) {
 		List<String> arguments = Arrays.asList(args);
 		if (arguments.size() < 1) {
@@ -36,19 +40,19 @@ public class Console {
 			switch (command) {
 				case "add":
 					repositoryManager.add(addons);
-					System.out.println("added " + addons);
+					LOG.info("added " + addons);
 					break;
 				case "remove":
 					repositoryManager.remove(addons);
-					System.out.println("removed " + addons);
+					LOG.info("removed " + addons);
 					break;
 				case "update":
 					if ("all".equalsIgnoreCase(arguments.get(1))) {
 						repositoryManager.updateAll();
-						System.out.println("updated all addons");
+						LOG.info("updated all addons");
 					} else {
 						repositoryManager.update(addons);
-						System.out.println("updated " + addons);
+						LOG.info("updated " + addons);
 					}
 					break;
 				default:
@@ -59,16 +63,15 @@ public class Console {
 	}
 
 	private static void listAddons(Collection<Addon> addons) {
-		System.out.println();
 		if (addons.isEmpty()) {
-			System.out.println("We don't know of any installed addon.");
+			LOG.info("We don't know of any installed addon.");
 			return;
 		}
 		
-		System.out.println("Currently installed addons:");
+		LOG.info("Currently installed addons:");
 		
 		for (Addon addon : addons) {
-			System.out.println(addon);
+			LOG.info(addon.toString());
 		}
 	}
 
@@ -79,9 +82,9 @@ public class Console {
 			System.err.println("Error: " + errorCode.getErrorMessage());
 		}
 		
-		System.out.println("\r\nUsage:");
-		System.out.println("jcurse [add | remove | update] [addon name | all]");
-		System.out.println("jcurse list");
+		LOG.info("\r\nUsage:");
+		LOG.info("jcurse [add | remove | update] [addon name | all]");
+		LOG.info("jcurse list");
 		System.exit(errorCode.getErrorCode());
 	}
 }
