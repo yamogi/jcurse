@@ -1,19 +1,18 @@
-package com.github.otakun.jcurse.console;
+package org.bitbucket.keiki.jcurse.console;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
+import org.bitbucket.keiki.jcurse.AddonFileHandlerMock;
+import org.bitbucket.keiki.jcurse.AddonRepoPersistenceMock;
+import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
+import org.bitbucket.keiki.jcurse.ErrorCode;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.StandardErrorStreamLog;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
-
-import com.github.otakun.jcurse.AddonFileHandlerMock;
-import com.github.otakun.jcurse.AddonRepoPersistenceMock;
-import com.github.otakun.jcurse.AddonRepositoryManager;
-import com.github.otakun.jcurse.ErrorCode;
 
 public class ConsoleTest {
 

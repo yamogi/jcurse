@@ -1,4 +1,4 @@
-package com.github.otakun.jcurse;
+package org.bitbucket.keiki.jcurse;
 
 public enum ErrorCode {
 	//application errors with failure (negative values)

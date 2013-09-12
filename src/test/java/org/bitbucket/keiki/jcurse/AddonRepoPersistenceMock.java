@@ -1,4 +1,4 @@
-package com.github.otakun.jcurse;
+package org.bitbucket.keiki.jcurse;
 
 import java.util.ArrayList;
 import java.util.Arrays;

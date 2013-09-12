@@ -1,13 +1,13 @@
-package com.github.otakun.jcurse.console;
+package org.bitbucket.keiki.jcurse.console;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.otakun.jcurse.Addon;
-import com.github.otakun.jcurse.AddonRepositoryManager;
-import com.github.otakun.jcurse.ErrorCode;
+import org.bitbucket.keiki.jcurse.Addon;
+import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
+import org.bitbucket.keiki.jcurse.ErrorCode;
 
 public class Console {
 
