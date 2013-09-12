@@ -3,6 +3,7 @@ package org.bitbucket.keiki.jcurse;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ public final class AddonRepositoryManager {
 	
 	private final AddonFileHandler curse;
 
-	private final TreeMap<Addon, Addon> repository;
+	private final Map<Addon, Addon> repository;
 	
 	public AddonRepositoryManager() {
 		this(new AddonRepoPersistenceImpl(Configuration.CONFIG_PATH + "repository"),
@@ -29,7 +30,7 @@ public final class AddonRepositoryManager {
 		this.persistence = persistence;
 		this.curse = addonFileHandler;
 		Collection<Addon> addons = persistence.loadInstalledAddons();
-		TreeMap<Addon, Addon> tmpTree = new TreeMap<>();
+		Map<Addon, Addon> tmpTree = new TreeMap<>();
 		for (Addon addon : addons) {
 			tmpTree.put(addon, addon);
 		}

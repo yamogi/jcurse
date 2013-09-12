@@ -24,10 +24,7 @@ public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
 				return Collections.emptyList();
 			}
 			ObjectMapper mapper = new ObjectMapper();
-			Object readValue = mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});
-			@SuppressWarnings("unchecked")
-			Collection<Addon> result = (Collection<Addon>) readValue; 
-			return result;
+			return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});
 		} catch (IOException e) {
 			//TODO better error handling
 			return Collections.emptyList();

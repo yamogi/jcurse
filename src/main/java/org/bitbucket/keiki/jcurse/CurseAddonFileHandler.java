@@ -95,7 +95,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
 
 	private static String getZipFileName(String downloadUrl) {
-		int lastIndexOf = downloadUrl.lastIndexOf("/");
+		int lastIndexOf = downloadUrl.lastIndexOf('/');
 		if (lastIndexOf == -1) {
 			throw new RuntimeException("Download url wrong"); //FIXME correct error handling
 		}

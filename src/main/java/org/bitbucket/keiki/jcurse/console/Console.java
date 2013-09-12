@@ -11,9 +11,13 @@ import org.bitbucket.keiki.jcurse.ErrorCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Console {
+public final class Console {
 
 	private static final Logger LOG = LoggerFactory.getLogger(Console.class);
+	
+	private Console() {
+		// main class
+	}
 	
 	public static void main(String... args) {
 		List<String> arguments = Arrays.asList(args);
