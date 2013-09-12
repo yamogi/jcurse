@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 public final class Configuration {
 	
-	static String CONFIG_PATH = System.getProperty("user.home") + File.separator 
+	static final String CONFIG_PATH = System.getProperty("user.home") + File.separator 
 															+ ".jcurse" + File.separator;
 	
 	public static final Charset CHARSET = Charset.forName("ASCII");
@@ -23,7 +23,7 @@ public final class Configuration {
 	
 	private static final String WOW_FOLDER_KEY = "wow.folder";
 	
-	private static Configuration INSTANCE = new Configuration();
+	private static final Configuration INSTANCE = new Configuration();
 	
 	private String wowFolder;
 
