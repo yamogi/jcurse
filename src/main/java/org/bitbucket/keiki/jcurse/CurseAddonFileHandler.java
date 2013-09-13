@@ -40,7 +40,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         try{
             URL website = new URL(downloadUrl);
 
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[4096];
 
             //create output directory is not exists
             String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
