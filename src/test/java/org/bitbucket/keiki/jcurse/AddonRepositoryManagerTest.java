@@ -25,6 +25,19 @@ public class AddonRepositoryManagerTest {
 	}
 	
 	@Test
+	public void testAddUnknownAddon() {
+		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+				new AddonFileHandlerMock());
+		manager.add(Arrays.asList("buxtehude", "myUnknownAddon"));
+		Collection<Addon> addons = manager.getAddons();
+		assertEquals(3, addons.size());
+		Iterator<Addon> iterator = addons.iterator();
+		Addon addon1 = iterator.next();
+		assertEquals("buxtehude", addon1.getAddonNameId());
+	}
+
+	
+	@Test
 	public void testAddTwo() {
 		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
 				new AddonFileHandlerMock());
@@ -82,7 +95,7 @@ public class AddonRepositoryManagerTest {
 		checkAddonZipFile(iterator, "test1-1.0.zip");
 		checkAddonZipFile(iterator, "test2-1.0.zip");
 	}
-
+	
 	private void checkAddonZipFile(Iterator<Addon> iterator, String toCheck) {
 		Addon addon1 = iterator.next();
 		assertEquals(toCheck, addon1.getLastZipFileName());

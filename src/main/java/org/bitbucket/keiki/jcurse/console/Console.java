@@ -35,8 +35,8 @@ public class Console {
 			
 			switch (command) {
 				case "add":
-					repositoryManager.add(addons);
-					System.out.println("added " + addons);
+					List<Addon> added = repositoryManager.add(addons);
+					System.out.println("added " + added);
 					break;
 				case "remove":
 					repositoryManager.remove(addons);

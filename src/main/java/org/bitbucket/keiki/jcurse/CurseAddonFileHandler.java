@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
@@ -24,15 +26,20 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 	private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
 	
 	@Override
-	public void downloadToWow(Addon newAddon) {
-		String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
-		String zipFilename = getZipFileName(downloadUrl);
-		
-		Set<String> addonFolders = downloadAndExtract(downloadUrl);
-		newAddon.setLastZipFileName(zipFilename);
-		newAddon.setFolders(addonFolders);
-		
-		LOG.info("Done unzipping");
+	public boolean downloadToWow(Addon newAddon) {
+		try {
+			String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
+			String zipFilename = getZipFileName(downloadUrl);
+			
+			Set<String> addonFolders = downloadAndExtract(downloadUrl);
+			newAddon.setLastZipFileName(zipFilename);
+			newAddon.setFolders(addonFolders);
+			LOG.info("Done unzipping");
+			return true;
+		} catch (NoSuchElementException e) {
+			LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
+		}
+		return false;
 	}
 
 	private Set<String> downloadAndExtract(String downloadUrl) {
@@ -142,9 +149,13 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 	}
 
 	@Override
-	public void downloadToWow(List<Addon> toDownload) {
+	public List<Addon> downloadToWow(List<Addon> toDownload) {
+		List<Addon> downloadedAddons = new ArrayList<>();
 		for (Addon addon : toDownload) {
-			downloadToWow(addon);
+			if (downloadToWow(addon)) {
+				downloadedAddons.add(addon);
+			}
 		}
+		return downloadedAddons;
 	}
 }

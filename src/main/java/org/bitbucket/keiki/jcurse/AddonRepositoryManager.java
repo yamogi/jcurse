@@ -31,14 +31,15 @@ public final class AddonRepositoryManager {
 		repository = tmpTree;
 	}
 	
-	public void add(Collection<String> addonName) {
+	public List<Addon> add(Collection<String> addonName) {
 		List<Addon> newAddons = Addon.newInstance(addonName);
 
 		List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
 		
-		curse.downloadToWow(toDownload);
+		List<Addon> downloadToWow = curse.downloadToWow(toDownload);
 		
-		updateRepository(toDownload);
+		updateRepository(downloadToWow);
+		return downloadToWow;
 	}
 
 	private void updateRepository(List<Addon> toDownload) {
