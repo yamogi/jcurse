@@ -12,10 +12,10 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -102,16 +102,23 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         return downloadUrl.substring(lastIndexOf + 1);
     }
 
-
     private static String getDownloadUrl(String gameAddonNameId) {
-        WebDriver driver = new HtmlUnitDriver();
-        String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId;
-        LOG.debug("The website to access is {}", url);
-        driver.get(url);
-        WebElement downloadButton = driver.findElement(By.xpath("//*[@id=\"project-overview\"]/div/div[2]/div/div/div[2]/ul/li[1]/em/a"));
-        downloadButton.click();
-        WebElement directDownloadElement = driver.findElement(By.xpath("//*[@id=\"file-download\"]/div/div[2]/div/div/div[1]/p/a"));
-        return directDownloadElement.getAttribute("data-href");
+        String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
+        try {
+            LOG.debug("accessing {}", url);
+            Document doc = Jsoup.connect(url)
+                    .data("query", "Java")
+                    .userAgent("Mozilla")
+                    .cookie("auth", "token")
+                    .timeout(3000)
+                    .post();
+            Elements select = doc.select("a[data-href]");
+            Element element = select.get(0);
+            return element.attr("data-href");
+        } catch (IOException e) {
+            LOG.warn("Can't access " + url, e);
+            throw new RuntimeException();
+        }
     }
     
     @Override
