@@ -6,8 +6,9 @@ import java.util.List;
 public class AddonFileHandlerMock implements AddonFileHandler {
 
     @Override
-    public void downloadToWow(Addon newAddon) {
+    public boolean downloadToWow(Addon newAddon) {
         newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
+        return true;
     }
 
     @Override
@@ -24,7 +25,8 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     }
 
     @Override
-    public void downloadToWow(List<Addon> toDownload) {
+    public List<Addon> downloadToWow(List<Addon> toDownload) {
+        return toDownload;
     }
 
 }
