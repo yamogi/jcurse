@@ -26,6 +26,9 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 
     @Override
     public List<Addon> downloadToWow(List<Addon> toDownload) {
+        if (toDownload.get(0).getAddonNameId().equals("unknownAddon")) {
+            return toDownload.subList(1, toDownload.size());
+        }
         return toDownload;
     }
 
