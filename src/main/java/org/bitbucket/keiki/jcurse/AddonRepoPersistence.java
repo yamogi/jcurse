@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public interface AddonRepoPersistence {
 
-	public abstract Collection<Addon> loadInstalledAddons();
+    public abstract Collection<Addon> loadInstalledAddons();
 
-	public abstract void saveInstalledAddons(Collection<Addon> addons);
+    public abstract void saveInstalledAddons(Collection<Addon> addons);
 
 }

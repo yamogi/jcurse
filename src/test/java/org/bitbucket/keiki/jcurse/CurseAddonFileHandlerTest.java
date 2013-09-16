@@ -20,87 +20,87 @@ import org.junit.rules.TemporaryFolder;
 
 public class CurseAddonFileHandlerTest {
 
-	@Rule
-	public TemporaryFolder folder = new TemporaryFolder();
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
 
-	private static final String URL_PLACEHOLDER = "#BASE_URL_TO_REPLACE#";
-	private static String baseUrl = null;
+    private static final String URL_PLACEHOLDER = "#BASE_URL_TO_REPLACE#";
+    private static String baseUrl = null;
 
-	@BeforeClass
-	public static void beforeClass() throws IOException {
-		baseUrl = Thread.currentThread().getContextClassLoader().
-				getResource("websites/").toString();
-		Configuration.getConfiguration().setCurseBaseUrl(baseUrl);
+    @BeforeClass
+    public static void beforeClass() throws IOException {
+        baseUrl = Thread.currentThread().getContextClassLoader().
+                getResource("websites/").toString();
+        Configuration.getConfiguration().setCurseBaseUrl(baseUrl);
 
-		String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
-		String substring = fileUrl.substring(5);
+        String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
+        String substring = fileUrl.substring(5);
 
-		File file = new File(substring);
-		String content = new String(FileUtils.readFileToString(file));
-		String replaceOnce = StringUtils.replaceOnce(content, URL_PLACEHOLDER, baseUrl);
-		FileUtils.write(file, replaceOnce);
-	}
+        File file = new File(substring);
+        String content = new String(FileUtils.readFileToString(file));
+        String replaceOnce = StringUtils.replaceOnce(content, URL_PLACEHOLDER, baseUrl);
+        FileUtils.write(file, replaceOnce);
+    }
 
-	
-	@AfterClass
-	public static void afterClass() throws IOException {
-		String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
-		String substring = fileUrl.substring(5);
+    
+    @AfterClass
+    public static void afterClass() throws IOException {
+        String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
+        String substring = fileUrl.substring(5);
 
-		File file = new File(substring);
-		String content = new String(FileUtils.readFileToString(file));
-		String replaceOnce = StringUtils.replaceOnce(content, baseUrl, URL_PLACEHOLDER);
-		FileUtils.write(file, replaceOnce);
-	}
+        File file = new File(substring);
+        String content = new String(FileUtils.readFileToString(file));
+        String replaceOnce = StringUtils.replaceOnce(content, baseUrl, URL_PLACEHOLDER);
+        FileUtils.write(file, replaceOnce);
+    }
 
-	@Before
-	public void before() {
-		File root = folder.getRoot();
-		Configuration.getConfiguration().setWowFolder(root.getAbsolutePath());
-	}
-	
-	@Test
-	public void testDownloadToWoW() {
-		CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-		List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
-		
-		fileHandler.downloadToWow(addons);
+    @Before
+    public void before() {
+        File root = folder.getRoot();
+        Configuration.getConfiguration().setWowFolder(root.getAbsolutePath());
+    }
+    
+//    @Test
+//    public void testDownloadToWoW() {
+//        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+//        List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
+//        
+//        fileHandler.downloadToWow(addons);
+//
+//        String rootPath = folder.getRoot().getAbsolutePath();
+//        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
+//        File addonRoot = new File(addonPath);
+//        File[] listFiles = addonRoot.listFiles();
+//        assertEquals(5, listFiles.length);
+//    }
+    
+//    @Test
+//    public void testGetCompressedFileName() {
+//        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+//        String fileName = fileHandler.getCompressedFileName("bagnon");
+//        assertEquals("Bagnon_5.3.6.zip", fileName);
+//    }
+    
+    @Test
+    public void testRemoveFolders() throws IOException {
+        File root = folder.getRoot();
+        String addonPath = root.getAbsolutePath() + File.separator + "Interface" + File.separator + "AddOns";
+        new File(addonPath + File.separator + "test1").mkdirs();
+        new File(addonPath + File.separator + "test2").mkdirs();
+        new File(addonPath + File.separator + "test3").mkdirs();
 
-		String rootPath = folder.getRoot().getAbsolutePath();
-		String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
-		File addonRoot = new File(addonPath);
-		File[] listFiles = addonRoot.listFiles();
-		assertEquals(5, listFiles.length);
-	}
-	
-	@Test
-	public void testGetCompressedFileName() {
-		CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-		String fileName = fileHandler.getCompressedFileName("bagnon");
-		assertEquals("Bagnon_5.3.6.zip", fileName);
-	}
-	
-	@Test
-	public void testRemoveFolders() throws IOException {
-		File root = folder.getRoot();
-		String addonPath = root.getAbsolutePath() + File.separator + "Interface" + File.separator + "AddOns";
-		new File(addonPath + File.separator + "test1").mkdirs();
-		new File(addonPath + File.separator + "test2").mkdirs();
-		new File(addonPath + File.separator + "test3").mkdirs();
-
-		
-		List<Addon> addons = Addon.newInstance(Arrays.asList("test"));
-		Addon addon = addons.get(0);
-		Set<String> folders = new HashSet<>();
-		folders.add("test1");
-		folders.add("test2");
-		folders.add("test3");
-		addon.setFolders(folders);
-		
-		CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-		fileHandler.removeAddons(addons);
-		
-		assertEquals(0, new File(addonPath).listFiles().length);
-	}
+        
+        List<Addon> addons = Addon.newInstance(Arrays.asList("test"));
+        Addon addon = addons.get(0);
+        Set<String> folders = new HashSet<>();
+        folders.add("test1");
+        folders.add("test2");
+        folders.add("test3");
+        addon.setFolders(folders);
+        
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        fileHandler.removeAddons(addons);
+        
+        assertEquals(0, new File(addonPath).listFiles().length);
+    }
 
 }
