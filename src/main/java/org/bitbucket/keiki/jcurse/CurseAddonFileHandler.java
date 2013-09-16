@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -27,14 +28,14 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
 	public boolean downloadToWow(Addon newAddon) {
 		try {
-        String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
-        String zipFilename = getZipFileName(downloadUrl);
-        
-        Set<String> addonFolders = downloadAndExtract(downloadUrl);
-        newAddon.setLastZipFileName(zipFilename);
-        newAddon.setFolders(addonFolders);
-        
-        LOG.info("Done unzipping");
+	        String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
+	        String zipFilename = getZipFileName(downloadUrl);
+	        
+	        Set<String> addonFolders = downloadAndExtract(downloadUrl);
+	        newAddon.setLastZipFileName(zipFilename);
+	        newAddon.setFolders(addonFolders);
+	        
+	        LOG.info("Done unzipping");
 			return true;
 		} catch (NoSuchElementException e) {
 			LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
