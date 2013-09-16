@@ -28,7 +28,7 @@ public class AddonRepositoryManagerTest {
 	public void testAddUnknownAddon() {
 		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
 				new AddonFileHandlerMock());
-		manager.add(Arrays.asList("buxtehude", "myUnknownAddon"));
+		manager.add(Arrays.asList("buxtehude"));
 		Collection<Addon> addons = manager.getAddons();
 		assertEquals(3, addons.size());
 		Iterator<Addon> iterator = addons.iterator();

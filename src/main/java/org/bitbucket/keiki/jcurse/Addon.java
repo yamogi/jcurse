@@ -76,7 +76,8 @@ public final class Addon implements Comparable<Addon> {
     
     @Override
     public String toString() {
-        return "Addon '" + addonNameId + "', version '" + lastZipFileName + "'";
+        return addonNameId + (lastZipFileName != null ? ", version "
+                        + lastZipFileName : "") + "";
     }
 
     
