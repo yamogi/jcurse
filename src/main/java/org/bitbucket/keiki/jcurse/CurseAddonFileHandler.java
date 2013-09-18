@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     
+    private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
     
     @Override
@@ -47,7 +49,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         Set<String> addonFolders = new HashSet<>();
         try{
             URL website = new URL(downloadUrl);
-
+            URLConnection connection = website.openConnection();
+            connection.setRequestProperty("User-Agent", USER_AGENT);
             byte[] buffer = new byte[4096];
 
             //create output directory is not exists
@@ -58,7 +61,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             }
 
             //get the zip file content
-            ZipInputStream zis = new ZipInputStream(website.openStream());
+            ZipInputStream zis = new ZipInputStream(connection.getInputStream());
             //get the zipped file list entry
             ZipEntry ze = zis.getNextEntry();
             
@@ -116,7 +119,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             LOG.debug("accessing {}", url);
             Document doc = Jsoup.connect(url)
                     .data("query", "Java")
-                    .userAgent("Mozilla")
+                    .userAgent(USER_AGENT)
                     .cookie("auth", "token")
                     .timeout(3000)
                     .post();
