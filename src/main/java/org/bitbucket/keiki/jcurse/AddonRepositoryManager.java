@@ -125,14 +125,15 @@ public final class AddonRepositoryManager {
     }
 
     private void updateInternal(Addon addon) {
-        String fileName = curse.getCompressedFileName(addon.getAddonNameId());
+        String downloadUrl = curse.getDownloadUrl(addon.getAddonNameId());
+        String fileName = CurseAddonFileHandler.extractZipFileName(downloadUrl);
         if (addon.getLastZipFileName().equals(fileName)) {
             LOG.info(addon.getAddonNameId() + " already up2date");
             return;
         }
         LOG.info("updating " + addon.getAddonNameId());
         curse.removeAddonFolders(repository.get(addon).getFolders());
-        curse.downloadToWow(addon);
+        curse.downloadToWow(addon, downloadUrl);
         
         repository.put(addon, addon);
         LOG.info("updated " + addon.getAddonNameId());

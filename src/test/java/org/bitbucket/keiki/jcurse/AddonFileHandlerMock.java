@@ -26,10 +26,21 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 
     @Override
     public List<Addon> downloadToWow(List<Addon> toDownload) {
-        if (toDownload.get(0).getAddonNameId().equals("unknownAddon")) {
+        if (!toDownload.isEmpty() && toDownload.get(0).getAddonNameId().equals("unknownAddon")) {
             return toDownload.subList(1, toDownload.size());
         }
         return toDownload;
+    }
+
+    @Override
+    public boolean downloadToWow(Addon newAddon, String downloadUrl) {
+        newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
+        return true;
+    }
+
+    @Override
+    public String getDownloadUrl(String gameAddonNameId) {
+        return "http://localhost/" + gameAddonNameId + "-1.0.zip";
     }
 
 }

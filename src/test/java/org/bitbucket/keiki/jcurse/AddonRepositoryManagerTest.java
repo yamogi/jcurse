@@ -97,6 +97,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testUpdateAll() {
+        
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
                 new AddonFileHandlerMock());
         manager.updateAll();

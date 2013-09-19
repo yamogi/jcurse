@@ -26,23 +26,35 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
+
+    @Override
+    public boolean downloadToWow(Addon newAddon, String downloadUrl) {
+        try {
+            String zipFilename = extractZipFileName(downloadUrl);
+            
+            Set<String> addonFolders = downloadAndExtract(downloadUrl);
+            newAddon.setLastZipFileName(zipFilename);
+            newAddon.setFolders(addonFolders);
+            
+            LOG.info("Done unzipping");
+            return true;
+        } catch (NoSuchElementException e) {
+            LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
+        }
+        return false;
+        
+    }
+    
     
     @Override
-	public boolean downloadToWow(Addon newAddon) {
-		try {
-	        String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
-	        String zipFilename = getZipFileName(downloadUrl);
-	        
-	        Set<String> addonFolders = downloadAndExtract(downloadUrl);
-	        newAddon.setLastZipFileName(zipFilename);
-	        newAddon.setFolders(addonFolders);
-	        
-	        LOG.info("Done unzipping");
-			return true;
-		} catch (NoSuchElementException e) {
-			LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
-		}
-		return false;
+    public boolean downloadToWow(Addon newAddon) {
+        try {
+            String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
+            return downloadToWow(newAddon, downloadUrl);
+        } catch (NoSuchElementException e) {
+            LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
+        }
+        return false;
     }
 
     private Set<String> downloadAndExtract(String downloadUrl) {
@@ -105,7 +117,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     }
 
 
-    private static String getZipFileName(String downloadUrl) {
+    public static String extractZipFileName(String downloadUrl) {
         int lastIndexOf = downloadUrl.lastIndexOf('/');
         if (lastIndexOf == -1) {
             throw new RuntimeException("Download url wrong"); //FIXME correct error handling
@@ -113,7 +125,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         return downloadUrl.substring(lastIndexOf + 1);
     }
 
-    private static String getDownloadUrl(String gameAddonNameId) {
+    @Override
+    public String getDownloadUrl(String gameAddonNameId) {
         String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
         try {
             LOG.debug("accessing {}", url);
@@ -156,7 +169,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
     public String getCompressedFileName(String gameAddonNameId) {
         String downloadUrl = getDownloadUrl(gameAddonNameId);
-        return getZipFileName(downloadUrl);
+        return extractZipFileName(downloadUrl);
     }
 
     @Override
