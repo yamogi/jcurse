@@ -54,16 +54,16 @@ public final class Configuration {
                 try (FileOutputStream fos = new FileOutputStream(propertyFile)) {
                     properties.store(fos, null);
                 } catch (IOException e) {
-                    //TODO error handling
-                    throw new RuntimeException(e);
+                    throw new BusinessException("Can't create config file at '" 
+                            + propertyFile.getAbsolutePath() + "'", e);
                 }
             }
         } else {
             try (FileInputStream fis = new FileInputStream(propertyFile)) {
                 properties.load(fis);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                throw new RuntimeException(e);
+                throw new BusinessException("Can't read existing config file at '"
+                        + propertyFile + "'", e);
             }
         }
         INSTANCE.wowFolder = properties.getProperty(WOW_FOLDER_KEY);
@@ -72,8 +72,7 @@ public final class Configuration {
 
     private String getWowFolder() {
         if (wowFolder.isEmpty()) {
-            throw new RuntimeException("No folder for WoW given in config file (home/.jcurse/config)");
-            //XXX better error handling
+            throw new BusinessException("No folder for WoW given in config file (home/.jcurse/config)");
         }
         return wowFolder;
     }
@@ -94,6 +93,4 @@ public final class Configuration {
     void setWowFolder(String wowFolder) {
         this.wowFolder = wowFolder;
     }
-    
-    
 }

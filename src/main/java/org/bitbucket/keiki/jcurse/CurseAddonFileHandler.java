@@ -111,8 +111,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             zis.close();
             return addonFolders;
         } catch(IOException e){
-            //TODO error handling
-            throw new RuntimeException(e);
+            throw new BusinessException("Problems reading data from Curse.", e);
         }
     }
 
@@ -120,7 +119,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public static String extractZipFileName(String downloadUrl) {
         int lastIndexOf = downloadUrl.lastIndexOf('/');
         if (lastIndexOf == -1) {
-            throw new RuntimeException("Download url wrong"); //FIXME correct error handling
+            throw new BusinessException("Download url wrong");
         }
         return downloadUrl.substring(lastIndexOf + 1);
     }
@@ -140,8 +139,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             Element element = select.get(0);
             return element.attr("data-href");
         } catch (IOException e) {
-            LOG.warn("Can't access " + url, e);
-            throw new RuntimeException();
+            throw new BusinessException("Can't access " + url, e);
         }
     }
     
@@ -161,7 +159,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);//FIXME error handling
+            throw new BusinessException("Error removing Addon folders " + toDelete, e);
         }
         
     }
