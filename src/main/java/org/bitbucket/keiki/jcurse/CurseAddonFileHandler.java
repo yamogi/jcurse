@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     
+    private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
 
@@ -63,7 +64,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             URL website = new URL(downloadUrl);
             URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
-            byte[] buffer = new byte[4096];
+            byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
 
             //create output directory is not exists
             String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
@@ -133,7 +134,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     .data("query", "Java")
                     .userAgent(USER_AGENT)
                     .cookie("auth", "token")
-                    .timeout(3000)
                     .post();
             Elements select = doc.select("a[data-href]");
             Element element = select.get(0);
@@ -171,13 +171,13 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     }
 
     @Override
-	public List<Addon> downloadToWow(List<Addon> toDownload) {
-		List<Addon> downloadedAddons = new ArrayList<>();
+    public List<Addon> downloadToWow(List<Addon> toDownload) {
+        List<Addon> downloadedAddons = new ArrayList<>();
         for (Addon addon : toDownload) {
-			if (downloadToWow(addon)) {
-				downloadedAddons.add(addon);
-			}
-		}
-		return downloadedAddons;
+            if (downloadToWow(addon)) {
+                downloadedAddons.add(addon);
+            }
+        }
+        return downloadedAddons;
     }
 }

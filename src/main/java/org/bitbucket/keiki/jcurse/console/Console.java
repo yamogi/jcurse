@@ -48,7 +48,7 @@ public final class Console {
             
             switch (command) {
                 case "add":
-					List<Addon> added = repositoryManager.add(addons);
+                    List<Addon> added = repositoryManager.add(addons);
                     LOG.info("added " + added);
                     break;
                 case "remove":

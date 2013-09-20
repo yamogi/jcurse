@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface AddonFileHandler {
 
-	boolean downloadToWow(Addon newAddon);
+    boolean downloadToWow(Addon newAddon);
 
     void removeAddons(Collection<Addon> toDelete);
 
@@ -13,7 +13,7 @@ public interface AddonFileHandler {
 
     String getCompressedFileName(String gameAddonNameId);
 
-	List<Addon> downloadToWow(List<Addon> toDownload);
+    List<Addon> downloadToWow(List<Addon> toDownload);
 
     boolean downloadToWow(Addon newAddon, String downloadUrl);
 

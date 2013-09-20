@@ -37,15 +37,15 @@ public final class AddonRepositoryManager {
         repository = tmpTree;
     }
     
-	public List<Addon> add(Collection<String> addonName) {
+        public List<Addon> add(Collection<String> addonName) {
         List<Addon> newAddons = Addon.newInstance(addonName);
 
         List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
         
-		List<Addon> downloadToWow = curse.downloadToWow(toDownload);
+                List<Addon> downloadToWow = curse.downloadToWow(toDownload);
         
-		updateRepository(downloadToWow);
-		return downloadToWow;
+                updateRepository(downloadToWow);
+                return downloadToWow;
     }
 
     private void updateRepository(List<Addon> toDownload) {
