@@ -68,7 +68,7 @@ public final class AddonRepositoryManager {
         }
         if (getExistingAddons) {
             if (!toDownload.isEmpty()) {
-                LOG.info("The Addon(s) " + toDownload + "are not added.");
+                LOG.info("The Addon(s) " + toDownload + " are not installed.");
             }
             return toUpdate;
         } else {
@@ -83,7 +83,7 @@ public final class AddonRepositoryManager {
 
     public void remove(List<String> addons) {
         List<Addon> newAddons = Addon.newInstance(addons);
-        List<Addon> repoAddons = getCheckAddons(newAddons);
+        List<Addon> repoAddons = checkAddonAlreadyExists(newAddons, true);
         curse.removeAddons(repoAddons);
         removeAddonsFromRepo(repoAddons);
     }
@@ -93,19 +93,6 @@ public final class AddonRepositoryManager {
             repository.remove(addon);
         }    
         persistence.saveInstalledAddons(repository.values());
-    }
-
-    private List<Addon> getCheckAddons(List<Addon> newAddons) {
-        List<Addon> addons = new ArrayList<>();
-        for (Addon addon : newAddons) {
-            Addon repoAddon = repository.get(addon);
-            if (repoAddon == null) {
-                throw new RuntimeException("The addon " + addon.getAddonNameId() + " is not in our repository.");
-                //XXX better error handling
-            }
-            addons.add(repoAddon);
-        }
-        return addons;
     }
 
     public void updateAll() {

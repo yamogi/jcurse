@@ -7,29 +7,23 @@ import java.util.Arrays;
 import org.bitbucket.keiki.jcurse.AddonFileHandlerMock;
 import org.bitbucket.keiki.jcurse.AddonRepoPersistenceMock;
 import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
-import org.bitbucket.keiki.jcurse.ErrorCode;
+import org.bitbucket.keiki.jcurse.BusinessException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.junit.contrib.java.lang.system.StandardErrorStreamLog;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 
 public class ConsoleTest {
 
     @Rule
-    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
-    
-    @Rule
     public final StandardErrorStreamLog err = new StandardErrorStreamLog();
     
     @Rule
     public final StandardOutputStreamLog log = new StandardOutputStreamLog();
     
-    @Test
+    @Test (expected = BusinessException.class)
     public void testFewArguments() {
-        exit.expectSystemExitWithStatus(ErrorCode.CONSOLE_ARGUMENTS_NUMBER.getErrorCode());
-        Console.main();
-        assertEquals("Error: Number of arguments are wrong.", err.getLog());
+        Console.executeArguments(Arrays.asList(new String[0]), null);
     }
 
     @Test

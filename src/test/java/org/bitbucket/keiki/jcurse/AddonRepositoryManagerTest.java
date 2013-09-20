@@ -9,8 +9,11 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 
 public class AddonRepositoryManagerTest {
+    
+    public final StandardOutputStreamLog log = new StandardOutputStreamLog();
     
     @Test
     public void testAddOne() {
@@ -88,11 +91,12 @@ public class AddonRepositoryManagerTest {
         assertEquals("test1",next.getAddonNameId());
     }
     
-    @Test (expected = RuntimeException.class)
+    @Test
     public void testRemoveNotExisting() {
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
                 new AddonFileHandlerMock());
         manager.remove(Arrays.asList("test3"));
+        assertEquals(2, manager.getAddons().size());
     }
     
     @Test

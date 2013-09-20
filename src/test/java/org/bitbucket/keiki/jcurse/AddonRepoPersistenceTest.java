@@ -57,11 +57,9 @@ public class AddonRepoPersistenceTest {
         assertNull(loadInstalledAddons);
     }
     
-    @Test 
+    @Test (expected = BusinessException.class)
     public void testReadJsonFileNotExisting() throws IOException    {
         AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
-        Collection<Addon> loadInstalledAddons = persistence.loadInstalledAddons();
-        
-        assertTrue(loadInstalledAddons.isEmpty());
+        persistence.loadInstalledAddons();
     }
 }

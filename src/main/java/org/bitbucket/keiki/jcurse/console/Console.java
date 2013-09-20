@@ -1,13 +1,12 @@
 package org.bitbucket.keiki.jcurse.console;
 
-import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 import org.bitbucket.keiki.jcurse.Addon;
 import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
-import org.bitbucket.keiki.jcurse.ErrorCode;
+import org.bitbucket.keiki.jcurse.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,14 +19,23 @@ public final class Console {
     }
     
     public static void main(String... args) {
-        List<String> arguments = Arrays.asList(args);
-        if (arguments.size() < 1) {
-            printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);
+        try {
+            executeArguments(Arrays.asList(args), new AddonRepositoryManager());
+        } catch (BusinessException e) {
+            LOG.error(e.getMessage());
+            LOG.debug(e.getMessage(), e);
+            LOG.info("\r\nUsage:");
+            LOG.info("jcurse [add | remove | update] [addon name | all]");
+            LOG.info("jcurse list");
+
         }
-        executeArguments(arguments, new AddonRepositoryManager());
     }
 
     static void executeArguments(List<String> arguments, AddonRepositoryManager repositoryManager) {
+        if (arguments.size() < 1) {
+            throw new BusinessException("Number of arguments are wrong");
+        }
+        
         String command = arguments.get(0);
         if (arguments.size() == 1) {
             switch (command) {
@@ -35,7 +43,7 @@ public final class Console {
                     listAddons(repositoryManager.getAddons());
                     break;
                 default:
-                    printHelpExit(ErrorCode.CONSOLE_ARGUMENTS_NUMBER);        
+                    throw new BusinessException("Unregonized command " + command);
             }
         }
         if (arguments.size() >= 2) {
@@ -60,8 +68,7 @@ public final class Console {
                     }
                     break;
                 default:
-                    printHelpExit(ErrorCode.CONSOLE_UNKNOWN_OPTION, command);
-                    break;
+                    throw new BusinessException("Unrecognized command " + command);
             }
         }
     }
@@ -77,18 +84,5 @@ public final class Console {
         for (Addon addon : addons) {
             LOG.info(addon.toString());
         }
-    }
-
-    private static void printHelpExit(ErrorCode errorCode, String... messageParameter) {
-        if (messageParameter.length > 0) {
-            LOG.error("Error: " + MessageFormat.format(errorCode.getErrorMessage(), (Object[]) messageParameter));
-        } else {
-            LOG.error("Error: " + errorCode.getErrorMessage());
-        }
-        
-        LOG.info("\r\nUsage:");
-        LOG.info("jcurse [add | remove | update] [addon name | all]");
-        LOG.info("jcurse list");
-        System.exit(errorCode.getErrorCode());
     }
 }
