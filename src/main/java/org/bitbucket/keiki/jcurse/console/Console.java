@@ -37,15 +37,12 @@ public final class Console {
         }
         
         String command = arguments.get(0);
-        if (arguments.size() == 1) {
-            switch (command) {
-                case "list":
-                    listAddons(repositoryManager.getAddons());
-                    break;
-                default:
-                    throw new BusinessException("Unregonized command " + command);
-            }
-        }
+        executeOneArgumentCommand(arguments, repositoryManager, command);
+        executeTwoArgumentsCommand(arguments, repositoryManager, command);
+    }
+
+    private static void executeTwoArgumentsCommand(List<String> arguments,
+            AddonRepositoryManager repositoryManager, String command) {
         if (arguments.size() >= 2) {
             List<String> addons = arguments.subList(1, arguments.size());
             
@@ -69,6 +66,19 @@ public final class Console {
                     break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
+            }
+        }
+    }
+
+    private static void executeOneArgumentCommand(List<String> arguments,
+            AddonRepositoryManager repositoryManager, String command) {
+        if (arguments.size() == 1) {
+            switch (command) {
+                case "list":
+                    listAddons(repositoryManager.getAddons());
+                    break;
+                default:
+                    throw new BusinessException("Unregonized command " + command);
             }
         }
     }
