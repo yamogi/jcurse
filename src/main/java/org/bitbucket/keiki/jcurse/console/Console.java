@@ -77,10 +77,25 @@ public final class Console {
                 case "list":
                     listAddons(repositoryManager.getAddons());
                     break;
+                case "export":
+                    exportAddons(repositoryManager.getAddons());
+                    break;
                 default:
                     throw new BusinessException("Unregonized command " + command);
             }
         }
+    }
+
+    private static void exportAddons(Collection<Addon> addons) {
+        if (addons.isEmpty()) {
+            LOG.info("No addons are installed");
+            return;
+        }
+        StringBuilder build = new StringBuilder("jcurse add ");
+        for (Addon addon : addons) {
+            build.append(addon.getAddonNameId()).append(' ');
+        }
+        LOG.info(build.toString());
     }
 
     private static void listAddons(Collection<Addon> addons) {
@@ -88,7 +103,6 @@ public final class Console {
             LOG.info("We don't know of any installed addon.");
             return;
         }
-        
         LOG.info("Currently installed addons:");
         
         for (Addon addon : addons) {
