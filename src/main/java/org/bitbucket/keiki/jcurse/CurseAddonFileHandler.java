@@ -59,8 +59,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     }
 
     private Set<String> downloadAndExtract(String downloadUrl) {
-        Set<String> addonFolders = new HashSet<>();
-        try{
+        try {
             URL website = new URL(downloadUrl);
             URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
@@ -73,45 +72,35 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                 folder.mkdirs();
             }
 
-            //get the zip file content
-            ZipInputStream zis = new ZipInputStream(connection.getInputStream());
-            //get the zipped file list entry
-            ZipEntry ze = zis.getNextEntry();
-            
+            try (ZipInputStream zis = new ZipInputStream(connection.getInputStream())) {
 
-            while (ze!=null){
-                String fileName = ze.getName();
-                if (fileName.endsWith("/") || fileName.endsWith("\\")) {
-                    //directory
-                    ze = zis.getNextEntry();
-                    continue;
-                }
-                //only one should be possible. The other one has -1
-                int index = Math.max(fileName.indexOf('/'), fileName.indexOf('\\'));
-                addonFolders.add(fileName.substring(0, index));
+                Set<String> addonFolders = new HashSet<>();
                 
-                
-                File newFile = new File(outputFolder + File.separator + fileName);
+                ZipEntry ze;
+                while ((ze = zis.getNextEntry()) != null) {
+                    if (ze.isDirectory()) {
+                        continue;
+                    }
+                    String fileName = ze.getName();
+                    int index = fileName.indexOf('/');
+                    addonFolders.add(fileName.substring(0, index));
 
-                //create all non exists folders
-                //else you will hit FileNotFoundException for compressed folder
-                newFile.getParentFile().mkdirs();
-                //overwrites all files
-                FileOutputStream fos = new FileOutputStream(newFile);             
 
-                int len;
-                while ((len = zis.read(buffer)) > 0) {
-                    fos.write(buffer, 0, len);
+                    File newFile = new File(outputFolder + File.separator + fileName);
+
+                    newFile.getParentFile().mkdirs();
+
+                    FileOutputStream fos = new FileOutputStream(newFile);             
+                    int len;
+                    while ((len = zis.read(buffer)) > 0) {
+                        fos.write(buffer, 0, len);
+                    }
+
+                    fos.close();   
                 }
-
-                fos.close();   
-                ze = zis.getNextEntry();
+                return addonFolders;
             }
-            //XXX close it the correct way
-            zis.closeEntry();
-            zis.close();
-            return addonFolders;
-        } catch(IOException e){
+        } catch(IOException e) {
             throw new BusinessException("Problems reading data from Curse.", e);
         }
     }
