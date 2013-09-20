@@ -34,7 +34,7 @@ public final class Configuration {
     private Configuration() {
     }
     
-    public synchronized static Configuration getConfiguration() {
+    public static synchronized Configuration getConfiguration() {
         if (toInitialize) {
             loadProperties(CONFIG_FILE_LOCATION);
             toInitialize = false;
