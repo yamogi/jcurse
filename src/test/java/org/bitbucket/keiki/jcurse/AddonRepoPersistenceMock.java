@@ -9,7 +9,7 @@ public class AddonRepoPersistenceMock implements AddonRepoPersistence {
 
     private final List<Addon> list = new ArrayList<>();
     
-    public AddonRepoPersistenceMock() {
+    private void addTestData() {
         List<Addon> addons = Addon.newInstance(Arrays.asList("test1", "test2"));
         addons.get(0).setLastZipFileName("test1-1.0.zip");
         addons.get(1).setLastZipFileName("test2-1.054.zip");
@@ -17,6 +17,12 @@ public class AddonRepoPersistenceMock implements AddonRepoPersistence {
         list.addAll(addons);
     }
     
+    public AddonRepoPersistenceMock(boolean b) {
+        if (b) {
+            addTestData();
+        }
+    }
+
     @Override
     public Collection<Addon> loadInstalledAddons() {
         return list;

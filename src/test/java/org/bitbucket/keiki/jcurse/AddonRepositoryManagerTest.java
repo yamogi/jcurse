@@ -17,7 +17,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testAddOne() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.add(Arrays.asList("buxtehude"));
         Collection<Addon> addons = manager.getAddons();
@@ -29,7 +29,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testAddUnknown() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.add(Arrays.asList("unknownAddon", "buxtehude"));
         Collection<Addon> addons = manager.getAddons();
@@ -41,7 +41,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
 	public void testAddUnknownAddon() {
-		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
 				new AddonFileHandlerMock());
 		manager.add(Arrays.asList("buxtehude"));
 		Collection<Addon> addons = manager.getAddons();
@@ -54,7 +54,7 @@ public class AddonRepositoryManagerTest {
 	
 	@Test
     public void testAddTwo() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         String expected1 = "bus1";
         String expected2 = "bus2";
@@ -70,7 +70,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testAlreadyExisting() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         String string = new String("test1");
         manager.add(Arrays.asList(string));
@@ -81,7 +81,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testRemove() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.remove(Arrays.asList("test2"));
         Collection<Addon> addons = manager.getAddons();
@@ -93,7 +93,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testRemoveNotExisting() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.remove(Arrays.asList("test3"));
         assertEquals(2, manager.getAddons().size());
@@ -102,7 +102,7 @@ public class AddonRepositoryManagerTest {
     @Test
     public void testUpdateAll() {
         
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.updateAll();
         Collection<Addon> addons = manager.getAddons();
@@ -120,7 +120,7 @@ public class AddonRepositoryManagerTest {
     
     @Test
     public void testUpdateSingle() {
-        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(),
+        AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         manager.update(Arrays.asList("test1"));
         Iterator<Addon> iterator = manager.getAddons().iterator();
