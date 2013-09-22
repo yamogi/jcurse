@@ -88,12 +88,12 @@ public final class Console {
 
     private static void exportAddons(Collection<Addon> addons) {
         if (addons.isEmpty()) {
-            LOG.info("No addons are installed");
+            LOG.info("No addon(s) are installed");
             return;
         }
-        StringBuilder build = new StringBuilder("jcurse add ");
+        StringBuilder build = new StringBuilder("jcurse add");
         for (Addon addon : addons) {
-            build.append(addon.getAddonNameId()).append(' ');
+            build.append(' ').append(addon.getAddonNameId());
         }
         LOG.info(build.toString());
     }
