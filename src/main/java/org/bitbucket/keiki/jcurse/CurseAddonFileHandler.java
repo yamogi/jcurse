@@ -17,8 +17,6 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,9 +122,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     .userAgent(USER_AGENT)
                     .cookie("auth", "token")
                     .post();
-            Elements select = doc.select("a[data-href]");
-            Element element = select.get(0);
-            return element.attr("data-href");
+            return doc.select("a[data-href]").get(0).attr("data-href");
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
         }
