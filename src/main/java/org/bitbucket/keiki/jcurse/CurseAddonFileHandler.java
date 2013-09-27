@@ -118,9 +118,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         try {
             LOG.debug("accessing {}", url);
             Document doc = Jsoup.connect(url)
-                    .data("query", "Java")
                     .userAgent(USER_AGENT)
-                    .cookie("auth", "token")
                     .post();
             return doc.select("a[data-href]").get(0).attr("data-href");
         } catch (IOException e) {
