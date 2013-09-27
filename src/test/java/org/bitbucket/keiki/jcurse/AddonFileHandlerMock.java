@@ -20,11 +20,6 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     }
 
     @Override
-    public String getCompressedFileName(String addonNameId) {
-        return addonNameId + "-1.0.zip";
-    }
-
-    @Override
     public List<Addon> downloadToWow(List<Addon> toDownload) {
         if (!toDownload.isEmpty() && toDownload.get(0).getAddonNameId().equals("unknownAddon")) {
             return toDownload.subList(1, toDownload.size());

@@ -147,12 +147,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     }
 
     @Override
-    public String getCompressedFileName(String gameAddonNameId) {
-        String downloadUrl = getDownloadUrl(gameAddonNameId);
-        return extractZipFileName(downloadUrl);
-    }
-
-    @Override
     public List<Addon> downloadToWow(List<Addon> toDownload) {
         List<Addon> downloadedAddons = new ArrayList<>();
         for (Addon addon : toDownload) {
