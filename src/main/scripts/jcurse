@@ -1,2 +1,4 @@
-#!/bin/sh
+#!/bin/bash
+DIR=`dirname "$BASH_SOURCE[0]"`
+cd "$DIR"
 java -jar ${project.build.finalName}-run.jar $@

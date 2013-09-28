@@ -58,10 +58,8 @@ public final class Console {
                 case "update":
                     if ("all".equalsIgnoreCase(arguments.get(1))) {
                         repositoryManager.updateAll();
-                        LOG.info("updated all addons");
                     } else {
                         repositoryManager.update(addons);
-                        LOG.info("updated " + addons);
                     }
                     break;
                 default:

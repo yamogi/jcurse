@@ -122,7 +122,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     if (indexOf >= 0) {
                         int indexOf2 = line.indexOf('\"', indexOf + 13);
                         downloadUrl = line.substring(indexOf + 11, indexOf2);
-                        LOG.info(downloadUrl);
                         break;
                     }
                 }
