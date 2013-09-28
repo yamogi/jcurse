@@ -149,7 +149,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public void removeAddonFolders(Collection<String> toDelete) {
         try {
             for (String folderName : toDelete) {
-                    FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
+                String path = Configuration.getConfiguration().getWowAddonFolder() + folderName;
+                FileUtils.deleteDirectory(new File(path));
             }
         } catch (IOException e) {
             throw new BusinessException("Error removing Addon folders " + toDelete, e);

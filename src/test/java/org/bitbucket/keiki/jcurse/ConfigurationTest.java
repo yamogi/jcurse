@@ -38,4 +38,10 @@ public class ConfigurationTest {
         String wowAddonFolder = configuration.getWowAddonFolder();
         assertEquals("this is a test/Interface/AddOns/", wowAddonFolder);
     }
+    
+    @Test (expected = BusinessException.class)
+    public void testEmptyWowFolder() {
+        Configuration.getConfiguration().setWowFolder("");
+        assertTrue(Configuration.getConfiguration().getWowAddonFolder().isEmpty());
+    }
 }

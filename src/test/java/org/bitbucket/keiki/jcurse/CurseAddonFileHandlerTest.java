@@ -74,6 +74,13 @@ public class CurseAddonFileHandlerTest {
         assertEquals(5, listFiles.length);
     }
     
+    @Test (expected = BusinessException.class)
+    public void testGetDownloadUrlException() {
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        
+        fileHandler.getDownloadUrl("unavailable");
+    }
+    
     @Test
     public void testDownloadToWoWAddonNotFound() {
         CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
@@ -87,18 +94,10 @@ public class CurseAddonFileHandlerTest {
         assertFalse(addonRoot.exists());
     }
     
-//    @Test
-//    public void testDownloadToWoWAddonNotFoundUrl() {
-//        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-//        List<Addon> addons = Addon.newInstance(Arrays.asList("bagno"));
-//        
-//        fileHandler.downloadToWow(addons.get(0), "");
-//
-//        String rootPath = folder.getRoot().getAbsolutePath();
-//        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
-//        File addonRoot = new File(addonPath);
-//        assertFalse(addonRoot.exists());
-//    }
+    @Test (expected = BusinessException.class)
+    public void testDownloadToWoWAddonNotFoundUrl() {
+        CurseAddonFileHandler.extractZipFileName("file:bagnon-54.zip");
+    }
     
     @Test
     public void testGetCompressedFileName() {
