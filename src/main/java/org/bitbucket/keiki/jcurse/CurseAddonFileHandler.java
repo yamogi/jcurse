@@ -88,13 +88,12 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
                     newFile.getParentFile().mkdirs();
 
-                    FileOutputStream fos = new FileOutputStream(newFile);             
-                    int len;
-                    while ((len = zis.read(buffer)) > 0) {
-                        fos.write(buffer, 0, len);
+                    try (FileOutputStream fos = new FileOutputStream(newFile)){
+                        int len;
+                        while ((len = zis.read(buffer)) > 0) {
+                            fos.write(buffer, 0, len);
+                        }
                     }
-
-                    fos.close();   
                 }
                 return addonFolders;
             }
