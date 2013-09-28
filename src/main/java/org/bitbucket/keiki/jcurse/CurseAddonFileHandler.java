@@ -22,6 +22,8 @@ import org.slf4j.LoggerFactory;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     
+    private static final int NO_CHARS_AFTER_DATA_HREF_URL_BEGINS = 11;
+    private static final int NO_CHARS_SEARCH_AFTER_DATA_HREF = 13;
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
@@ -120,8 +122,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                 while ((line = reader.readLine()) != null) {
                     int indexOf = line.indexOf("data-href");
                     if (indexOf >= 0) {
-                        int indexOf2 = line.indexOf('\"', indexOf + 13);
-                        downloadUrl = line.substring(indexOf + 11, indexOf2);
+                        int indexOf2 = line.indexOf('\"', indexOf + NO_CHARS_SEARCH_AFTER_DATA_HREF);
+                        downloadUrl = line.substring(indexOf + NO_CHARS_AFTER_DATA_HREF_URL_BEGINS, indexOf2);
                         break;
                     }
                 }
