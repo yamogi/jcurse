@@ -10,14 +10,10 @@ import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
 import org.bitbucket.keiki.jcurse.BusinessException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.StandardErrorStreamLog;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 
 public class ConsoleTest {
 
-    @Rule
-    public final StandardErrorStreamLog err = new StandardErrorStreamLog();
-    
     @Rule
     public final StandardOutputStreamLog log = new StandardOutputStreamLog();
     
