@@ -1,8 +1,10 @@
 package org.bitbucket.keiki.jcurse;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -15,33 +17,26 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     
+    private static final int NO_CHARS_AFTER_DATA_HREF_URL_BEGINS = 11;
+    private static final int NO_CHARS_SEARCH_AFTER_DATA_HREF = 13;
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
 
     @Override
-    public boolean downloadToWow(Addon newAddon, String downloadUrl) {
-        try {
-            String zipFilename = extractZipFileName(downloadUrl);
-            
-            Set<String> addonFolders = downloadAndExtract(downloadUrl);
-            newAddon.setLastZipFileName(zipFilename);
-            newAddon.setFolders(addonFolders);
-            
-            LOG.info("Done unzipping");
-            return true;
-        } catch (NoSuchElementException e) {
-            LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
-        }
-        return false;
-        
+    public void downloadToWow(Addon newAddon, String downloadUrl) {
+        String zipFilename = extractZipFileName(downloadUrl);
+
+        Set<String> addonFolders = downloadAndExtract(downloadUrl);
+        newAddon.setLastZipFileName(zipFilename);
+        newAddon.setFolders(addonFolders);
+
+        LOG.info("Done unzipping");
     }
     
     
@@ -49,7 +44,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public boolean downloadToWow(Addon newAddon) {
         try {
             String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
-            return downloadToWow(newAddon, downloadUrl);
+            downloadToWow(newAddon, downloadUrl);
+            return true;
         } catch (NoSuchElementException e) {
             LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
         }
@@ -89,10 +85,10 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     newFile.getParentFile().mkdirs();
 
                     try (FileOutputStream fos = new FileOutputStream(newFile)) {             
-                    	int len;
-                    	while ((len = zis.read(buffer)) > 0) {
-                    		fos.write(buffer, 0, len);
-                    	}
+                        int len;
+                        while ((len = zis.read(buffer)) > 0) {
+                            fos.write(buffer, 0, len);
+                        }
                     }
                 }
                 return addonFolders;
@@ -116,10 +112,26 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
         try {
             LOG.debug("accessing {}", url);
-            Document doc = Jsoup.connect(url)
-                    .userAgent(USER_AGENT)
-                    .post();
-            return doc.select("a[data-href]").get(0).attr("data-href");
+            URL downloadWebpage = new URL(url);
+            URLConnection connection = downloadWebpage.openConnection();
+            connection.setRequestProperty("User-Agent", USER_AGENT);
+            String downloadUrl = "";
+            try (BufferedReader reader = new BufferedReader
+                    (new InputStreamReader(downloadWebpage.openStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    int indexOf = line.indexOf("data-href");
+                    if (indexOf >= 0) {
+                        int indexOf2 = line.indexOf('\"', indexOf + NO_CHARS_SEARCH_AFTER_DATA_HREF);
+                        downloadUrl = line.substring(indexOf + NO_CHARS_AFTER_DATA_HREF_URL_BEGINS, indexOf2);
+                        break;
+                    }
+                }
+            }
+            if (downloadUrl.isEmpty()) {
+                throw new NoSuchElementException("Addon couldn't be found");
+            }
+            return downloadUrl;
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
         }
@@ -138,7 +150,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public void removeAddonFolders(Collection<String> toDelete) {
         try {
             for (String folderName : toDelete) {
-                    FileUtils.deleteDirectory(new File(Configuration.getConfiguration().getWowAddonFolder() + folderName));
+                String path = Configuration.getConfiguration().getWowAddonFolder() + folderName;
+                FileUtils.deleteDirectory(new File(path));
             }
         } catch (IOException e) {
             throw new BusinessException("Error removing Addon folders " + toDelete, e);

@@ -1,8 +1,0 @@
-document.write("<div id='div-gpt-ad-1369280490967-0' style='width:728px; height:90px;'>\n");
-document.write("<scr"+"ipt type='text/javascript'>\n");
-document.write("googletag.cmd.push(function() { googletag.display('div-gpt-ad-1369280490967-0'); });\n");
-document.write("</scr"+"ipt>\n");
-document.write("</div>\n");
-
-
-ADTECH_getNumberOfAddonBanners = function() { return 0; }

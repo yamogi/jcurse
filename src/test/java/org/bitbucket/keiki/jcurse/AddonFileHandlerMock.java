@@ -28,9 +28,8 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     }
 
     @Override
-    public boolean downloadToWow(Addon newAddon, String downloadUrl) {
+    public void downloadToWow(Addon newAddon, String downloadUrl) {
         newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
-        return true;
     }
 
     @Override

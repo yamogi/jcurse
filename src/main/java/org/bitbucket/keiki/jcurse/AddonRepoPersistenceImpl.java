@@ -2,9 +2,8 @@ package org.bitbucket.keiki.jcurse;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -21,8 +20,8 @@ public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
     @Override
     public synchronized Collection<Addon> loadInstalledAddons() {
         try {
-            if (!repoFile.exists() && Files.isWritable(Paths.get(repoFile.getAbsolutePath()))) {
-                throw new BusinessException("Can not find or write to repository file at '" + repoFile.getAbsolutePath() + "'.");
+            if (!repoFile.exists()) {
+                return Collections.emptyList();
             }
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});

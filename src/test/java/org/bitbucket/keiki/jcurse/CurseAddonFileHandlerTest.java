@@ -1,6 +1,7 @@
 package org.bitbucket.keiki.jcurse;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class CurseAddonFileHandlerTest {
 
     private static final String URL_PLACEHOLDER = "#BASE_URL_TO_REPLACE#";
     private static String baseUrl = null;
+    private static String fileUrl = null;
 
     @BeforeClass
     public static void beforeClass() throws IOException {
@@ -32,7 +34,7 @@ public class CurseAddonFileHandlerTest {
                 getResource("websites/").toString();
         Configuration.getConfiguration().setCurseBaseUrl(baseUrl);
 
-        String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
+        fileUrl = baseUrl + File.separator + "bagnon" + File.separator + "download";
         String substring = fileUrl.substring(5);
 
         File file = new File(substring);
@@ -44,7 +46,6 @@ public class CurseAddonFileHandlerTest {
     
     @AfterClass
     public static void afterClass() throws IOException {
-        String fileUrl = baseUrl + File.separator + "5.3.6Bagnon.html";
         String substring = fileUrl.substring(5);
 
         File file = new File(substring);
@@ -59,26 +60,51 @@ public class CurseAddonFileHandlerTest {
         Configuration.getConfiguration().setWowFolder(root.getAbsolutePath());
     }
     
-//    @Test
-//    public void testDownloadToWoW() {
-//        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-//        List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
-//        
-//        fileHandler.downloadToWow(addons);
-//
-//        String rootPath = folder.getRoot().getAbsolutePath();
-//        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
-//        File addonRoot = new File(addonPath);
-//        File[] listFiles = addonRoot.listFiles();
-//        assertEquals(5, listFiles.length);
-//    }
+    @Test
+    public void testDownloadToWoW() {
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
+        
+        fileHandler.downloadToWow(addons);
+
+        String rootPath = folder.getRoot().getAbsolutePath();
+        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
+        File addonRoot = new File(addonPath);
+        File[] listFiles = addonRoot.listFiles();
+        assertEquals(5, listFiles.length);
+    }
     
-//    @Test
-//    public void testGetCompressedFileName() {
-//        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
-//        String fileName = fileHandler.getCompressedFileName("bagnon");
-//        assertEquals("Bagnon_5.3.6.zip", fileName);
-//    }
+    @Test (expected = BusinessException.class)
+    public void testGetDownloadUrlException() {
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        
+        fileHandler.getDownloadUrl("unavailable");
+    }
+    
+    @Test
+    public void testDownloadToWoWAddonNotFound() {
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        List<Addon> addons = Addon.newInstance(Arrays.asList("bagno"));
+        
+        fileHandler.downloadToWow(addons);
+
+        String rootPath = folder.getRoot().getAbsolutePath();
+        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
+        File addonRoot = new File(addonPath);
+        assertFalse(addonRoot.exists());
+    }
+    
+    @Test (expected = BusinessException.class)
+    public void testDownloadToWoWAddonNotFoundUrl() {
+        CurseAddonFileHandler.extractZipFileName("file:bagnon-54.zip");
+    }
+    
+    @Test
+    public void testGetCompressedFileName() {
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        String fileName = fileHandler.getCompressedFileName("bagnon");
+        assertEquals("Bagnon_5.3.6.zip", fileName);
+    }
     
     @Test
     public void testRemoveFolders() throws IOException {
