@@ -112,8 +112,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
         try {
             LOG.debug("accessing {}", url);
-            URL downloadWebpage = new URL(url);
-            URLConnection connection = downloadWebpage.openConnection();
+            URL website = new URL(url);
+            URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
