@@ -117,7 +117,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             connection.setRequestProperty("User-Agent", USER_AGENT);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(downloadWebpage.openStream()))) {
+                    (new InputStreamReader(website.openStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     int indexOf = line.indexOf("data-href");
