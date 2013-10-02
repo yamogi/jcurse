@@ -84,7 +84,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
                     newFile.getParentFile().mkdirs();
 
-                    try (FileOutputStream fos = new FileOutputStream(newFile)){
+                    try (FileOutputStream fos = new FileOutputStream(newFile)) {             
                         int len;
                         while ((len = zis.read(buffer)) > 0) {
                             fos.write(buffer, 0, len);
@@ -112,12 +112,12 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
         try {
             LOG.debug("accessing {}", url);
-            URL downloadWebpage = new URL(url);
-            URLConnection connection = downloadWebpage.openConnection();
+            URL website = new URL(url);
+            URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(downloadWebpage.openStream()))) {
+                    (new InputStreamReader(website.openStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     int indexOf = line.indexOf("data-href");
@@ -157,12 +157,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             throw new BusinessException("Error removing Addon folders " + toDelete, e);
         }
         
-    }
-
-    @Override
-    public String getCompressedFileName(String gameAddonNameId) {
-        String downloadUrl = getDownloadUrl(gameAddonNameId);
-        return extractZipFileName(downloadUrl);
     }
 
     @Override

@@ -11,8 +11,6 @@ public interface AddonFileHandler {
 
     void removeAddonFolders(Collection<String> toDelete);
 
-    String getCompressedFileName(String gameAddonNameId);
-
     List<Addon> downloadToWow(List<Addon> toDownload);
 
     void downloadToWow(Addon newAddon, String downloadUrl);
