@@ -6,8 +6,11 @@
 	<version>0.1.0-SNAPSHOT</version>
 	<name>JCurse</name>
 	<description>A simple curse client for all operating systems.</description>
-
-
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.version>1.6.4</slf4j.version>
+		<logback.version>1.0.1</logback.version>
+	</properties>
 	<build>
 		<plugins>
 			<plugin>
@@ -72,10 +75,7 @@
 		</plugins>
 	</build>
 
-	<properties>
-		<slf4j.version>1.6.4</slf4j.version>
-		<logback.version>1.0.1</logback.version>
-	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
