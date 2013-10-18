@@ -63,7 +63,7 @@ public class ConsoleTest {
         Console.executeArguments(Arrays.asList("update","test1"), repositoryManager);
         assertEquals("updating [test1]" + System.lineSeparator() +
                 "test1 already up2date" + System.lineSeparator() +
-                "done updating [test1]" + System.lineSeparator()
+                "done updating" + System.lineSeparator()
                 , log.getLog());
     }
     
