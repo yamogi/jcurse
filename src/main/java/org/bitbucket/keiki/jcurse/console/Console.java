@@ -57,10 +57,13 @@ public final class Console {
                     break;
                 case "update":
                     if ("all".equalsIgnoreCase(arguments.get(1))) {
+                        LOG.info("updating all addons");
                         repositoryManager.updateAll();
                     } else {
+                        LOG.info("updating " + addons);
                         repositoryManager.update(addons);
                     }
+                    LOG.info("done updating");
                     break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);

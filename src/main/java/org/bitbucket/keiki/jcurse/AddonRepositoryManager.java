@@ -96,16 +96,12 @@ public final class AddonRepositoryManager {
     }
 
     public void updateAll() {
-        LOG.info("updating all addons");
-        for (Addon addon : repository.values()) {
-            updateInternal(addon);
-        }
+        updateInternal(repository.values());
         persistence.saveInstalledAddons(repository.values());
-        LOG.info("done updating all addons");
     }
 
 
-    private void updateInternal(List<Addon> repoAddons) {
+    private void updateInternal(Collection<Addon> repoAddons) {
         for (Addon addon : repoAddons) {
             updateInternal(addon);    
         }
@@ -127,12 +123,10 @@ public final class AddonRepositoryManager {
     }
 
     public void update(List<String> addons) {
-        LOG.info("updating " + addons);
         List<Addon> newAddon = Addon.newInstance(addons);
         List<Addon> repoAddons = checkAddonAlreadyExists(newAddon, true);
         updateInternal(repoAddons);
         persistence.saveInstalledAddons(repository.values());
-        LOG.info("done updating " + addons);
     }
 
     public Collection<Addon> getAddons() {

@@ -52,7 +52,7 @@ public class ConsoleTest {
                 "test1 already up2date" + System.lineSeparator() + 
                 "updating test2" + System.lineSeparator() + 
                 "updated test2" + System.lineSeparator() + 
-                "done updating all addons" + System.lineSeparator()
+                "done updating" + System.lineSeparator()
                 , log.getLog());
     }
     
