@@ -72,7 +72,7 @@ public final class Configuration {
 
     private String getWowFolder() {
         if (wowFolder.isEmpty()) {
-            throw new BusinessException("No folder for WoW given in config file (home/.jcurse/config)");
+            throw new BusinessException("No folder for WoW given in config file (" + CONFIG_PATH + ")");
         }
         return wowFolder;
     }
