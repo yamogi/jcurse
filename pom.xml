@@ -124,4 +124,10 @@
 			<version>3.1</version>
 		</dependency>
 	</dependencies>
+	
+	<scm>
+		<connection>scm:git:ssh://git@bitbucket.org/keiki/jcurse.git</connection>
+		<developerConnection>scm:git:ssh://git@bitbucket.org/keiki/jcurse.git</developerConnection>
+    	<url>https://bitbucket.org/keiki/jcurse.git</url>
+	</scm>
 </project>
