@@ -23,15 +23,10 @@ public class ConsoleTest {
     }
     
     @Test
-    public void testFewArgumentsExceptionCatched() {
-        Console.main(new String[0]);
-    }
-
-    @Test
     public void testAdd() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("add","bagnon"), repositoryManager);
+        Console.executeCommands(Arrays.asList("add","bagnon"), repositoryManager, "add");
         assertEquals("added [bagnon]" + System.lineSeparator(), log.getLog());
     }
     
@@ -39,7 +34,7 @@ public class ConsoleTest {
     public void testRemove() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("remove","test1"), repositoryManager);
+        Console.executeCommands(Arrays.asList("remove","test1"), repositoryManager, "remove");
         assertEquals("removed [test1]" + System.lineSeparator(), log.getLog());
     }
     
@@ -47,7 +42,7 @@ public class ConsoleTest {
     public void testUpdateAll() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("update","all"), repositoryManager);
+        Console.executeCommands(Arrays.asList("update","all"), repositoryManager, "update");
         assertEquals("updating all addons" + System.lineSeparator() +
                 "test1 already up2date" + System.lineSeparator() + 
                 "updating test2" + System.lineSeparator() + 
@@ -60,7 +55,7 @@ public class ConsoleTest {
     public void testUpdateSingle() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("update","test1"), repositoryManager);
+        Console.executeCommands(Arrays.asList("update","test1"), repositoryManager, "update");
         assertEquals("updating [test1]" + System.lineSeparator() +
                 "test1 already up2date" + System.lineSeparator() +
                 "done updating" + System.lineSeparator()
@@ -71,7 +66,7 @@ public class ConsoleTest {
     public void testList() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("list"), repositoryManager);
+        Console.executeCommands(Arrays.asList("list"), repositoryManager, "list");
         assertEquals("Currently installed addons:" + System.lineSeparator() +
                 "test1, version test1-1.0.zip" + System.lineSeparator() +
                 "test2, version test2-1.054.zip" + System.lineSeparator(), log.getLog());
@@ -81,7 +76,7 @@ public class ConsoleTest {
     public void testListNoAddon() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(false),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("list"), repositoryManager);
+        Console.executeCommands(Arrays.asList("list"), repositoryManager, "list");
         assertEquals("We don't know of any installed addon." + System.lineSeparator(), log.getLog());
     }
     
@@ -89,7 +84,7 @@ public class ConsoleTest {
     public void testExport() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("export"), repositoryManager);
+        Console.executeCommands(Arrays.asList("export"), repositoryManager, "export");
         assertEquals("jcurse add test1 test2" + System.lineSeparator(), log.getLog());
     }
     
@@ -97,7 +92,7 @@ public class ConsoleTest {
     public void testExportNoAddon() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(false),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("export"), repositoryManager);
+        Console.executeCommands(Arrays.asList("export"), repositoryManager, "export");
         assertEquals("No addon(s) are installed" + System.lineSeparator(), log.getLog());
     }
     
@@ -105,13 +100,13 @@ public class ConsoleTest {
     public void unknownCommandOneArg() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(false),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("lis"), repositoryManager);
+        Console.executeCommands(Arrays.asList("lis"), repositoryManager, "lis");
     }
     
     @Test (expected = BusinessException.class)
     public void unknownCommandTwoArg() {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(false),
                 new AddonFileHandlerMock());
-        Console.executeArguments(Arrays.asList("ad", "two"), repositoryManager);
+        Console.executeCommands(Arrays.asList("ad", "two"), repositoryManager, "ad");
     }
 }

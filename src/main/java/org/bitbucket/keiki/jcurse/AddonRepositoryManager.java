@@ -20,9 +20,9 @@ public final class AddonRepositoryManager {
 
     private final Map<Addon, Addon> repository;
     
-    public AddonRepositoryManager() {
-        this(new AddonRepoPersistenceImpl(Configuration.CONFIG_PATH + "repository"),
-                new CurseAddonFileHandler());
+    public AddonRepositoryManager(Configuration config) {
+        this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
+                new CurseAddonFileHandler(config.getWowAddonFolder(), config.getCurseBaseUrl()));
     }
     
     public AddonRepositoryManager(AddonRepoPersistence persistence,
