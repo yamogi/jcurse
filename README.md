@@ -31,18 +31,25 @@ Use it
 Each addon has a short name on the curse site. So if you want to download Deadly Boss Mods the url of the addon is http://www.curse.com/addons/wow/deadly-boss-mods . So the name to use in this client is deadly-boss-mods .
 
 **Adding addons**
+
 	jcurse add <addon1-name> <addon2-name> <...>
 
 **Removing addons**
+
 	jcurse remove <addon1-name> <addon2-name> <...> 
 
 **Update all addons**
+
 	jcurse update all
+	
 **Update specific addons**
+
 	jcurse update <addon1-name> <addon2-name> <...>
 
 **List all installed addons**
+
 	jcurse list
 
 **Export for later reinstall**
+
 	jcurse export
