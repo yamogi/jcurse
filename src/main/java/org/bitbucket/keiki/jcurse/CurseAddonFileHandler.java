@@ -26,8 +26,16 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     private static final int NO_CHARS_SEARCH_AFTER_DATA_HREF = 13;
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
-    private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);  
+    private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);
+    private final String curseBaseUrl;
+    private final String addonFolderName;  
 
+    
+    public CurseAddonFileHandler(String addonFolderName, String curseBaseUrl) {
+        this.addonFolderName = addonFolderName;
+        this.curseBaseUrl = curseBaseUrl;
+    }
+    
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
         String zipFilename = extractZipFileName(downloadUrl);
@@ -60,8 +68,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
 
             //create output directory is not exists
-            String outputFolder = Configuration.getConfiguration().getWowAddonFolder();
-            File folder = new File(outputFolder);
+            File folder = new File(addonFolderName);
             if (!folder.exists()){
                 folder.mkdirs();
             }
@@ -80,7 +87,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     addonFolders.add(fileName.substring(0, index));
 
 
-                    File newFile = new File(outputFolder + File.separator + fileName);
+                    File newFile = new File(addonFolderName + File.separator + fileName);
 
                     newFile.getParentFile().mkdirs();
 
@@ -109,7 +116,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
     @Override
     public String getDownloadUrl(String gameAddonNameId) {
-        String url = Configuration.getConfiguration().getCurseBaseUrl() + gameAddonNameId + "/download";
+        String url = curseBaseUrl + gameAddonNameId + "/download";
         try {
             LOG.debug("accessing {}", url);
             URL website = new URL(url);
@@ -150,7 +157,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public void removeAddonFolders(Collection<String> toDelete) {
         try {
             for (String folderName : toDelete) {
-                String path = Configuration.getConfiguration().getWowAddonFolder() + folderName;
+                String path = addonFolderName + folderName;
                 FileUtils.deleteDirectory(new File(path));
             }
         } catch (IOException e) {

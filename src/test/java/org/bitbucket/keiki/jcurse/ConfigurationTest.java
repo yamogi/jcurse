@@ -16,14 +16,13 @@ public class ConfigurationTest {
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
     
-    @Test
+    @Test (expected = BusinessException.class)
     public void testLoadPropertiesNotExisting() {
         File root = folder.getRoot();
         String configFile = root.getAbsolutePath() + File.separator + "config" + File.separator + "configFile";
         
-        Configuration.loadProperties(configFile);
-        
-        assertTrue(new File(configFile).exists());
+        ConfigurationImpl config = new ConfigurationImpl();
+        config.load(configFile);
     }
     
     @Test
@@ -32,8 +31,8 @@ public class ConfigurationTest {
         FileOutputStream fos = new FileOutputStream(newFile);
         fos.write("wow.folder=this is a test".getBytes());
         fos.close();
-        
-        Configuration configuration = Configuration.loadProperties(newFile.getAbsolutePath());
+        ConfigurationImpl configuration = new ConfigurationImpl();
+        configuration.load(newFile.getAbsolutePath());
         
         String wowAddonFolder = configuration.getWowAddonFolder();
         assertEquals("this is a test/Interface/AddOns/", wowAddonFolder);
@@ -41,7 +40,18 @@ public class ConfigurationTest {
     
     @Test (expected = BusinessException.class)
     public void testEmptyWowFolder() {
-        Configuration.getConfiguration().setWowFolder("");
-        assertTrue(Configuration.getConfiguration().getWowAddonFolder().isEmpty());
+        Configuration config = new ConfigurationImpl();
+        config.setWowFolder("");
+        assertTrue(config.getWowAddonFolder().isEmpty());
+    }
+    
+    @Test
+    public void testSaveWowDirectory() {
+        ConfigurationImpl config = new ConfigurationImpl();
+        config.setWowFolder("mytestfolder");
+        String absolutePath = folder.getRoot().getAbsolutePath() + File.separator + "config" + File.separator + "configFile";;
+        config.save(absolutePath);
+        config.load(absolutePath);
+        assertEquals("mytestfolder" + File.separator + "Interface" + File.separator + "AddOns" + File.separator, config.getWowAddonFolder());
     }
 }

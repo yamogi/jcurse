@@ -27,12 +27,12 @@ public class CurseAddonFileHandlerTest {
     private static final String URL_PLACEHOLDER = "#BASE_URL_TO_REPLACE#";
     private static String baseUrl = null;
     private static String fileUrl = null;
+    private static String addonPath = null;
 
     @BeforeClass
     public static void beforeClass() throws IOException {
         baseUrl = Thread.currentThread().getContextClassLoader().
                 getResource("websites/").toString();
-        Configuration.getConfiguration().setCurseBaseUrl(baseUrl);
 
         fileUrl = baseUrl + File.separator + "bagnon" + File.separator + "download";
         String substring = fileUrl.substring(5);
@@ -57,18 +57,16 @@ public class CurseAddonFileHandlerTest {
     @Before
     public void before() {
         File root = folder.getRoot();
-        Configuration.getConfiguration().setWowFolder(root.getAbsolutePath());
+        addonPath = root.getAbsolutePath() + File.separator;
     }
     
     @Test
     public void testDownloadToWoW() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
         List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
         
         fileHandler.downloadToWow(addons);
 
-        String rootPath = folder.getRoot().getAbsolutePath();
-        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
         File addonRoot = new File(addonPath);
         File[] listFiles = addonRoot.listFiles();
         assertEquals(5, listFiles.length);
@@ -76,14 +74,14 @@ public class CurseAddonFileHandlerTest {
     
     @Test (expected = BusinessException.class)
     public void testGetDownloadUrlException() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
         
         fileHandler.getDownloadUrl("unavailable");
     }
     
     @Test
     public void testDownloadToWoWAddonNotFound() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
         List<Addon> addons = Addon.newInstance(Arrays.asList("bagno"));
         
         fileHandler.downloadToWow(addons);
@@ -101,8 +99,6 @@ public class CurseAddonFileHandlerTest {
     
     @Test
     public void testRemoveFolders() throws IOException {
-        File root = folder.getRoot();
-        String addonPath = root.getAbsolutePath() + File.separator + "Interface" + File.separator + "AddOns";
         new File(addonPath + File.separator + "test1").mkdirs();
         new File(addonPath + File.separator + "test2").mkdirs();
         new File(addonPath + File.separator + "test3").mkdirs();
@@ -116,7 +112,7 @@ public class CurseAddonFileHandlerTest {
         folders.add("test3");
         addon.setFolders(folders);
         
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler();
+        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
         fileHandler.removeAddons(addons);
         
         assertEquals(0, new File(addonPath).listFiles().length);
