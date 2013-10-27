@@ -9,7 +9,7 @@ Requirements
 ============
 
 * Only Linux is tested. Other operation systems (Windows, Mac, ...) might work too, but they are not tested and I might give no support for that.
-	** For Windows especially, because for that the official curse client exists and I might even prohibit this client to stop working on windows.
+ * For Windows especially, because for that the official curse client exists and I might even prohibit this client to stop working on windows.
 * a so called Java 7 runtime environment is needed to run this (e.g. openjdk-7-jre). I can't tell you how to install this, because it depends on your distribution. If you can call java -version and a java version like 1.7 is printed, you should be fine.
 * World of Warcraft installed in your Linux file system. Installing it in NTFS file system may result in a unexpected behavior of WoW and this client.
 * The directory names for your addons are case-sensitiv and have to be "Interface/AddOns" in your WoW directory. Otherwise this client will not work!
