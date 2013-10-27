@@ -30,8 +30,9 @@ public final class Console {
             LOG.error(e.getMessage());
             LOG.debug(e.getMessage(), e);
             LOG.info("\r\nUsage:");
-            LOG.info("jcurse [add | remove | update] [addon name | all]");
+            LOG.info("jcurse [add | remove | update] [addon name1, name2, ... | all]");
             LOG.info("jcurse list");
+            LOG.info("jcurse export");
             LOG.info("jcurse " + SET_WOW_ARGUMENT + " <full path to wow folder>");
 
         }
