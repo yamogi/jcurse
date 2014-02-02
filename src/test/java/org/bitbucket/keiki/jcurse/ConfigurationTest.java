@@ -19,7 +19,8 @@ public class ConfigurationTest {
     @Test (expected = BusinessException.class)
     public void testLoadPropertiesNotExisting() {
         File root = folder.getRoot();
-        String configFile = root.getAbsolutePath() + File.separator + "config" + File.separator + "configFile";
+        String configFile = root.getAbsolutePath() + File.separator 
+                + "config" + File.separator + "configFile";
         
         ConfigurationImpl config = new ConfigurationImpl();
         config.load(configFile);
@@ -35,7 +36,8 @@ public class ConfigurationTest {
         configuration.load(newFile.getAbsolutePath());
         
         String wowAddonFolder = configuration.getWowAddonFolder();
-        assertEquals("this is a test/Interface/AddOns/", wowAddonFolder);
+        assertEquals("this is a test" + File.separator + "Interface" 
+                + File.separator + "AddOns" + File.separator, wowAddonFolder);
     }
     
     @Test (expected = BusinessException.class)
