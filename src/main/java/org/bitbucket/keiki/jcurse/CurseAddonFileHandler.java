@@ -1,24 +1,17 @@
 package org.bitbucket.keiki.jcurse;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.*;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     
@@ -105,7 +98,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         }
     }
 
-
     public static String extractZipFileName(String downloadUrl) {
         int lastIndexOf = downloadUrl.lastIndexOf('/');
         if (lastIndexOf == -1) {
@@ -118,13 +110,16 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public String getDownloadUrl(String gameAddonNameId) {
         String url = curseBaseUrl + gameAddonNameId + "/download";
         try {
+
             LOG.debug("accessing {}", url);
-            URL website = new URL(url);
-            URLConnection connection = website.openConnection();
-            connection.setRequestProperty("User-Agent", USER_AGENT);
+            HttpClient httpClient = new HttpClient();
+            GetMethod method = new GetMethod(url);
+            method.setRequestHeader("user-agent", USER_AGENT);
+            int status = httpClient.executeMethod(method);
+            LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(website.openStream()))) {
+                    (new InputStreamReader(method.getResponseBodyAsStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     int indexOf = line.indexOf("data-href");
@@ -143,7 +138,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             throw new BusinessException("Can't access " + url, e);
         }
     }
-    
+
     @Override
     public void removeAddons(Collection<Addon> toDelete) {
         for (Addon addon : toDelete) {
