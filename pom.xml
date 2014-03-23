@@ -140,4 +140,8 @@
 		<url>https://bitbucket.org/keiki/jcurse.git</url>
 	  <tag>HEAD</tag>
   </scm>
+	<issueManagement>
+		<system>Bitbucket</system>
+		<url>https://bitbucket.org/keiki/jcurse/issues?status=new&amp;status=open</url>
+	</issueManagement>
 </project>
