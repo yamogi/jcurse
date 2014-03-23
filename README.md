@@ -53,3 +53,20 @@ Each addon has a short name on the curse site. So if you want to download Deadly
 **Export for later reinstall**
 
 	jcurse export
+
+
+
+
+Changelog
+=========
+
+0.2
+-----
+
+* #18 Update peformance boost using parallel download
+* #26 Using apache httpclient library for accessing curse website. Default Java framework is not reliabel regarding setting the "user agent".
+* #24: Other logging for adding
+
+0.1
+-----
+* initial stable release
