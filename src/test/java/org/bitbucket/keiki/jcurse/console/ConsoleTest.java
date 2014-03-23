@@ -45,10 +45,10 @@ public class ConsoleTest {
         Console.executeCommands(Arrays.asList("update","all"), repositoryManager, "update");
         String result = log.getLog();
         assertTrue(result.startsWith("updating all addons" + System.lineSeparator()));
-        //because of parallel procession we don't know who comes first
+        //because of parallel procession we don't know what comes first
 		assertTrue(result.contains("test1 already up2date" + System.lineSeparator()));
-		assertTrue(result.contains("updating test2" + System.lineSeparator() + 
-                "updated test2" + System.lineSeparator()));
+		assertTrue(result.contains("updated test2" + System.lineSeparator()));
+		assertTrue(result.contains("updating test2" + System.lineSeparator())); 
 		result.endsWith("all addons are now up2date" + System.lineSeparator());
     }
     
