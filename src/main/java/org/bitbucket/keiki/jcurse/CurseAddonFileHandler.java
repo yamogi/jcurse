@@ -39,12 +39,11 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
         String zipFilename = extractZipFileName(downloadUrl);
-
+        LOG.info("Start download of " + newAddon);
         Set<String> addonFolders = downloadAndExtract(downloadUrl);
         newAddon.setLastZipFileName(zipFilename);
         newAddon.setFolders(addonFolders);
-
-        LOG.info("Updated/Installed {}",newAddon);
+        LOG.info("Updated/Installed " + newAddon);
     }
     
     
