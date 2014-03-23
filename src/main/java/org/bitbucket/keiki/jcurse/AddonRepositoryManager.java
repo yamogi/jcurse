@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ThreadFactory;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,15 @@ public final class AddonRepositoryManager {
 
     private final Map<Addon, Addon> repository;
 
-    private static ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS); 
+    private static ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
+		
+		@Override
+		public Thread newThread(Runnable r) {
+			Thread thread = new Thread(r);
+			thread.setDaemon(true);
+			return thread;
+		}
+	}); 
 
     public AddonRepositoryManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
@@ -126,7 +135,6 @@ public final class AddonRepositoryManager {
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 		}
-        EXECUTOR_UPDATE.shutdown();
         persistence.saveInstalledAddons(repository.values());
     }
 
