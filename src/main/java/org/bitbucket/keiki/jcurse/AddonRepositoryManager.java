@@ -4,48 +4,56 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
 public final class AddonRepositoryManager {
-    
+
     private static final Logger LOG = LoggerFactory.getLogger(AddonRepositoryManager.class);
 
+    private static final int NUMBER_OF_THREADS = 5;
+
     private final AddonRepoPersistence persistence;
-    
+
     private final AddonFileHandler curse;
 
     private final Map<Addon, Addon> repository;
-    
+
+    private static ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS); 
+
     public AddonRepositoryManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
                 new CurseAddonFileHandler(config.getWowAddonFolder(), config.getCurseBaseUrl()));
     }
-    
+
     public AddonRepositoryManager(AddonRepoPersistence persistence,
             AddonFileHandler addonFileHandler) {
         this.persistence = persistence;
         this.curse = addonFileHandler;
         Collection<Addon> addons = persistence.loadInstalledAddons();
-        Map<Addon, Addon> tmpTree = new TreeMap<>();
+        Map<Addon, Addon> tmpTree = new ConcurrentSkipListMap<>();
         for (Addon addon : addons) {
             tmpTree.put(addon, addon);
         }
         repository = tmpTree;
     }
-    
-        public List<Addon> add(Collection<String> addonName) {
+
+    public List<Addon> add(Collection<String> addonName) {
         List<Addon> newAddons = Addon.newInstance(addonName);
 
         List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
-        
-                List<Addon> downloadToWow = curse.downloadToWow(toDownload);
-        
-                updateRepository(downloadToWow);
-                return downloadToWow;
+
+        List<Addon> downloadToWow = curse.downloadToWow(toDownload);
+
+        updateRepository(downloadToWow);
+        return downloadToWow;
     }
 
     private void updateRepository(List<Addon> toDownload) {
@@ -97,14 +105,28 @@ public final class AddonRepositoryManager {
 
     public void updateAll() {
         updateInternal(repository.values());
-        persistence.saveInstalledAddons(repository.values());
     }
 
 
-    private void updateInternal(Collection<Addon> repoAddons) {
-        for (Addon addon : repoAddons) {
-            updateInternal(addon);    
+    private void updateInternal(Collection<Addon> addons) {
+        List<Future<?>> futures = new ArrayList<>(addons.size());
+        for (final Addon addon : addons) {
+            futures.add(EXECUTOR_UPDATE.submit(new Runnable() {
+
+                @Override
+                public void run() {
+                    updateInternal(addon);    
+                }
+            }));
         }
+        for (Future<?> future : futures) {
+            try {
+                future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                throw new BusinessException("Error while waiting for async task to complete", e);
+            }
+        }
+        persistence.saveInstalledAddons(repository.values());
     }
 
     private void updateInternal(Addon addon) {
@@ -117,7 +139,7 @@ public final class AddonRepositoryManager {
         LOG.info("updating " + addon.getAddonNameId());
         curse.removeAddonFolders(repository.get(addon).getFolders());
         curse.downloadToWow(addon, downloadUrl);
-        
+
         repository.put(addon, addon);
         LOG.info("updated " + addon.getAddonNameId());
     }
@@ -126,7 +148,6 @@ public final class AddonRepositoryManager {
         List<Addon> newAddon = Addon.newInstance(addons);
         List<Addon> repoAddons = checkAddonAlreadyExists(newAddon, true);
         updateInternal(repoAddons);
-        persistence.saveInstalledAddons(repository.values());
     }
 
     public Collection<Addon> getAddons() {

@@ -66,7 +66,11 @@ public final class Addon implements Comparable<Addon> {
     
     @Override
     public boolean equals(Object obj) {
-        return addonNameId.equals(obj);
+        if (!(obj instanceof Addon)) {
+            return false;
+        }
+        Addon otherAddon = (Addon) obj;
+        return addonNameId.equals(otherAddon.addonNameId);
     }
 
     @Override
@@ -76,7 +80,7 @@ public final class Addon implements Comparable<Addon> {
     
     @Override
     public String toString() {
-        return addonNameId + (lastZipFileName != null ? ", version "
+        return addonNameId + (lastZipFileName != null ? " version "
                         + lastZipFileName : "") + "";
     }
 
