@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -109,23 +110,23 @@ public final class AddonRepositoryManager {
 
 
     private void updateInternal(Collection<Addon> addons) {
-        List<Future<?>> futures = new ArrayList<>(addons.size());
+        List<Callable<Void>> futures = new ArrayList<>(addons.size());
         for (final Addon addon : addons) {
-            futures.add(EXECUTOR_UPDATE.submit(new Runnable() {
+            futures.add(new Callable<Void>() {
 
-                @Override
-                public void run() {
-                    updateInternal(addon);    
-                }
-            }));
+				@Override
+				public Void call() throws Exception {
+					updateInternal(addon); 
+					return null;
+				}
+			});
         }
-        for (Future<?> future : futures) {
-            try {
-                future.get();
-            } catch (InterruptedException | ExecutionException e) {
-                throw new BusinessException("Error while waiting for async task to complete", e);
-            }
-        }
+        try {
+			EXECUTOR_UPDATE.invokeAll(futures);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+		}
+        EXECUTOR_UPDATE.shutdown();
         persistence.saveInstalledAddons(repository.values());
     }
 
