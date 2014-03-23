@@ -32,11 +32,9 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
         String zipFilename = extractZipFileName(downloadUrl);
-        LOG.info("Start download of " + newAddon);
         Set<String> addonFolders = downloadAndExtract(downloadUrl);
         newAddon.setLastZipFileName(zipFilename);
         newAddon.setFolders(addonFolders);
-        LOG.info("Updated/Installed " + newAddon);
     }
     
     
@@ -164,8 +162,10 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public List<Addon> downloadToWow(List<Addon> toDownload) {
         List<Addon> downloadedAddons = new ArrayList<>();
         for (Addon addon : toDownload) {
+        	LOG.info("adding " + addon.getAddonNameId());
             if (downloadToWow(addon)) {
                 downloadedAddons.add(addon);
+                LOG.info("addon " + addon.getAddonNameId() + " was added");
             }
         }
         return downloadedAddons;
