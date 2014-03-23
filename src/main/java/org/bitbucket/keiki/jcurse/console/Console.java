@@ -92,7 +92,7 @@ public final class Console {
                         LOG.info("updating " + argsRemainder);
                         repositoryManager.update(argsRemainder);
                     }
-                    LOG.info("All Addons are now up2date");
+                    LOG.info("all addons are now up2date");
                     break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);

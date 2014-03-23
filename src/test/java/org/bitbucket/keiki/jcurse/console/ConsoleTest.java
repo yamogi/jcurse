@@ -47,7 +47,7 @@ public class ConsoleTest {
                 "test1 already up2date" + System.lineSeparator() + 
                 "updating test2" + System.lineSeparator() + 
                 "updated test2" + System.lineSeparator() + 
-                "done updating" + System.lineSeparator()
+                "all addons are now up2date" + System.lineSeparator()
                 , log.getLog());
     }
     
@@ -58,7 +58,7 @@ public class ConsoleTest {
         Console.executeCommands(Arrays.asList("update","test1"), repositoryManager, "update");
         assertEquals("updating [test1]" + System.lineSeparator() +
                 "test1 already up2date" + System.lineSeparator() +
-                "done updating" + System.lineSeparator()
+                "all addons are now up2date" + System.lineSeparator()
                 , log.getLog());
     }
     
