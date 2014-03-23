@@ -59,38 +59,6 @@ public class CurseAddonFileHandlerTest {
         File root = folder.getRoot();
         addonPath = root.getAbsolutePath() + File.separator;
     }
-      /*
-    @Test (expected = BusinessException.class)
-    public void testGetDownloadUrlException() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
-
-        fileHandler.getDownloadUrl("unavailable");
-    }
-
-    @Test
-    public void testDownloadToWoW() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
-        List<Addon> addons = Addon.newInstance(Arrays.asList("bagnon"));
-        
-        fileHandler.downloadToWow(addons);
-
-        File addonRoot = new File(addonPath);
-        File[] listFiles = addonRoot.listFiles();
-        assertEquals(5, listFiles.length);
-    }
-
-    @Test
-    public void testDownloadToWoWAddonNotFound() {
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
-        List<Addon> addons = Addon.newInstance(Arrays.asList("bagno"));
-        
-        fileHandler.downloadToWow(addons);
-
-        String rootPath = folder.getRoot().getAbsolutePath();
-        String addonPath = rootPath + File.separator + "Interface" + File.separator + "AddOns";
-        File addonRoot = new File(addonPath);
-        assertFalse(addonRoot.exists());
-    }   */
     
     @Test (expected = BusinessException.class)
     public void testDownloadToWoWAddonNotFoundUrl() {
