@@ -18,7 +18,7 @@ public final class AddonRepositoryManager {
 
     private static final Logger LOG = LoggerFactory.getLogger(AddonRepositoryManager.class);
 
-    private static final int NUMBER_OF_THREADS = 2;
+    private static final int NUMBER_OF_THREADS = 5;
 
     private final AddonRepoPersistence persistence;
 
