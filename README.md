@@ -63,9 +63,9 @@ Changelog
 0.2
 -----
 
-* #18 Update peformance boost using parallel download
-* #26 Using apache httpclient library for accessing curse website. Default Java framework is not reliabel regarding setting the "user agent".
-* #24: Other logging for adding
+* issue #18 Update peformance boost using parallel download
+* issue #26 Using apache httpclient library for accessing curse website. Default Java framework is not reliabel regarding setting the "user agent".
+* issue #24: Other logging for adding
 
 0.1
 -----
