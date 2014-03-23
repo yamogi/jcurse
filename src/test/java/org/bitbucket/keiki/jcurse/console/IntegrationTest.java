@@ -14,8 +14,8 @@ public class IntegrationTest {
 //            TimeUnit.SECONDS.sleep(1);
 //        }
         long time = System.currentTimeMillis();
-        Console.main("add", "bagnon", "decursive", "auctioneer", "atlasloot-enhanced", "battlegroundtargets");
-//        Console.main("list");
+//        Console.main("add", "bagnon", "decursive", "auctioneer", "atlasloot-enhanced", "battlegroundtargets");
+        Console.main("update", "all");
         LOG.info((System.currentTimeMillis() - time) / 1000 + " seconds");
         
     }
