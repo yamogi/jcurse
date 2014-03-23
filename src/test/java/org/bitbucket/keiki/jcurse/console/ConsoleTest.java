@@ -1,6 +1,6 @@
 package org.bitbucket.keiki.jcurse.console;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 
@@ -43,12 +43,13 @@ public class ConsoleTest {
         AddonRepositoryManager repositoryManager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         Console.executeCommands(Arrays.asList("update","all"), repositoryManager, "update");
-        assertEquals("updating all addons" + System.lineSeparator() +
-                "test1 already up2date" + System.lineSeparator() + 
-                "updating test2" + System.lineSeparator() + 
-                "updated test2" + System.lineSeparator() + 
-                "all addons are now up2date" + System.lineSeparator()
-                , log.getLog());
+        String result = log.getLog();
+        assertTrue(result.startsWith("updating all addons" + System.lineSeparator()));
+        //because of parallel procession we don't know who comes first
+		assertTrue(result.contains("test1 already up2date" + System.lineSeparator()));
+		assertTrue(result.contains("updating test2" + System.lineSeparator() + 
+                "updated test2" + System.lineSeparator()));
+		result.endsWith("all addons are now up2date" + System.lineSeparator());
     }
     
     @Test
@@ -68,8 +69,8 @@ public class ConsoleTest {
                 new AddonFileHandlerMock());
         Console.executeCommands(Arrays.asList("list"), repositoryManager, "list");
         assertEquals("Currently installed addons:" + System.lineSeparator() +
-                "test1, version test1-1.0.zip" + System.lineSeparator() +
-                "test2, version test2-1.054.zip" + System.lineSeparator(), log.getLog());
+                "test1 version test1-1.0.zip" + System.lineSeparator() +
+                "test2 version test2-1.054.zip" + System.lineSeparator(), log.getLog());
     }
     
     @Test
