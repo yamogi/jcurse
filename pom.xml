@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.bitbucket.keiki.jcurse</groupId>
 	<artifactId>jcurse</artifactId>
-	<version>0.2.1</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>JCurse</name>
 	<description>A simple curse client for all operating systems.</description>
 	<properties>
