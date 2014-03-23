@@ -44,7 +44,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         newAddon.setLastZipFileName(zipFilename);
         newAddon.setFolders(addonFolders);
 
-        LOG.info("Done unzipping");
+        LOG.info("Updated/Installed {}",newAddon);
     }
     
     
