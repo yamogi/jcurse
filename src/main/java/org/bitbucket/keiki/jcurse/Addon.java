@@ -11,6 +11,8 @@ public final class Addon implements Comparable<Addon> {
     
     private String lastZipFileName;
     
+    private int versionId;
+    
     private Set<String> folders;
     
     /**
@@ -64,6 +66,14 @@ public final class Addon implements Comparable<Addon> {
         return addonNameId.hashCode();
     }
     
+    public int getVersionId() {
+        return versionId;
+    }
+
+    public void setVersionId(int versionId) {
+        this.versionId = versionId;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return addonNameId.equals(obj);
@@ -77,7 +87,12 @@ public final class Addon implements Comparable<Addon> {
     @Override
     public String toString() {
         return addonNameId + (lastZipFileName != null ? ", version "
-                        + lastZipFileName : "") + "";
+                        + lastZipFileName : "");
+    }
+
+    public String toStringVerbose() {
+        return addonNameId + (lastZipFileName != null ? ", version "
+                + lastZipFileName : "") + " " + versionId;
     }
 
     
