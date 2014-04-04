@@ -32,9 +32,10 @@ public class CurseAddonFileHandlerTest {
     @BeforeClass
     public static void beforeClass() throws IOException {
         baseUrl = Thread.currentThread().getContextClassLoader().
-                getResource("websites/").toString();
+                getResource("websites/123/456/").toString();
 
-        fileUrl = baseUrl + File.separator + "bagnon" + File.separator + "download";
+        fileUrl = baseUrl
+                + File.separator + "bagnon" + File.separator + "download";
         String substring = fileUrl.substring(5);
 
         File file = new File(substring);
