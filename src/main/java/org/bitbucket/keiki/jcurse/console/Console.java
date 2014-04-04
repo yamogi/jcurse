@@ -105,7 +105,10 @@ public final class Console {
         if (arguments.size() == 1) {
             switch (command) {
                 case "list":
-                    listAddons(repositoryManager.getAddons());
+                    listAddons(repositoryManager.getAddons(), false);
+                    break;
+                case "listv":
+                    listAddons(repositoryManager.getAddons(), true);
                     break;
                 case "export":
                     exportAddons(repositoryManager.getAddons());
@@ -128,7 +131,7 @@ public final class Console {
         LOG.info(build.toString());
     }
 
-    private static void listAddons(Collection<Addon> addons) {
+    private static void listAddons(Collection<Addon> addons, boolean verbose) {
         if (addons.isEmpty()) {
             LOG.info("We don't know of any installed addon.");
             return;
@@ -136,7 +139,11 @@ public final class Console {
         LOG.info("Currently installed addons:");
         
         for (Addon addon : addons) {
-            LOG.info(addon.toString());
+            if (verbose) {
+                LOG.info(addon.toStringVerbose());
+            } else {
+                LOG.info(addon.toString());
+            }
         }
     }
 }
