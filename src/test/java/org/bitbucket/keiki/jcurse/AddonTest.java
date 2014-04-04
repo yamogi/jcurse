@@ -1,13 +1,13 @@
 package org.bitbucket.keiki.jcurse;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class AddonTest {
     
@@ -24,7 +24,6 @@ public class AddonTest {
     private void checkNewAddon(Addon addon, String idName) {
         assertEquals(idName, addon.getAddonNameId());
         assertNull(addon.getFolders());
-        assertNull(addon.getLastZipFileName());
     }
     
     @Test

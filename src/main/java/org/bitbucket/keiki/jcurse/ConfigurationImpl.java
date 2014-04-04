@@ -4,15 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Properties;
 
 public final class ConfigurationImpl implements Configuration {
     
     static final String CONFIG_PATH = System.getProperty("user.home") + File.separator 
                                                             + ".jcurse" + File.separator;
-    
-    public static final Charset CHARSET = Charset.forName("ASCII");
     
     private static final String CONFIG_FILE_LOCATION = CONFIG_PATH + "config";
     
@@ -49,8 +46,8 @@ public final class ConfigurationImpl implements Configuration {
         save(CONFIG_FILE_LOCATION);
     }
     
-    synchronized void save(String fileLoaction) {
-        File file = new File(fileLoaction);
+    synchronized void save(String fileLocation) {
+        File file = new File(fileLocation);
         File parentFile = file.getParentFile();
         if (!parentFile.exists() && !parentFile.mkdirs()) {
             throw new BusinessException("Can't create the directory pointing to the path '" + file.getParent() + "'.");

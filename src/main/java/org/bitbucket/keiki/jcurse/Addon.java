@@ -17,8 +17,6 @@ public final class Addon implements Comparable<Addon> {
     
     /**
      * Creates an {@link Addon} instance. 
-     * 
-     * @param addon the short name of the wow addon, which is part of the url.
      */
     private Addon() {
     }
