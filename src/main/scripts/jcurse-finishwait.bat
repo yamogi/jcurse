@@ -1,0 +1,3 @@
+pushd %~dp0
+java -jar ${project.build.finalName}-run.jar %*
+PAUSE
