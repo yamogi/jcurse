@@ -17,6 +17,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,12 +39,13 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
-        String zipFilename = extractZipFileName(downloadUrl);
-
         Set<String> addonFolders = downloadAndExtract(downloadUrl);
+        String[] split = StringUtils.split(downloadUrl, '/');
+        String zipFilename = split[split.length - 1];
+        int fileId = extractFileId(split);
+        newAddon.setVersionId(fileId);
         newAddon.setLastZipFileName(zipFilename);
         newAddon.setFolders(addonFolders);
-
         LOG.info("Done unzipping");
     }
     
@@ -105,13 +107,17 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         }
     }
 
-
     public static String extractZipFileName(String downloadUrl) {
         int lastIndexOf = downloadUrl.lastIndexOf('/');
         if (lastIndexOf == -1) {
             throw new BusinessException("Download url wrong");
         }
         return downloadUrl.substring(lastIndexOf + 1);
+    }
+    
+    public static int extractFileId(String[] split) {
+        String join = StringUtils.join(split[split.length-3], split[split.length-2]);
+        return Integer.parseInt(join);
     }
 
     @Override

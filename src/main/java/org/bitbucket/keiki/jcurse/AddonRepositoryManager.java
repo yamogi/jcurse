@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -109,8 +110,8 @@ public final class AddonRepositoryManager {
 
     private void updateInternal(Addon addon) {
         String downloadUrl = curse.getDownloadUrl(addon.getAddonNameId());
-        String fileName = CurseAddonFileHandler.extractZipFileName(downloadUrl);
-        if (addon.getLastZipFileName().equals(fileName)) {
+        int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
+        if (addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");
             return;
         }
