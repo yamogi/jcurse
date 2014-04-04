@@ -36,8 +36,8 @@ public class ConfigurationTest {
         configuration.load(newFile.getAbsolutePath());
         
         String wowAddonFolder = configuration.getWowAddonFolder();
-        assertEquals("this is a test" + File.separator + "Interface" 
-                + File.separator + "AddOns" + File.separator, wowAddonFolder);
+        assertEquals("this is a test"+ File.separatorChar + "Interface" + File.separatorChar
+                + "AddOns" + File.separatorChar, wowAddonFolder);
     }
     
     @Test (expected = BusinessException.class)

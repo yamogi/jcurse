@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.apache.commons.lang3.StringUtils;
 public class CurseAddonFileHandler implements AddonFileHandler {
     
     private static final int NO_CHARS_AFTER_DATA_HREF_URL_BEGINS = 11;
@@ -31,8 +32,11 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
-        String zipFilename = extractZipFileName(downloadUrl);
         Set<String> addonFolders = downloadAndExtract(downloadUrl);
+        String[] split = StringUtils.split(downloadUrl, '/');
+        String zipFilename = split[split.length - 1];
+        int fileId = extractFileId(split);
+        newAddon.setVersionId(fileId);
         newAddon.setLastZipFileName(zipFilename);
         newAddon.setFolders(addonFolders);
     }
@@ -101,6 +105,11 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             throw new BusinessException("Download url wrong");
         }
         return downloadUrl.substring(lastIndexOf + 1);
+    }
+    
+    public static int extractFileId(String[] split) {
+        String join = StringUtils.join(split[split.length-3], split[split.length-2]);
+        return Integer.parseInt(join);
     }
 
     @Override

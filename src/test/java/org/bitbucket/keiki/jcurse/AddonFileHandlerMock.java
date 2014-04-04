@@ -8,6 +8,7 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     @Override
     public boolean downloadToWow(Addon newAddon) {
         newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
+        newAddon.setVersionId(1);
         return true;
     }
 
@@ -30,11 +31,12 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     @Override
     public void downloadToWow(Addon newAddon, String downloadUrl) {
         newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
+        newAddon.setVersionId(1);
     }
 
     @Override
     public String getDownloadUrl(String gameAddonNameId) {
-        return "http://localhost/" + gameAddonNameId + "-1.0.zip";
+        return "http://localhost/123/456/" + gameAddonNameId + "-1.0.zip";
     }
 
 }
