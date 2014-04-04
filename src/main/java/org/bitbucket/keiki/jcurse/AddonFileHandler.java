@@ -3,7 +3,7 @@ package org.bitbucket.keiki.jcurse;
 import java.util.Collection;
 import java.util.List;
 
-public interface AddonFileHandler {
+interface AddonFileHandler {
 
     boolean downloadToWow(Addon newAddon);
 

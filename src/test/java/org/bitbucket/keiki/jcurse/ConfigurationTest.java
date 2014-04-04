@@ -51,7 +51,7 @@ public class ConfigurationTest {
     public void testSaveWowDirectory() {
         ConfigurationImpl config = new ConfigurationImpl();
         config.setWowFolder("mytestfolder");
-        String absolutePath = folder.getRoot().getAbsolutePath() + File.separator + "config" + File.separator + "configFile";;
+        String absolutePath = folder.getRoot().getAbsolutePath() + File.separator + "config" + File.separator + "configFile";
         config.save(absolutePath);
         config.load(absolutePath);
         assertEquals("mytestfolder" + File.separator + "Interface" + File.separator + "AddOns" + File.separator, config.getWowAddonFolder());

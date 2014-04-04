@@ -3,7 +3,7 @@ package org.bitbucket.keiki.jcurse.console;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class IntegrationTest {
+class IntegrationTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(IntegrationTest.class);
     

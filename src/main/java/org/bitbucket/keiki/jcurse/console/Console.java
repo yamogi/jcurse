@@ -12,7 +12,7 @@ import org.bitbucket.keiki.jcurse.ConfigurationImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Console {
+final class Console {
 
     private static final String SET_WOW_ARGUMENT = "--set-wow";
 

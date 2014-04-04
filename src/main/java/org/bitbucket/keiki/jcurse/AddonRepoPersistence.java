@@ -2,7 +2,7 @@ package org.bitbucket.keiki.jcurse;
 
 import java.util.Collection;
 
-public interface AddonRepoPersistence {
+interface AddonRepoPersistence {
 
     Collection<Addon> loadInstalledAddons();
 
