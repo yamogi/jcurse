@@ -56,6 +56,20 @@ Each addon has a short name on the curse site. So if you want to download Deadly
 
 
 
+Switch WoW directory
+---------------------
+
+1. First save all installed addons using
+
+	jcurse export
+
+2. delete /home/user/.jcurse directory
+3. Set new wow directory using
+
+	jcurse --set-wow <path>
+
+4. execute in 1 saved command to reinstall all addons again
+
 
 Changelog
 =========
