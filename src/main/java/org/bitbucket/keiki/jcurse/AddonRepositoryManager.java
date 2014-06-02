@@ -24,14 +24,14 @@ public final class AddonRepositoryManager {
     private final Map<Addon, Addon> repository;
 
     private static final ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
-		
-		@Override
-		public Thread newThread(Runnable r) {
-			Thread thread = new Thread(r);
-			thread.setDaemon(true);
-			return thread;
-		}
-	}); 
+        
+        @Override
+        public Thread newThread(Runnable r) {
+            Thread thread = new Thread(r);
+            thread.setDaemon(true);
+            return thread;
+        }
+    }); 
 
     public AddonRepositoryManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
@@ -118,18 +118,18 @@ public final class AddonRepositoryManager {
         for (final Addon addon : addons) {
             futures.add(new Callable<Void>() {
 
-				@Override
-				public Void call() throws Exception {
-					updateInternal(addon); 
-					return null;
-				}
-			});
+                @Override
+                public Void call() {
+                    updateInternal(addon); 
+                    return null;
+                }
+            });
         }
         try {
-			EXECUTOR_UPDATE.invokeAll(futures);
-		} catch (InterruptedException e) {
-			Thread.currentThread().interrupt();
-		}
+            EXECUTOR_UPDATE.invokeAll(futures);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         persistence.saveInstalledAddons(repository.values());
     }
 

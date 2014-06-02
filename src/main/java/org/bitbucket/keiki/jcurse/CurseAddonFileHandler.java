@@ -108,9 +108,12 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     }
     
     public static int extractFileId(String[] split) {
-        String join = StringUtils.join(split[split.length-3], split[split.length-2]);
+        String join = StringUtils.join(split[split.length-URL_ID_PART_START],
+                split[split.length-URL_ID_PART_END]);
         return Integer.parseInt(join);
     }
+    private static final int URL_ID_PART_END = 2;
+    private static final int URL_ID_PART_START = 3;
 
     @Override
     public String getDownloadUrl(String gameAddonNameId) {
@@ -171,7 +174,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     public List<Addon> downloadToWow(List<Addon> toDownload) {
         List<Addon> downloadedAddons = new ArrayList<>();
         for (Addon addon : toDownload) {
-        	LOG.info("adding " + addon.getAddonNameId());
+            LOG.info("adding " + addon.getAddonNameId());
             if (downloadToWow(addon)) {
                 downloadedAddons.add(addon);
                 LOG.info("addon " + addon.getAddonNameId() + " was added");
