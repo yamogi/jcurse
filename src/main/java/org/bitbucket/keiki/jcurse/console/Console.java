@@ -96,7 +96,8 @@ final class Console {
 
 	private static void processUpdateArgs(
 			AddonRepositoryManager repositoryManager,
-			List<String> unprocessedArgs) {
+			List<String> unprocessedArgsPara) {
+		List<String> unprocessedArgs = unprocessedArgsPara;
 		String secondParameter = unprocessedArgs.get(0);
 		boolean forceUpdate = false;
 		if ("-f".equalsIgnoreCase(secondParameter) || "--force".equalsIgnoreCase(secondParameter)) {
