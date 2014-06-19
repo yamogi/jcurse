@@ -86,7 +86,7 @@ final class Console {
                     LOG.info("removed " + unprocessedArgs);
                     break;
                 case "update":
-                	processUpdateArgs(repositoryManager, unprocessedArgs);
+                    processUpdateArgs(repositoryManager, unprocessedArgs);
                     break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
@@ -94,27 +94,27 @@ final class Console {
         }
     }
 
-	private static void processUpdateArgs(
-			AddonRepositoryManager repositoryManager,
-			List<String> unprocessedArgsPara) {
-		List<String> unprocessedArgs = unprocessedArgsPara;
-		String secondParameter = unprocessedArgs.get(0);
-		boolean forceUpdate = false;
-		if ("-f".equalsIgnoreCase(secondParameter) || "--force".equalsIgnoreCase(secondParameter)) {
-			forceUpdate = true;
-			LOG.info("Force update!");
-			unprocessedArgs = unprocessedArgs.subList(1, unprocessedArgs.size());
-		}
-		
-		if ("all".equalsIgnoreCase(unprocessedArgs.get(0))) {
-		    LOG.info("updating all addons");
-		    repositoryManager.updateAll(forceUpdate);
-		} else {
-		    LOG.info("updating " + unprocessedArgs);
-		    repositoryManager.update(unprocessedArgs, forceUpdate);
-		}
-		LOG.info("all addons are now up2date");
-	}
+    private static void processUpdateArgs(
+            AddonRepositoryManager repositoryManager,
+            List<String> unprocessedArgsPara) {
+        List<String> unprocessedArgs = unprocessedArgsPara;
+        String secondParameter = unprocessedArgs.get(0);
+        boolean forceUpdate = false;
+        if ("-f".equalsIgnoreCase(secondParameter) || "--force".equalsIgnoreCase(secondParameter)) {
+            forceUpdate = true;
+            LOG.info("Force update!");
+            unprocessedArgs = unprocessedArgs.subList(1, unprocessedArgs.size());
+        }
+        
+        if ("all".equalsIgnoreCase(unprocessedArgs.get(0))) {
+            LOG.info("updating all addons");
+            repositoryManager.updateAll(forceUpdate);
+        } else {
+            LOG.info("updating " + unprocessedArgs);
+            repositoryManager.update(unprocessedArgs, forceUpdate);
+        }
+        LOG.info("all addons are now up2date");
+    }
 
     private static void executeOneArgumentCommand(List<String> arguments,
             AddonRepositoryManager repositoryManager, String command) {
