@@ -104,7 +104,7 @@ public class AddonRepositoryManagerTest {
         
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        manager.updateAll();
+        manager.updateAll(false);
         Collection<Addon> addons = manager.getAddons();
         assertEquals(2, addons.size());
         
@@ -122,12 +122,12 @@ public class AddonRepositoryManagerTest {
     public void testUpdateSingle() {
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        manager.update(Arrays.asList("test1"));
+        manager.update(Arrays.asList("test1"), false);
         Iterator<Addon> iterator = manager.getAddons().iterator();
         checkAddonZipFile(iterator, "test1-1.0.zip");
         checkAddonZipFile(iterator, "test2-1.054.zip");
         
-        manager.update(Arrays.asList("test2"));
+        manager.update(Arrays.asList("test2"), false);
         
         iterator = manager.getAddons().iterator();
         checkAddonZipFile(iterator, "test1-1.0.zip");

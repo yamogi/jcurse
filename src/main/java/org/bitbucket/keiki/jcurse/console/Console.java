@@ -30,7 +30,8 @@ final class Console {
             LOG.error(e.getMessage());
             LOG.debug(e.getMessage(), e);
             LOG.info("\r\nUsage:");
-            LOG.info("jcurse [add | remove | update] [addon name1, name2, ... | all]");
+            LOG.info("jcurse [add | remove] [addon name1, name2, ...]");
+            LOG.info("jcurse update (--force|-f) [addon name1, name2, ... | all]");
             LOG.info("jcurse list");
             LOG.info("jcurse export");
             LOG.info("jcurse " + SET_WOW_ARGUMENT + " <full path to wow folder>");
@@ -73,32 +74,46 @@ final class Console {
     private static void executeTwoArgumentsCommand(List<String> arguments,
             AddonRepositoryManager repositoryManager, String command) {
         if (arguments.size() >= 2) {
-            List<String> argsRemainder = arguments.subList(1, arguments.size());
+            List<String> unprocessedArgs = arguments.subList(1, arguments.size());
             
             switch (command) {
                 case "add":
-                    List<Addon> added = repositoryManager.add(argsRemainder);
+                    List<Addon> added = repositoryManager.add(unprocessedArgs);
                     LOG.info("added " + added);
                     break;
                 case "remove":
-                    repositoryManager.remove(argsRemainder);
-                    LOG.info("removed " + argsRemainder);
+                    repositoryManager.remove(unprocessedArgs);
+                    LOG.info("removed " + unprocessedArgs);
                     break;
                 case "update":
-                    if ("all".equalsIgnoreCase(arguments.get(1))) {
-                        LOG.info("updating all addons");
-                        repositoryManager.updateAll();
-                    } else {
-                        LOG.info("updating " + argsRemainder);
-                        repositoryManager.update(argsRemainder);
-                    }
-                    LOG.info("all addons are now up2date");
+                	processUpdateArgs(repositoryManager, unprocessedArgs);
                     break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
             }
         }
     }
+
+	private static void processUpdateArgs(
+			AddonRepositoryManager repositoryManager,
+			List<String> unprocessedArgs) {
+		String secondParameter = unprocessedArgs.get(0);
+		boolean forceUpdate = false;
+		if ("-f".equalsIgnoreCase(secondParameter) || "--force".equalsIgnoreCase(secondParameter)) {
+			forceUpdate = true;
+			LOG.info("Force update!");
+			unprocessedArgs = unprocessedArgs.subList(1, unprocessedArgs.size());
+		}
+		
+		if ("all".equalsIgnoreCase(unprocessedArgs.get(0))) {
+		    LOG.info("updating all addons");
+		    repositoryManager.updateAll(forceUpdate);
+		} else {
+		    LOG.info("updating " + unprocessedArgs);
+		    repositoryManager.update(unprocessedArgs, forceUpdate);
+		}
+		LOG.info("all addons are now up2date");
+	}
 
     private static void executeOneArgumentCommand(List<String> arguments,
             AddonRepositoryManager repositoryManager, String command) {

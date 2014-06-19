@@ -108,19 +108,19 @@ public final class AddonRepositoryManager {
         persistence.saveInstalledAddons(repository.values());
     }
 
-    public void updateAll() {
-        updateInternal(repository.values());
+    public void updateAll(boolean forceUpdate) {
+        updateInternal(repository.values(), forceUpdate);
     }
 
 
-    private void updateInternal(Collection<Addon> addons) {
+    private void updateInternal(Collection<Addon> addons, final boolean forceUpdate) {
         List<Callable<Void>> futures = new ArrayList<>(addons.size());
         for (final Addon addon : addons) {
             futures.add(new Callable<Void>() {
 
                 @Override
                 public Void call() {
-                    updateInternal(addon); 
+                    updateInternal(addon, forceUpdate); 
                     return null;
                 }
             });
@@ -133,10 +133,10 @@ public final class AddonRepositoryManager {
         persistence.saveInstalledAddons(repository.values());
     }
 
-    private void updateInternal(Addon addon) {
+    private void updateInternal(Addon addon, boolean forceUpdate) {
         String downloadUrl = curse.getDownloadUrl(addon.getAddonNameId());
         int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
-        if (addon.getVersionId() == fileName) {
+        if (!forceUpdate && addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");
             return;
         }
@@ -148,10 +148,9 @@ public final class AddonRepositoryManager {
         LOG.info("updated " + addon.getAddonNameId());
     }
 
-    public void update(List<String> addons) {
-        List<Addon> newAddon = Addon.newInstance(addons);
-        List<Addon> repoAddons = checkAddonAlreadyExists(newAddon, true);
-        updateInternal(repoAddons);
+    public void update(List<String> addons, boolean forceUpdate) {
+        List<Addon> repoAddons = checkAddonAlreadyExists(Addon.newInstance(addons), true);
+        updateInternal(repoAddons, forceUpdate);
     }
 
     public Collection<Addon> getAddons() {
