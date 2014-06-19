@@ -17,6 +17,8 @@ public final class Addon implements Comparable<Addon> {
     
     private Set<String> folders;
     
+    private ReleaseStatus releaseStatus = ReleaseStatus.STABLE;
+    
     /**
      * Creates an {@link Addon} instance. 
      */
@@ -53,7 +55,15 @@ public final class Addon implements Comparable<Addon> {
         this.addonNameId = addonNameId;
     }
 
-    public String getLastZipFileName() {
+    public ReleaseStatus getReleaseStatus() {
+		return releaseStatus;
+	}
+
+	public void setReleaseStatus(ReleaseStatus releaseStatus) {
+		this.releaseStatus = releaseStatus;
+	}
+
+	public String getLastZipFileName() {
         return lastZipFileName;
     }
 
