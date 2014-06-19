@@ -50,8 +50,8 @@ public final class AddonRepositoryManager {
         repository = tmpTree;
     }
 
-    public List<Addon> add(Collection<String> addonName) {
-        List<Addon> newAddons = Addon.newInstance(addonName);
+    public List<Addon> add(Collection<String> addonName, ReleaseStatus status) {
+        List<Addon> newAddons = Addon.newInstance(addonName, status);
 
         List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
 

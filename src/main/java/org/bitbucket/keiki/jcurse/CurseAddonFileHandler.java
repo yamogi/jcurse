@@ -14,12 +14,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.lang3.StringUtils;
+import static org.bitbucket.keiki.jcurse.Constants.*;
+
 public class CurseAddonFileHandler implements AddonFileHandler {
     
     private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
 	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
-    private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
+
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);
     private final String curseBaseUrl;
     private final String addonFolderName;  
@@ -82,7 +84,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
 
                     File newFile = new File(addonFolderName + File.separator + fileName);
-
+                    System.out.println(newFile.getAbsoluteFile());
                     newFile.getParentFile().mkdirs();
 
                     try (FileOutputStream fos = new FileOutputStream(newFile)) {             
@@ -117,7 +119,16 @@ public class CurseAddonFileHandler implements AddonFileHandler {
 
     @Override
     public String getDownloadUrl(Addon addon) {
-        String url = curseBaseUrl + addon.getAddonNameId() + "/download";
+    	if (addon.getReleaseStatus() != ReleaseStatus.RELEASE) {
+    		CurseForgeHandler curseForgeHandler = new CurseForgeHandler();
+    		return curseForgeHandler.getDownloadUrl(addon);
+    	} else {
+    		return getDownloadUrlRelease(addon);
+    	}
+    }
+
+	private String getDownloadUrlRelease(Addon addon) {
+		String url = curseBaseUrl + addon.getAddonNameId() + "/download";
         try {
 
             LOG.debug("accessing {}", url);
@@ -132,12 +143,12 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                 String line;
                 while ((line = reader.readLine()) != null) {
 					if (addon.getAddonId() == 0) {
-						String parseAttribute = parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
+						String parseAttribute = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
 						if (!parseAttribute.isEmpty()) {
 							addon.setAddonId(Integer.parseInt(parseAttribute));
 						}
 					}
-					downloadUrl = parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
+					downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
                     if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
                     	break;
                     }
@@ -152,17 +163,6 @@ public class CurseAddonFileHandler implements AddonFileHandler {
         } catch (NumberFormatException e) {
         	throw new BusinessException("Can't parse addon numerical id.");
         }
-    }
-
-	private String parseAttribute(String line, String attributeName) {
-		String attribute = "";
-		int indexOf = line.indexOf(attributeName);
-		if (indexOf >= 0) {
-		    int addonIdFrom = indexOf + attributeName.length() + 2;
-			int indexOf2 = line.indexOf('\"', addonIdFrom);
-			attribute = line.substring(addonIdFrom, indexOf2);
-		}
-		return attribute;
 	}
 
     @Override

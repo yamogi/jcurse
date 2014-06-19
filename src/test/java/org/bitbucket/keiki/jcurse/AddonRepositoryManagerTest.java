@@ -19,7 +19,7 @@ public class AddonRepositoryManagerTest {
     public void testAddOne() {
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        manager.add(Arrays.asList("buxtehude"));
+        manager.add(Arrays.asList("buxtehude"), ReleaseStatus.RELEASE);
         Collection<Addon> addons = manager.getAddons();
         assertEquals(3, addons.size());
         Iterator<Addon> iterator = addons.iterator();
@@ -31,7 +31,7 @@ public class AddonRepositoryManagerTest {
     public void testAddUnknown() {
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
-        manager.add(Arrays.asList("unknownAddon", "buxtehude"));
+        manager.add(Arrays.asList("unknownAddon", "buxtehude"), ReleaseStatus.RELEASE);
         Collection<Addon> addons = manager.getAddons();
         assertEquals(3, addons.size());
         Iterator<Addon> iterator = addons.iterator();
@@ -43,7 +43,7 @@ public class AddonRepositoryManagerTest {
 	public void testAddUnknownAddon() {
 		AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
 				new AddonFileHandlerMock());
-		manager.add(Arrays.asList("buxtehude"));
+		manager.add(Arrays.asList("buxtehude"), ReleaseStatus.RELEASE);
 		Collection<Addon> addons = manager.getAddons();
 		assertEquals(3, addons.size());
 		Iterator<Addon> iterator = addons.iterator();
@@ -58,7 +58,7 @@ public class AddonRepositoryManagerTest {
                 new AddonFileHandlerMock());
         String expected1 = "bus1";
         String expected2 = "bus2";
-        manager.add(Arrays.asList(expected1, expected2));
+        manager.add(Arrays.asList(expected1, expected2), ReleaseStatus.RELEASE);
         Collection<Addon> addons = manager.getAddons();
         assertEquals(4, addons.size());
         Iterator<Addon> iterator = addons.iterator();
@@ -73,7 +73,7 @@ public class AddonRepositoryManagerTest {
         AddonRepositoryManager manager = new AddonRepositoryManager(new AddonRepoPersistenceMock(true),
                 new AddonFileHandlerMock());
         String string = new String("test1");
-        manager.add(Arrays.asList(string));
+        manager.add(Arrays.asList(string), ReleaseStatus.RELEASE);
         Iterator<Addon> iterator = manager.getAddons().iterator();
         Addon next = iterator.next();
         assertNotSame(string, next.getAddonNameId());
