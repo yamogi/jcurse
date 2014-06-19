@@ -16,8 +16,8 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.lang3.StringUtils;
 public class CurseAddonFileHandler implements AddonFileHandler {
     
-    private static final int NO_CHARS_AFTER_DATA_HREF_URL_BEGINS = 11;
-    private static final int NO_CHARS_SEARCH_AFTER_DATA_HREF = 13;
+    private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
+	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     private static final String USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/28.0.1500.71 Chrome/28.0.1500.71 Safari/537.36";
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);
@@ -45,7 +45,7 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
     public boolean downloadToWow(Addon newAddon) {
         try {
-            String downloadUrl = getDownloadUrl(newAddon.getAddonNameId());
+            String downloadUrl = getDownloadUrl(newAddon);
             downloadToWow(newAddon, downloadUrl);
             return true;
         } catch (NoSuchElementException e) {
@@ -116,8 +116,8 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     private static final int URL_ID_PART_START = 3;
 
     @Override
-    public String getDownloadUrl(String gameAddonNameId) {
-        String url = curseBaseUrl + gameAddonNameId + "/download";
+    public String getDownloadUrl(Addon addon) {
+        String url = curseBaseUrl + addon.getAddonNameId() + "/download";
         try {
 
             LOG.debug("accessing {}", url);
@@ -131,11 +131,15 @@ public class CurseAddonFileHandler implements AddonFileHandler {
                     (new InputStreamReader(method.getResponseBodyAsStream()))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    int indexOf = line.indexOf("data-href");
-                    if (indexOf >= 0) {
-                        int indexOf2 = line.indexOf('\"', indexOf + NO_CHARS_SEARCH_AFTER_DATA_HREF);
-                        downloadUrl = line.substring(indexOf + NO_CHARS_AFTER_DATA_HREF_URL_BEGINS, indexOf2);
-                        break;
+					if (addon.getAddonId() == 0) {
+						String parseAttribute = parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
+						if (!parseAttribute.isEmpty()) {
+							addon.setAddonId(Integer.parseInt(parseAttribute));
+						}
+					}
+					downloadUrl = parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
+                    if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
+                    	break;
                     }
                 }
             }
@@ -145,8 +149,21 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             return downloadUrl;
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
+        } catch (NumberFormatException e) {
+        	throw new BusinessException("Can't parse addon numerical id.");
         }
     }
+
+	private String parseAttribute(String line, String attributeName) {
+		String attribute = "";
+		int indexOf = line.indexOf(attributeName);
+		if (indexOf >= 0) {
+		    int addonIdFrom = indexOf + attributeName.length() + 2;
+			int indexOf2 = line.indexOf('\"', addonIdFrom);
+			attribute = line.substring(addonIdFrom, indexOf2);
+		}
+		return attribute;
+	}
 
     @Override
     public void removeAddons(Collection<Addon> toDelete) {

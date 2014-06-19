@@ -15,6 +15,6 @@ interface AddonFileHandler {
 
     void downloadToWow(Addon newAddon, String downloadUrl);
 
-    String getDownloadUrl(String gameAddonNameId);
+    String getDownloadUrl(Addon gameAddonNameId);
 
 }

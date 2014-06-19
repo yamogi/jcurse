@@ -35,8 +35,8 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     }
 
     @Override
-    public String getDownloadUrl(String gameAddonNameId) {
-        return "http://localhost/123/456/" + gameAddonNameId + "-1.0.zip";
+    public String getDownloadUrl(Addon gameAddonNameId) {
+        return "http://localhost/123/456/" + gameAddonNameId.getAddonNameId() + "-1.0.zip";
     }
 
 }

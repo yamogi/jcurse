@@ -8,6 +8,8 @@ import java.util.Set;
 public final class Addon implements Comparable<Addon> {
     
     private String addonNameId;
+
+    private int addonId;
     
     private String lastZipFileName;
     
@@ -35,7 +37,15 @@ public final class Addon implements Comparable<Addon> {
         return addon;
     }
     
-    public String getAddonNameId() {
+    public int getAddonId() {
+		return addonId;
+	}
+
+	public void setAddonId(int addonId) {
+		this.addonId = addonId;
+	}
+
+	public String getAddonNameId() {
         return addonNameId;
     }
 

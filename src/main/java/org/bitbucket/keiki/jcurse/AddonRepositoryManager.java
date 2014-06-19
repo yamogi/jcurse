@@ -134,7 +134,7 @@ public final class AddonRepositoryManager {
     }
 
     private void updateInternal(Addon addon, boolean forceUpdate) {
-        String downloadUrl = curse.getDownloadUrl(addon.getAddonNameId());
+        String downloadUrl = curse.getDownloadUrl(addon);
         int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
         if (!forceUpdate && addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");
