@@ -38,7 +38,6 @@ public class CurseForgeHandler {
             			ReleaseStatus releaseStatus = ReleaseStatus.valueOf(statusChar);
             			if (addon.getReleaseStatus().ordinal() <= releaseStatus.ordinal()) {
             				String parseAttribute = WebsiteHelper.parseAttribute(line, "href");
-            				LOG.info(parseAttribute);
             				downloadUrl = getRealDownloadUrl(parseAttribute);
             				break;
             			}

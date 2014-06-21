@@ -86,7 +86,11 @@ public final class ConfigurationImpl implements Configuration {
 
     @Override
     public void setWowFolder(String wowFolder) {
-        this.wowFolder = wowFolder;
+        File wowPath = new File(wowFolder);
+        if (!wowPath.isDirectory()) {
+            throw new BusinessException("WoW path given is no directory.");
+        }
+        this.wowFolder = wowPath.getAbsolutePath();
     }
 
     
