@@ -48,12 +48,13 @@ public class ConfigurationTest {
     }
     
     @Test
-    public void testSaveWowDirectory() {
+    public void testSaveWowDirectory() throws IOException {
+        File newFolder = folder.newFolder();
         ConfigurationImpl config = new ConfigurationImpl();
-        config.setWowFolder("mytestfolder");
+        config.setWowFolder(newFolder.getAbsolutePath());
         String absolutePath = folder.getRoot().getAbsolutePath() + File.separator + "config" + File.separator + "configFile";
         config.save(absolutePath);
         config.load(absolutePath);
-        assertEquals("mytestfolder" + File.separator + "Interface" + File.separator + "AddOns" + File.separator, config.getWowAddonFolder());
+        assertEquals(newFolder.getAbsolutePath() + File.separator + "Interface" + File.separator + "AddOns" + File.separator, config.getWowAddonFolder());
     }
 }

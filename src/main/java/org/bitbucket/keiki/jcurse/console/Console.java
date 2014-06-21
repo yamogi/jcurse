@@ -111,11 +111,15 @@ final class Console {
 			AddonRepositoryManager repositoryManager,
 			List<String> unprocessedArgs) {
 		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+		List<String> subList;
 		if (status == null) {
 			status = ReleaseStatus.RELEASE;
+			subList = unprocessedArgs;
+		} else {
+		    subList = unprocessedArgs.subList(1, unprocessedArgs.size());
 		}
 		
-		List<Addon> added = repositoryManager.add(unprocessedArgs.subList(1, unprocessedArgs.size()), status);
+		List<Addon> added = repositoryManager.add(subList, status);
 		LOG.info("added " + added);
 	}
 
