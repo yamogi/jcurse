@@ -50,8 +50,8 @@ public final class AddonRepositoryManager {
         repository = tmpTree;
     }
 
-    public List<Addon> add(Collection<String> addonName) {
-        List<Addon> newAddons = Addon.newInstance(addonName);
+    public List<Addon> add(Collection<String> addonName, ReleaseStatus status) {
+        List<Addon> newAddons = Addon.newInstance(addonName, status);
 
         List<Addon> toDownload = checkAddonAlreadyExists(newAddons, false);
 
@@ -134,7 +134,7 @@ public final class AddonRepositoryManager {
     }
 
     private void updateInternal(Addon addon, boolean forceUpdate) {
-        String downloadUrl = curse.getDownloadUrl(addon.getAddonNameId());
+        String downloadUrl = curse.getDownloadUrl(addon);
         int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
         if (!forceUpdate && addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");

@@ -8,6 +8,8 @@ import java.util.Set;
 public final class Addon implements Comparable<Addon> {
     
     private String addonNameId;
+
+    private int addonId;
     
     private String lastZipFileName;
     
@@ -15,27 +17,45 @@ public final class Addon implements Comparable<Addon> {
     
     private Set<String> folders;
     
+    private ReleaseStatus releaseStatus = ReleaseStatus.RELEASE;
+    
     /**
      * Creates an {@link Addon} instance. 
      */
     private Addon() {
     }
     
+    public static List<Addon> newInstance(Collection<String> addonNames, ReleaseStatus status) {
+        List<Addon> addons = new ArrayList<>();
+        for (String addonName : addonNames) {
+            addons.add(newInstance(addonName, status));
+        }
+        return addons;
+    }
     public static List<Addon> newInstance(Collection<String> addonNames) {
         List<Addon> addons = new ArrayList<>();
         for (String addonName : addonNames) {
-            addons.add(newInstance(addonName));
+            addons.add(newInstance(addonName, ReleaseStatus.RELEASE));
         }
         return addons;
     }
 
-    private static Addon newInstance(String shortAddonName) {
+    private static Addon newInstance(String shortAddonName, ReleaseStatus status) {
         Addon addon = new Addon();
         addon.addonNameId = shortAddonName;
+        addon.releaseStatus = status;
         return addon;
     }
     
-    public String getAddonNameId() {
+    public int getAddonId() {
+		return addonId;
+	}
+
+	public void setAddonId(int addonId) {
+		this.addonId = addonId;
+	}
+
+	public String getAddonNameId() {
         return addonNameId;
     }
 
@@ -43,7 +63,15 @@ public final class Addon implements Comparable<Addon> {
         this.addonNameId = addonNameId;
     }
 
-    public String getLastZipFileName() {
+    public ReleaseStatus getReleaseStatus() {
+		return releaseStatus;
+	}
+
+	public void setReleaseStatus(ReleaseStatus releaseStatus) {
+		this.releaseStatus = releaseStatus;
+	}
+
+	public String getLastZipFileName() {
         return lastZipFileName;
     }
 
@@ -96,6 +124,8 @@ public final class Addon implements Comparable<Addon> {
         return addonNameId + (lastZipFileName != null ? ", version "
                 + lastZipFileName : "") + " " + versionId;
     }
+
+
 
     
 }

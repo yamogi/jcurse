@@ -9,6 +9,7 @@ import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
 import org.bitbucket.keiki.jcurse.BusinessException;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
+import org.bitbucket.keiki.jcurse.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,8 +31,10 @@ final class Console {
             LOG.error(e.getMessage());
             LOG.debug(e.getMessage(), e);
             LOG.info("\r\nUsage:");
-            LOG.info("jcurse [add | remove] [addon name1, name2, ...]");
+            LOG.info("jcurse add (alpha|beta) [addon name1, name2, ...]");
+            LOG.info("jcurse remove [addon name1, name2, ...]");
             LOG.info("jcurse update (--force|-f) [addon name1, name2, ... | all]");
+            LOG.info("jcurse set-release [alpha|beta|release] [addon name, ...]");
             LOG.info("jcurse list");
             LOG.info("jcurse export");
             LOG.info("jcurse " + SET_WOW_ARGUMENT + " <full path to wow folder>");
@@ -78,8 +81,7 @@ final class Console {
             
             switch (command) {
                 case "add":
-                    List<Addon> added = repositoryManager.add(unprocessedArgs);
-                    LOG.info("added " + added);
+                	processAddArguments(repositoryManager, unprocessedArgs);
                     break;
                 case "remove":
                     repositoryManager.remove(unprocessedArgs);
@@ -93,6 +95,18 @@ final class Console {
             }
         }
     }
+
+	private static void processAddArguments(
+			AddonRepositoryManager repositoryManager,
+			List<String> unprocessedArgs) {
+		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+		if (status == null) {
+			status = ReleaseStatus.RELEASE;
+		}
+		
+		List<Addon> added = repositoryManager.add(unprocessedArgs.subList(1, unprocessedArgs.size()), status);
+		LOG.info("added " + added);
+	}
 
     private static void processUpdateArgs(
             AddonRepositoryManager repositoryManager,
