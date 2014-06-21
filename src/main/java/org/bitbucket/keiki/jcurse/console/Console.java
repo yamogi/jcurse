@@ -34,7 +34,7 @@ final class Console {
             LOG.info("jcurse add (alpha|beta) [addon name1, name2, ...]");
             LOG.info("jcurse remove [addon name1, name2, ...]");
             LOG.info("jcurse update (--force|-f) [addon name1, name2, ... | all]");
-            LOG.info("jcurse set-release [alpha|beta|release] [addon name, ...]");
+            LOG.info("jcurse set [alpha|beta|release] [addon name, ...]");
             LOG.info("jcurse list");
             LOG.info("jcurse export");
             LOG.info("jcurse " + SET_WOW_ARGUMENT + " <full path to wow folder>");
@@ -81,36 +81,49 @@ final class Console {
             
             switch (command) {
                 case "add":
-                	processAddArguments(repositoryManager, unprocessedArgs);
+                	add(repositoryManager, unprocessedArgs);
                     break;
                 case "remove":
                     repositoryManager.remove(unprocessedArgs);
                     LOG.info("removed " + unprocessedArgs);
                     break;
                 case "update":
-                    processUpdateArgs(repositoryManager, unprocessedArgs);
+                    update(repositoryManager, unprocessedArgs);
                     break;
+                case "set":
+                	setReleaseStatus(repositoryManager, unprocessedArgs);
+                	break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
             }
         }
     }
 
-	private static void processAddArguments(
+	private static void setReleaseStatus(AddonRepositoryManager repositoryManager, List<String> unprocessedArgs) {
+	    ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+	    if (status == null) {
+	        throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
+	    }
+	    repositoryManager.setReleaseStatus(status, unprocessedArgs.subList(1, unprocessedArgs.size()));
+    }
+
+    private static void add(
 			AddonRepositoryManager repositoryManager,
 			List<String> unprocessedArgs) {
 		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+		List<String> subList;
 		if (status == null) {
 			status = ReleaseStatus.RELEASE;
+			subList = unprocessedArgs;
+		} else {
+		    subList = unprocessedArgs.subList(1, unprocessedArgs.size());
 		}
 		
-		List<Addon> added = repositoryManager.add(unprocessedArgs.subList(1, unprocessedArgs.size()), status);
+		List<Addon> added = repositoryManager.add(subList, status);
 		LOG.info("added " + added);
 	}
 
-    private static void processUpdateArgs(
-            AddonRepositoryManager repositoryManager,
-            List<String> unprocessedArgsPara) {
+    private static void update(AddonRepositoryManager repositoryManager, List<String> unprocessedArgsPara) {
         List<String> unprocessedArgs = unprocessedArgsPara;
         String secondParameter = unprocessedArgs.get(0);
         boolean forceUpdate = false;
@@ -119,7 +132,6 @@ final class Console {
             LOG.info("Force update!");
             unprocessedArgs = unprocessedArgs.subList(1, unprocessedArgs.size());
         }
-        
         if ("all".equalsIgnoreCase(unprocessedArgs.get(0))) {
             LOG.info("updating all addons");
             repositoryManager.updateAll(forceUpdate);

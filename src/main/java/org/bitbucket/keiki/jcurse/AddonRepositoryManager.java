@@ -156,4 +156,14 @@ public final class AddonRepositoryManager {
     public Collection<Addon> getAddons() {
         return repository.values();
     }
+    
+    public void setReleaseStatus(ReleaseStatus releaseStatus, List<String> addons) {
+        List<Addon> repoAddons = checkAddonAlreadyExists(Addon.newInstance(addons), true);
+        for (Addon addon : repoAddons) {
+            addon.setReleaseStatus(releaseStatus);
+            repository.put(addon, addon);
+        }
+        persistence.saveInstalledAddons(repository.values());
+        LOG.info("Prefering " + releaseStatus.getStatus() + " from now on for " + repoAddons);
+    }
 }
