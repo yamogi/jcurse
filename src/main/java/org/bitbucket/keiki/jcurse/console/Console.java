@@ -34,7 +34,7 @@ final class Console {
             LOG.info("jcurse add (alpha|beta) [addon name1, name2, ...]");
             LOG.info("jcurse remove [addon name1, name2, ...]");
             LOG.info("jcurse update (--force|-f) [addon name1, name2, ... | all]");
-            LOG.info("jcurse set-release [alpha|beta|release] [addon name, ...]");
+            LOG.info("jcurse set [alpha|beta|release] [addon name, ...]");
             LOG.info("jcurse list");
             LOG.info("jcurse export");
             LOG.info("jcurse " + SET_WOW_ARGUMENT + " <full path to wow folder>");
@@ -90,7 +90,7 @@ final class Console {
                 case "update":
                     update(repositoryManager, unprocessedArgs);
                     break;
-                case "set-release":
+                case "set":
                 	setReleaseStatus(repositoryManager, unprocessedArgs);
                 	break;
                 default:
