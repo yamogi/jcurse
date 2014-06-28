@@ -2,6 +2,7 @@ package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bitbucket.keiki.jcurse.curse.CurseAddonFileHandler;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 

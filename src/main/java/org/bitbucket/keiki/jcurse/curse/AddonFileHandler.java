@@ -1,9 +1,11 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.curse;
 
 import java.util.Collection;
 import java.util.List;
 
-interface AddonFileHandler {
+import org.bitbucket.keiki.jcurse.Addon;
+
+public interface AddonFileHandler {
 
     boolean downloadToWow(Addon newAddon);
 

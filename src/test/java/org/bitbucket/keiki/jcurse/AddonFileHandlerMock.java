@@ -3,6 +3,8 @@ package org.bitbucket.keiki.jcurse;
 import java.util.Collection;
 import java.util.List;
 
+import org.bitbucket.keiki.jcurse.curse.AddonFileHandler;
+
 public class AddonFileHandlerMock implements AddonFileHandler {
 
     @Override

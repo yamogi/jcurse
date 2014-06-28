@@ -1,6 +1,8 @@
 package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bitbucket.keiki.jcurse.curse.AddonFileHandler;
+import org.bitbucket.keiki.jcurse.curse.CurseAddonFileHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

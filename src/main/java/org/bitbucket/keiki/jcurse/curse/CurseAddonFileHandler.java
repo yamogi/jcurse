@@ -1,4 +1,4 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.curse;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -14,7 +14,11 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.lang3.StringUtils;
-import static org.bitbucket.keiki.jcurse.Constants.*;
+import org.bitbucket.keiki.jcurse.Addon;
+import org.bitbucket.keiki.jcurse.BusinessException;
+import org.bitbucket.keiki.jcurse.ReleaseStatus;
+
+import static org.bitbucket.keiki.jcurse.curse.Constants.*;
 
 public class CurseAddonFileHandler implements AddonFileHandler {
     

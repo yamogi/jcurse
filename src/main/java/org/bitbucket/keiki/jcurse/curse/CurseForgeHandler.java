@@ -1,5 +1,5 @@
-package org.bitbucket.keiki.jcurse;
-import static org.bitbucket.keiki.jcurse.Constants.*;
+package org.bitbucket.keiki.jcurse.curse;
+import static org.bitbucket.keiki.jcurse.curse.Constants.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +8,9 @@ import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.bitbucket.keiki.jcurse.Addon;
+import org.bitbucket.keiki.jcurse.BusinessException;
+import org.bitbucket.keiki.jcurse.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

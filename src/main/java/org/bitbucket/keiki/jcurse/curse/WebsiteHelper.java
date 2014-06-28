@@ -1,4 +1,4 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.curse;
 
 public class WebsiteHelper {
 	
