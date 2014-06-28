@@ -1,7 +1,7 @@
 package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bitbucket.keiki.jcurse.curse.AddonFileHandler;
+import org.bitbucket.keiki.jcurse.curse.CurseHandler;
 import org.bitbucket.keiki.jcurse.curse.CurseAddonFileHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public final class AddonRepositoryManager {
 
     private final AddonRepoPersistence persistence;
 
-    private final AddonFileHandler curse;
+    private final CurseHandler curse;
 
     private final Map<Addon, Addon> repository;
 
@@ -41,7 +41,7 @@ public final class AddonRepositoryManager {
     }
 
     public AddonRepositoryManager(AddonRepoPersistence persistence,
-            AddonFileHandler addonFileHandler) {
+            CurseHandler addonFileHandler) {
         this.persistence = persistence;
         this.curse = addonFileHandler;
         Collection<Addon> addons = persistence.loadInstalledAddons();
@@ -143,7 +143,7 @@ public final class AddonRepositoryManager {
             return;
         }
         LOG.info("updating " + addon.getAddonNameId());
-        curse.removeAddonFolders(repository.get(addon).getFolders());
+        curse.removeAddon(repository.get(addon));
         curse.downloadToWow(addon, downloadUrl);
 
         repository.put(addon, addon);

@@ -3,9 +3,9 @@ package org.bitbucket.keiki.jcurse;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.curse.AddonFileHandler;
+import org.bitbucket.keiki.jcurse.curse.CurseHandler;
 
-public class AddonFileHandlerMock implements AddonFileHandler {
+public class AddonFileHandlerMock implements CurseHandler {
 
     @Override
     public boolean downloadToWow(Addon newAddon) {
@@ -16,10 +16,6 @@ public class AddonFileHandlerMock implements AddonFileHandler {
 
     @Override
     public void removeAddons(Collection<Addon> toDelete) {
-    }
-
-    @Override
-    public void removeAddonFolders(Collection<String> toDpublicelete) {
     }
 
     @Override
@@ -39,6 +35,12 @@ public class AddonFileHandlerMock implements AddonFileHandler {
     @Override
     public String getDownloadUrl(Addon gameAddonNameId) {
         return "http://localhost/123/456/" + gameAddonNameId.getAddonNameId() + "-1.0.zip";
+    }
+
+    @Override
+    public void removeAddon(Addon toDelete) {
+        // TODO Auto-generated method stub
+        
     }
 
 }

@@ -1,38 +1,38 @@
 package org.bitbucket.keiki.jcurse.curse;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.io.FileUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.bitbucket.keiki.jcurse.curse.Constants.USER_AGENT;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.*;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.Addon;
 import org.bitbucket.keiki.jcurse.BusinessException;
 import org.bitbucket.keiki.jcurse.ReleaseStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static org.bitbucket.keiki.jcurse.curse.Constants.*;
-
-public class CurseAddonFileHandler implements AddonFileHandler {
+public class CurseAddonFileHandler implements CurseHandler {
     
     private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
 	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
-    private static final int DOWNLOAD_BUFFER_SIZE = 4096;
 
     private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);
     private final String curseBaseUrl;
-    private final String addonFolderName;  
-
+    private AddonFolderHandler folderHandler;
     
     public CurseAddonFileHandler(String addonFolderName, String curseBaseUrl) {
-        this.addonFolderName = addonFolderName;
+        this.folderHandler = new AddonFolderHandler(addonFolderName);
         this.curseBaseUrl = curseBaseUrl;
     }
     
@@ -65,45 +65,14 @@ public class CurseAddonFileHandler implements AddonFileHandler {
             URL website = new URL(downloadUrl);
             URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
-            byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
 
-            //create output directory is not exists
-            File folder = new File(addonFolderName);
-            if (!folder.exists()){
-                folder.mkdirs();
-            }
-
-            try (ZipInputStream zis = new ZipInputStream(connection.getInputStream())) {
-
-                Set<String> addonFolders = new HashSet<>();
-                
-                ZipEntry ze;
-                while ((ze = zis.getNextEntry()) != null) {
-                    if (ze.isDirectory()) {
-                        continue;
-                    }
-                    String fileName = ze.getName();
-                    int index = fileName.indexOf('/');
-                    addonFolders.add(fileName.substring(0, index));
-
-
-                    File newFile = new File(addonFolderName + File.separator + fileName);
-                    System.out.println(newFile.getAbsoluteFile());
-                    newFile.getParentFile().mkdirs();
-
-                    try (FileOutputStream fos = new FileOutputStream(newFile)) {             
-                        int len;
-                        while ((len = zis.read(buffer)) > 0) {
-                            fos.write(buffer, 0, len);
-                        }
-                    }
-                }
-                return addonFolders;
-            }
+            return folderHandler.download(connection.getInputStream());
         } catch(IOException e) {
             throw new BusinessException("Problems reading data from Curse.", e);
         }
     }
+
+
 
     public static String extractZipFileName(String downloadUrl) {
         int lastIndexOf = downloadUrl.lastIndexOf('/');
@@ -127,11 +96,11 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     		CurseForgeHandler curseForgeHandler = new CurseForgeHandler();
     		return curseForgeHandler.getDownloadUrl(addon);
     	} else {
-    		return getDownloadUrlRelease(addon);
+    		return getDownloadUrlStable(addon);
     	}
     }
 
-	private String getDownloadUrlRelease(Addon addon) {
+	private String getDownloadUrlStable(Addon addon) {
 		String url = curseBaseUrl + addon.getAddonNameId() + "/download";
         try {
 
@@ -172,23 +141,13 @@ public class CurseAddonFileHandler implements AddonFileHandler {
     @Override
     public void removeAddons(Collection<Addon> toDelete) {
         for (Addon addon : toDelete) {
-            removeAddonFolders(addon.getFolders());
+            removeAddon(addon);
         }
     }
-
-    
     
     @Override
-    public void removeAddonFolders(Collection<String> toDelete) {
-        try {
-            for (String folderName : toDelete) {
-                String path = addonFolderName + folderName;
-                FileUtils.deleteDirectory(new File(path));
-            }
-        } catch (IOException e) {
-            throw new BusinessException("Error removing Addon folders " + toDelete, e);
-        }
-        
+    public void removeAddon(Addon toDelete) {
+        folderHandler.removeAddonFolders(toDelete.getFolders());
     }
 
     @Override
