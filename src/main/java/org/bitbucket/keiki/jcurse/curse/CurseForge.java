@@ -14,10 +14,10 @@ import org.bitbucket.keiki.jcurse.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CurseForgeHandler {
+public class CurseForge {
 	
 	private static final String FILE_TYPE_ATTRIBUTE = "file-type-";
-	private static final Logger LOG = LoggerFactory.getLogger(CurseForgeHandler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CurseForge.class);
 	
 	public String getDownloadUrl(Addon addon) {
 		String url = "http://wow.curseforge.com/addons/" + addon.getAddonNameId() + "/files/";

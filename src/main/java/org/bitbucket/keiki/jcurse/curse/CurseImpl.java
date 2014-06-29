@@ -22,17 +22,17 @@ import org.bitbucket.keiki.jcurse.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CurseAddonFileHandler implements CurseHandler {
+public class CurseImpl implements Curse {
     
     private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
 	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
 
-    private static final Logger LOG = LoggerFactory.getLogger(CurseAddonFileHandler.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CurseImpl.class);
     private final String curseBaseUrl;
-    private AddonFolderHandler folderHandler;
+    private AddonFileHandler folderHandler;
     
-    public CurseAddonFileHandler(String addonFolderName, String curseBaseUrl) {
-        this.folderHandler = new AddonFolderHandler(addonFolderName);
+    public CurseImpl(String addonFolderName, String curseBaseUrl) {
+        this.folderHandler = new AddonFileHandler(addonFolderName);
         this.curseBaseUrl = curseBaseUrl;
     }
     
@@ -93,7 +93,7 @@ public class CurseAddonFileHandler implements CurseHandler {
     @Override
     public String getDownloadUrl(Addon addon) {
     	if (addon.getReleaseStatus() != ReleaseStatus.RELEASE) {
-    		CurseForgeHandler curseForgeHandler = new CurseForgeHandler();
+    		CurseForge curseForgeHandler = new CurseForge();
     		return curseForgeHandler.getDownloadUrl(addon);
     	} else {
     		return getDownloadUrlStable(addon);

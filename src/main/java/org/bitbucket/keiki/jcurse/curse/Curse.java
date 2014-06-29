@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.bitbucket.keiki.jcurse.Addon;
 
-public interface CurseHandler {
+public interface Curse {
 
     boolean downloadToWow(Addon newAddon);
 

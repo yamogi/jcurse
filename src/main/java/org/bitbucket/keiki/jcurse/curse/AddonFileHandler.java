@@ -14,13 +14,13 @@ import java.util.zip.ZipInputStream;
 import org.apache.commons.io.FileUtils;
 import org.bitbucket.keiki.jcurse.BusinessException;
 
-public class AddonFolderHandler {
+public class AddonFileHandler {
 
     private static final int DOWNLOAD_BUFFER_SIZE = 4096;
     
     private String addonFolderName;
 
-    public AddonFolderHandler(String addonFolderName) {
+    public AddonFileHandler(String addonFolderName) {
         this.addonFolderName = addonFolderName;
     }
 

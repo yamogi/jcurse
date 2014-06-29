@@ -1,8 +1,8 @@
 package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.bitbucket.keiki.jcurse.curse.CurseHandler;
-import org.bitbucket.keiki.jcurse.curse.CurseAddonFileHandler;
+import org.bitbucket.keiki.jcurse.curse.Curse;
+import org.bitbucket.keiki.jcurse.curse.CurseImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public final class AddonRepositoryManager {
 
     private final AddonRepoPersistence persistence;
 
-    private final CurseHandler curse;
+    private final Curse curse;
 
     private final Map<Addon, Addon> repository;
 
@@ -37,11 +37,11 @@ public final class AddonRepositoryManager {
 
     public AddonRepositoryManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
-                new CurseAddonFileHandler(config.getWowAddonFolder(), config.getCurseBaseUrl()));
+                new CurseImpl(config.getWowAddonFolder(), config.getCurseBaseUrl()));
     }
 
     public AddonRepositoryManager(AddonRepoPersistence persistence,
-            CurseHandler addonFileHandler) {
+            Curse addonFileHandler) {
         this.persistence = persistence;
         this.curse = addonFileHandler;
         Collection<Addon> addons = persistence.loadInstalledAddons();
@@ -137,7 +137,7 @@ public final class AddonRepositoryManager {
 
     private void updateInternal(Addon addon, boolean forceUpdate) {
         String downloadUrl = curse.getDownloadUrl(addon);
-        int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
+        int fileName = CurseImpl.extractFileId(StringUtils.split(downloadUrl, '/'));
         if (!forceUpdate && addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");
             return;

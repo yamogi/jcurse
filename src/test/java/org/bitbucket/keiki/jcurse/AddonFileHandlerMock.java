@@ -3,9 +3,9 @@ package org.bitbucket.keiki.jcurse;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.curse.CurseHandler;
+import org.bitbucket.keiki.jcurse.curse.Curse;
 
-public class AddonFileHandlerMock implements CurseHandler {
+public class AddonFileHandlerMock implements Curse {
 
     @Override
     public boolean downloadToWow(Addon newAddon) {
