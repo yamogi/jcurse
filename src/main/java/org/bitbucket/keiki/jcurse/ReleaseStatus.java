@@ -3,8 +3,8 @@ package org.bitbucket.keiki.jcurse;
 public enum ReleaseStatus {
 	ALPHA('a',"alpha"), BETA('b', "beta"), RELEASE('r', "release");
 	
-	final char statusAbbr;
-	final String status;
+	private final char statusAbbr;
+	private final String status;
 	
 	private ReleaseStatus(char statusAbbreviation, String status) {
 		this.statusAbbr = statusAbbreviation;

@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bitbucket.keiki.jcurse.Addon;
-import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
+import org.bitbucket.keiki.jcurse.AddonInstallationManager;
 import org.bitbucket.keiki.jcurse.BusinessException;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
@@ -51,11 +51,11 @@ final class Console {
             return;
         }
         config.load();
-        executeCommands(arguments, new AddonRepositoryManager(config), command);
+        executeCommands(arguments, new AddonInstallationManager(config), command);
     }
 
     static void executeCommands(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
+            AddonInstallationManager repositoryManager, String command) {
         executeOneArgumentCommand(arguments, repositoryManager, command);
         executeTwoArgumentsCommand(arguments, repositoryManager, command);
     }
@@ -75,7 +75,7 @@ final class Console {
     }
 
     private static void executeTwoArgumentsCommand(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
+            AddonInstallationManager repositoryManager, String command) {
         if (arguments.size() >= 2) {
             List<String> unprocessedArgs = arguments.subList(1, arguments.size());
             
@@ -99,7 +99,7 @@ final class Console {
         }
     }
 
-	private static void setReleaseStatus(AddonRepositoryManager repositoryManager, List<String> unprocessedArgs) {
+	private static void setReleaseStatus(AddonInstallationManager repositoryManager, List<String> unprocessedArgs) {
 	    ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
 	    if (status == null) {
 	        throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
@@ -108,7 +108,7 @@ final class Console {
     }
 
     private static void add(
-			AddonRepositoryManager repositoryManager,
+			AddonInstallationManager repositoryManager,
 			List<String> unprocessedArgs) {
 		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
 		List<String> subList;
@@ -123,7 +123,7 @@ final class Console {
 		LOG.info("added " + added);
 	}
 
-    private static void update(AddonRepositoryManager repositoryManager, List<String> unprocessedArgsPara) {
+    private static void update(AddonInstallationManager repositoryManager, List<String> unprocessedArgsPara) {
         List<String> unprocessedArgs = unprocessedArgsPara;
         String secondParameter = unprocessedArgs.get(0);
         boolean forceUpdate = false;
@@ -143,7 +143,7 @@ final class Console {
     }
 
     private static void executeOneArgumentCommand(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
+            AddonInstallationManager repositoryManager, String command) {
         if (arguments.size() == 1) {
             switch (command) {
                 case "list":

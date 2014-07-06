@@ -13,9 +13,9 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 
-public final class AddonRepositoryManager {
+public final class AddonInstallationManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AddonRepositoryManager.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AddonInstallationManager.class);
 
     private static final int NUMBER_OF_THREADS = 5;
 
@@ -35,12 +35,12 @@ public final class AddonRepositoryManager {
         }
     }); 
 
-    public AddonRepositoryManager(Configuration config) {
+    public AddonInstallationManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
                 new CurseImpl(config.getWowAddonFolder(), config.getCurseBaseUrl()));
     }
 
-    public AddonRepositoryManager(AddonRepoPersistence persistence,
+    public AddonInstallationManager(AddonRepoPersistence persistence,
             Curse addonFileHandler) {
         this.persistence = persistence;
         this.curse = addonFileHandler;
