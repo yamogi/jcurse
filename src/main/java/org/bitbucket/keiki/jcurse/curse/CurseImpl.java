@@ -1,6 +1,6 @@
 package org.bitbucket.keiki.jcurse.curse;
 
-import static org.bitbucket.keiki.jcurse.curse.Constants.USER_AGENT;
+import static org.bitbucket.keiki.jcurse.curse.Constants.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -112,7 +112,7 @@ public class CurseImpl implements Curse {
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream()))) {
+                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
 					if (addon.getAddonId() == 0) {

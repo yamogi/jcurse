@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 
 public class CurseForge {
 	
-	private static final String FILE_TYPE_ATTRIBUTE = "file-type-";
+    private static final String FILE_TYPE_ATTRIBUTE = "file-type-";
 	private static final Logger LOG = LoggerFactory.getLogger(CurseForge.class);
 	
 	public String getDownloadUrl(Addon addon) {
@@ -30,12 +30,15 @@ public class CurseForge {
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream()))) {
+                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                 	int indexOf = line.indexOf("col-file\"><a href");
                 	if (indexOf >= 0) {
                 		String nextLine = reader.readLine();
+                		if (nextLine == null) {
+                		    break;
+                		}
             			int indexOf2 = nextLine.indexOf(FILE_TYPE_ATTRIBUTE);
             			char statusChar = nextLine.charAt(indexOf2 + FILE_TYPE_ATTRIBUTE.length());
             			ReleaseStatus releaseStatus = ReleaseStatus.valueOf(statusChar);
@@ -68,7 +71,7 @@ public class CurseForge {
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream()))) {
+                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                 	if (line.contains("user-action-download")) {
