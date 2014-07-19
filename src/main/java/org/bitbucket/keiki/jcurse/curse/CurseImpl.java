@@ -26,6 +26,8 @@ public class CurseImpl implements Curse {
     
     private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
 	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
+    private static final int URL_ID_PART_END = 2;
+    private static final int URL_ID_PART_START = 3;
 
     private static final Logger LOG = LoggerFactory.getLogger(CurseImpl.class);
     private final String curseBaseUrl;
@@ -87,8 +89,6 @@ public class CurseImpl implements Curse {
                 split[split.length-URL_ID_PART_END]);
         return Integer.parseInt(join);
     }
-    private static final int URL_ID_PART_END = 2;
-    private static final int URL_ID_PART_START = 3;
 
     @Override
     public String getDownloadUrl(Addon addon) {

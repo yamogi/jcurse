@@ -24,7 +24,7 @@ public class AddonFileHandler {
         this.addonFolderName = addonFolderName;
     }
 
-    Set<String> download(InputStream zippedInputstream) throws IOException, FileNotFoundException {
+    Set<String> download(InputStream zippedInputstream) throws IOException {
         //create output directory is not exists
         File folder = new File(addonFolderName);
         if (!folder.exists()){
