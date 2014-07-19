@@ -1,5 +1,6 @@
 package org.bitbucket.keiki.jcurse;
 
+import org.bitbucket.keiki.jcurse.data.Addon;
 import org.junit.Test;
 
 import java.util.ArrayList;

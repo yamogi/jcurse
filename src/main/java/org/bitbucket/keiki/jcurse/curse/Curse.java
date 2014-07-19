@@ -3,7 +3,7 @@ package org.bitbucket.keiki.jcurse.curse;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.Addon;
+import org.bitbucket.keiki.jcurse.data.Addon;
 
 public interface Curse {
 

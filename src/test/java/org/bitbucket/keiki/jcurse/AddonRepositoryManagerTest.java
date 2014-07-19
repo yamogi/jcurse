@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 

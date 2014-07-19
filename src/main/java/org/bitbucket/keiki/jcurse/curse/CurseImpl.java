@@ -16,9 +16,9 @@ import java.util.Set;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang3.StringUtils;
-import org.bitbucket.keiki.jcurse.Addon;
-import org.bitbucket.keiki.jcurse.BusinessException;
-import org.bitbucket.keiki.jcurse.ReleaseStatus;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

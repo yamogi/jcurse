@@ -1,4 +1,4 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.data;
 
 public enum ReleaseStatus {
     ALPHA('a',"alpha"), BETA('b', "beta"), RELEASE('r', "release");

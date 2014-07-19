@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.Addon;
 import org.bitbucket.keiki.jcurse.AddonInstallationManager;
-import org.bitbucket.keiki.jcurse.BusinessException;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
-import org.bitbucket.keiki.jcurse.ReleaseStatus;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

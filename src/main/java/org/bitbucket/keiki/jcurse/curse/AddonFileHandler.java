@@ -1,7 +1,6 @@
 package org.bitbucket.keiki.jcurse.curse;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +11,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.apache.commons.io.FileUtils;
-import org.bitbucket.keiki.jcurse.BusinessException;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
 
 public class AddonFileHandler {
 

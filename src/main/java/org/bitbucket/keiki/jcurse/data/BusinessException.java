@@ -1,4 +1,4 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.data;
 
 
 public class BusinessException extends RuntimeException {

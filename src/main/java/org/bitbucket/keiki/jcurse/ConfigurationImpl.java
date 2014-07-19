@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+
 public final class ConfigurationImpl implements Configuration {
     
     static final String CONFIG_PATH = System.getProperty("user.home") + File.separator 

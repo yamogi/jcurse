@@ -3,6 +3,8 @@ package org.bitbucket.keiki.jcurse;
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.curse.Curse;
 import org.bitbucket.keiki.jcurse.curse.CurseImpl;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

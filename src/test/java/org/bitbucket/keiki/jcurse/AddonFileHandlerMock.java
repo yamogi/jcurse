@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bitbucket.keiki.jcurse.curse.Curse;
+import org.bitbucket.keiki.jcurse.data.Addon;
 
 public class AddonFileHandlerMock implements Curse {
 

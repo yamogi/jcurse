@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.bitbucket.keiki.jcurse.AddonFileHandlerMock;
 import org.bitbucket.keiki.jcurse.AddonRepoPersistenceMock;
 import org.bitbucket.keiki.jcurse.AddonInstallationManager;
-import org.bitbucket.keiki.jcurse.BusinessException;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.StandardOutputStreamLog;

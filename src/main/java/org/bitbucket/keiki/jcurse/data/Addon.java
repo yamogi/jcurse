@@ -1,4 +1,4 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.data;
 
 import java.util.ArrayList;
 import java.util.Collection;
