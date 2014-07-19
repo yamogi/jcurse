@@ -48,14 +48,14 @@ public final class Addon implements Comparable<Addon> {
     }
     
     public int getAddonId() {
-		return addonId;
-	}
+        return addonId;
+    }
 
-	public void setAddonId(int addonId) {
-		this.addonId = addonId;
-	}
+    public void setAddonId(int addonId) {
+        this.addonId = addonId;
+    }
 
-	public String getAddonNameId() {
+    public String getAddonNameId() {
         return addonNameId;
     }
 
@@ -64,14 +64,14 @@ public final class Addon implements Comparable<Addon> {
     }
 
     public ReleaseStatus getReleaseStatus() {
-		return releaseStatus;
-	}
+        return releaseStatus;
+    }
 
-	public void setReleaseStatus(ReleaseStatus releaseStatus) {
-		this.releaseStatus = releaseStatus;
-	}
+    public void setReleaseStatus(ReleaseStatus releaseStatus) {
+        this.releaseStatus = releaseStatus;
+    }
 
-	public String getLastZipFileName() {
+    public String getLastZipFileName() {
         return lastZipFileName;
     }
 

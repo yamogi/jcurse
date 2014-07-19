@@ -24,7 +24,8 @@ public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
                 return Collections.emptyList();
             }
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});
+            return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {
+                });
         } catch (IOException e) {
             throw new BusinessException("Could not read repository file from " + repoFile.getAbsolutePath(), e);
         }

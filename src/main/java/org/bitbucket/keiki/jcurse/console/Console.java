@@ -43,7 +43,7 @@ final class Console {
     }
 
     static void executeArguments(List<String> arguments, Configuration config) {
-        if (arguments.size() < 1) {
+        if (arguments.isEmpty()) {
             throw new BusinessException("Number of arguments are wrong");
         }
         String command = arguments.get(0);
@@ -81,7 +81,7 @@ final class Console {
             
             switch (command) {
                 case "add":
-                	add(repositoryManager, unprocessedArgs);
+                    add(repositoryManager, unprocessedArgs);
                     break;
                 case "remove":
                     repositoryManager.remove(unprocessedArgs);
@@ -91,37 +91,37 @@ final class Console {
                     update(repositoryManager, unprocessedArgs);
                     break;
                 case "set":
-                	setReleaseStatus(repositoryManager, unprocessedArgs);
-                	break;
+                    setReleaseStatus(repositoryManager, unprocessedArgs);
+                    break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
             }
         }
     }
 
-	private static void setReleaseStatus(AddonInstallationManager repositoryManager, List<String> unprocessedArgs) {
-	    ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
-	    if (status == null) {
-	        throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
-	    }
-	    repositoryManager.setReleaseStatus(status, unprocessedArgs.subList(1, unprocessedArgs.size()));
+    private static void setReleaseStatus(AddonInstallationManager repositoryManager, List<String> unprocessedArgs) {
+        ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+        if (status == null) {
+            throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
+        }
+        repositoryManager.setReleaseStatus(status, unprocessedArgs.subList(1, unprocessedArgs.size()));
     }
 
     private static void add(
-			AddonInstallationManager repositoryManager,
-			List<String> unprocessedArgs) {
-		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
-		List<String> subList;
-		if (status == null) {
-			status = ReleaseStatus.RELEASE;
-			subList = unprocessedArgs;
-		} else {
-		    subList = unprocessedArgs.subList(1, unprocessedArgs.size());
-		}
-		
-		List<Addon> added = repositoryManager.add(subList, status);
-		LOG.info("added " + added);
-	}
+            AddonInstallationManager repositoryManager,
+            List<String> unprocessedArgs) {
+        ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+        List<String> subList;
+        if (status == null) {
+            status = ReleaseStatus.RELEASE;
+            subList = unprocessedArgs;
+        } else {
+            subList = unprocessedArgs.subList(1, unprocessedArgs.size());
+        }
+        
+        List<Addon> added = repositoryManager.add(subList, status);
+        LOG.info("added " + added);
+    }
 
     private static void update(AddonInstallationManager repositoryManager, List<String> unprocessedArgsPara) {
         List<String> unprocessedArgs = unprocessedArgsPara;
