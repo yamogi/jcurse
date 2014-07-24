@@ -3,17 +3,10 @@ package org.bitbucket.keiki.jcurse;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.curse.Curse;
 import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.io.Curse;
 
 public class AddonFileHandlerMock implements Curse {
-
-    @Override
-    public boolean downloadToWow(Addon newAddon) {
-        newAddon.setLastZipFileName(newAddon.getAddonNameId() + "-1.0.zip");
-        newAddon.setVersionId(1);
-        return true;
-    }
 
     @Override
     public void removeAddons(Collection<Addon> toDelete) {

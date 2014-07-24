@@ -2,9 +2,9 @@ package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.bitbucket.keiki.jcurse.curse.CurseImpl;
 import org.bitbucket.keiki.jcurse.data.Addon;
 import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.io.CurseImpl;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
