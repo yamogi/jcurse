@@ -4,6 +4,7 @@ import static org.bitbucket.keiki.jcurse.io.Constants.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -14,6 +15,7 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.data.Addon;
@@ -107,11 +109,11 @@ public class CurseImpl implements Curse {
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
             method.setRequestHeader("user-agent", USER_AGENT);
-            int status = httpClient.executeMethod(method);
+            int status = executeHttpMethod(httpClient, method);
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
+                    (new InputStreamReader(getDownloadStream(method), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
 					if (addon.getAddonId() == 0) {
@@ -135,6 +137,16 @@ public class CurseImpl implements Curse {
         } catch (NumberFormatException e) {
         	throw new BusinessException("Can't parse addon numerical id.");
         }
+	}
+
+	protected InputStream getDownloadStream(GetMethod method)
+			throws IOException {
+		return method.getResponseBodyAsStream();
+	}
+
+	protected int executeHttpMethod(HttpClient httpClient, GetMethod method)
+			throws IOException, HttpException {
+		return httpClient.executeMethod(method);
 	}
 
     @Override
