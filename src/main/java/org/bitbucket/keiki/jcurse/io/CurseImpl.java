@@ -104,7 +104,6 @@ public class CurseImpl implements Curse {
     private String getDownloadUrlStable(Addon addon) {
         String url = curseBaseUrl + addon.getAddonNameId() + "/download";
         try {
-
             LOG.debug("accessing {}", url);
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
@@ -114,19 +113,7 @@ public class CurseImpl implements Curse {
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
                     (new InputStreamReader(getDownloadStream(method), CHARSET_WEBSITE))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (addon.getAddonId() == 0) {
-                        String parseAttribute = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
-                        if (!parseAttribute.isEmpty()) {
-                            addon.setAddonId(Integer.parseInt(parseAttribute));
-                        }
-                    }
-                    downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
-                    if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
-                        break;
-                    }
-                }
+                downloadUrl = readLines(addon, downloadUrl, reader);
             }
             if (downloadUrl.isEmpty()) {
                 throw new NoSuchElementException("Addon couldn't be found");
@@ -137,6 +124,23 @@ public class CurseImpl implements Curse {
         } catch (NumberFormatException e) {
             throw new BusinessException("Can't parse addon numerical id.");
         }
+    }
+
+    private String readLines(Addon addon, String downloadUrl, BufferedReader reader) throws IOException {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            if (addon.getAddonId() == 0) {
+                String parseAttribute = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
+                if (!parseAttribute.isEmpty()) {
+                    addon.setAddonId(Integer.parseInt(parseAttribute));
+                }
+            }
+            downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
+            if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
+                break;
+            }
+        }
+        return downloadUrl;
     }
 
     protected InputStream getDownloadStream(GetMethod method)
