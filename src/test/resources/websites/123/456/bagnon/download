@@ -672,7 +672,7 @@ document.write('<scr'+'ipt language="javascript1.1" src="http://adserver.adtechu
                 
             <div class="countdown">
                 <h3>Downloading Now...</h3>
-                <p>If your download doesn't begin <a data-project="1592" data-file="718727" data-href="#BASE_URL_TO_REPLACE#/Bagnon_5.3.6.zip" class="download-link" href="http://www.curse.com/addons/wow/bagnon/718727#">click here</a>.</p>
+                <p>If your download doesn't begin <a data-project="1592" data-file="718727" data-href="http://addons.curse.cursecdn.com/files/783/154/Bagnon_5.4.15.zip" class="download-link" href="http://www.curse.com/addons/wow/bagnon/718727#">click here</a>.</p>
             </div>
             <div class="go-back">
                 <p>Keep browsing for addons</p>

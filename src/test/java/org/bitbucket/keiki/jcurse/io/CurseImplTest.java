@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -26,8 +28,8 @@ public class CurseImplTest {
 	
 	@Test
 	public void downloadToWoW() {
-		CurseImpl curse = new CurseImplTestable(addonFolder.getRoot().getAbsolutePath(), "http://localhost");
-		curse.downloadToWow(Addon.newInstance(Arrays.asList("mocko")));
+		CurseImpl curse = new CurseImplTestable(addonFolder.getRoot().getAbsolutePath(), "http://localhost/");
+		curse.downloadToWow(Addon.newInstance(Arrays.asList("bagnon")));
 	}
 	
 	private static class CurseImplTestable extends CurseImpl{
@@ -35,7 +37,6 @@ public class CurseImplTest {
 		public CurseImplTestable(String addonFolderName, String curseBaseUrl) {
 			super(addonFolderName, curseBaseUrl);
 		}
-
 		
 		@Override
 		protected int executeHttpMethod(HttpClient httpClient, GetMethod method)
@@ -46,8 +47,15 @@ public class CurseImplTest {
 		@Override
 		protected InputStream getDownloadStream(GetMethod method)
 				throws IOException {
-			return this.getClass().getResourceAsStream("/Bagnon_5.3.6.zip");
+		    return this.getClass().getResourceAsStream("/websites/123/456/bagnon/download");
 		}
+		
+        @Override
+        protected Set<String> downloadAndExtract(String downloadUrl) {
+            Set<String> folderNamesMock = new HashSet<String>();
+            folderNamesMock.add("bagnon");
+            return folderNamesMock;
+        }		
 	}
 	
 }

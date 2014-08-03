@@ -63,7 +63,7 @@ public class CurseImpl implements Curse {
         return false;
     }
 
-    private Set<String> downloadAndExtract(String downloadUrl) {
+    protected Set<String> downloadAndExtract(String downloadUrl) {
         try {
             URL website = new URL(downloadUrl);
             URLConnection connection = website.openConnection();

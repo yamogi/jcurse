@@ -47,7 +47,6 @@ public class AddonFileHandler {
 
 
                 File newFile = new File(addonFolderName + File.separator + fileName);
-                System.out.println(newFile.getAbsoluteFile());
                 newFile.getParentFile().mkdirs();
 
                 try (FileOutputStream fos = new FileOutputStream(newFile)) {             
