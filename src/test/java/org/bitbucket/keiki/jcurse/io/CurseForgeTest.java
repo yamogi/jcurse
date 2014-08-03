@@ -1,9 +1,11 @@
 package org.bitbucket.keiki.jcurse.io;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -14,13 +16,21 @@ import org.junit.Test;
 
 public class CurseForgeTest {
     
+    private Addon addon = Addon.newInstance(Arrays.asList("dunesimplebuffs"), ReleaseStatus.BETA).get(0);
+
     @Test
+    public void successfulGetDownloadUrl() {
+        CurseForge curseForge = new CurseForgeTestable();
+        
+        String downloadUrl = curseForge.getDownloadUrl(addon);
+        
+        assertEquals("http://www.curseforge.com/media/files/797/148/DuneSimpleBuffs.zip", downloadUrl);
+    }
+    
+    @Test (expected = NoSuchElementException.class)
     public void getDownloadUrlBeta() {
-        CurseForgeTestable curseForgeTestable = new CurseForgeTestable();
-        List<Addon> addon = Addon.newInstance(Arrays.asList("dunesimplebuffs"), ReleaseStatus.BETA);
-        
-        String downloadUrl = curseForgeTestable.getDownloadUrl(addon.get(0));
-        
+        CurseForge curseForge = new CurseForgeTestableMissingLine();
+        curseForge.getDownloadUrl(addon);
     }
     
     private class CurseForgeTestable extends CurseForge {
@@ -37,6 +47,13 @@ public class CurseForgeTest {
         @Override
         protected int executeHttp(HttpClient httpClient, GetMethod method) throws IOException, HttpException {
             return 200;
+        }
+    }
+    
+    private class CurseForgeTestableMissingLine extends CurseForgeTestable {
+        @Override
+        protected InputStream getStreamOverviewSite(GetMethod method) throws IOException {
+            return this.getClass().getResourceAsStream("curseForgeOverview2ndLineMissing.html");
         }
     }
 }
