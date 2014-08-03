@@ -1,6 +1,7 @@
 package org.bitbucket.keiki.jcurse.io;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,38 +27,44 @@ public class AddonFileHandler {
     Set<String> download(InputStream zippedInputstream) throws IOException {
         //create output directory is not exists
         File folder = new File(addonFolderName);
-        if (!folder.exists()){
-            folder.mkdirs();
+        if (!folder.exists() && !folder.mkdirs()) {
+            throw new IOException("Could not create parent directories for folder '" + addonFolderName + "'.");
         }
-        
-        
-        byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
         try (ZipInputStream zis = new ZipInputStream(zippedInputstream)) {
-
-            Set<String> addonFolders = new HashSet<>();
-            
-            ZipEntry ze;
-            while ((ze = zis.getNextEntry()) != null) {
-                if (ze.isDirectory()) {
-                    continue;
-                }
-                String fileName = ze.getName();
-                int index = fileName.indexOf('/');
-                addonFolders.add(fileName.substring(0, index));
-
-
-                File newFile = new File(addonFolderName + File.separator + fileName);
-                newFile.getParentFile().mkdirs();
-
-                try (FileOutputStream fos = new FileOutputStream(newFile)) {             
-                    int len;
-                    while ((len = zis.read(buffer)) > 0) {
-                        fos.write(buffer, 0, len);
-                    }
-                }
-            }
-            return addonFolders;
+            return downloadZipInputstream(zis);
         }
+    }
+
+    private Set<String> downloadZipInputstream(ZipInputStream zis) throws IOException,
+            FileNotFoundException {
+        Set<String> addonFolders = new HashSet<>();
+        byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
+        ZipEntry ze;
+        while ((ze = zis.getNextEntry()) != null) {
+            if (ze.isDirectory()) {
+                continue;
+            }
+            String fileName = ze.getName();
+            int index = fileName.indexOf('/');
+            addonFolders.add(fileName.substring(0, index));
+
+            writeFile(zis, buffer, fileName);
+        }
+        return addonFolders;
+    }
+
+    private File writeFile(ZipInputStream zis, byte[] buffer, String fileName) throws IOException,
+            FileNotFoundException {
+        File newFile = new File(addonFolderName + File.separator + fileName);
+        newFile.getParentFile().mkdirs();
+
+        try (FileOutputStream fos = new FileOutputStream(newFile)) {             
+            int len;
+            while ((len = zis.read(buffer)) > 0) {
+                fos.write(buffer, 0, len);
+            }
+        }
+        return newFile;
     }
     
     void removeAddonFolders(Collection<String> toDelete) {
