@@ -3,10 +3,12 @@ import static org.bitbucket.keiki.jcurse.io.Constants.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.bitbucket.keiki.jcurse.data.Addon;
 import org.bitbucket.keiki.jcurse.data.BusinessException;
@@ -26,11 +28,11 @@ public class CurseForge {
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
             method.setRequestHeader("user-agent", USER_AGENT);
-            int status = httpClient.executeMethod(method);
+            int status = executeHttp(httpClient, method);
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
+                    (new InputStreamReader(getStreamOverviewSite(method), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     int indexOf = line.indexOf("col-file\"><a href");
@@ -60,6 +62,18 @@ public class CurseForge {
         }
     }
 
+    protected int executeHttp(HttpClient httpClient, GetMethod method) throws IOException, HttpException {
+        return httpClient.executeMethod(method);
+    }
+
+    protected InputStream getStreamOverviewSite(GetMethod method) throws IOException {
+        return method.getResponseBodyAsStream();
+    }
+    
+    protected InputStream getStreamDetailSite(GetMethod method) throws IOException {
+        return method.getResponseBodyAsStream();
+    }
+
     private String getRealDownloadUrl(String parseAttribute) {
         String url = "http://wow.curseforge.com"+ parseAttribute;
         try {
@@ -67,11 +81,11 @@ public class CurseForge {
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
             method.setRequestHeader("user-agent", USER_AGENT);
-            int status = httpClient.executeMethod(method);
+            int status = executeHttp(httpClient, method);
             LOG.debug("state {}", status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(method.getResponseBodyAsStream(), CHARSET_WEBSITE))) {
+                    (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     if (line.contains("user-action-download")) {
