@@ -35,8 +35,7 @@ public class AddonFileHandler {
         }
     }
 
-    private Set<String> downloadZipInputstream(ZipInputStream zis) throws IOException,
-            FileNotFoundException {
+    private Set<String> downloadZipInputstream(ZipInputStream zis) throws IOException {
         Set<String> addonFolders = new HashSet<>();
         byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
         ZipEntry ze;
@@ -53,8 +52,7 @@ public class AddonFileHandler {
         return addonFolders;
     }
 
-    private File writeFile(ZipInputStream zis, byte[] buffer, String fileName) throws IOException,
-            FileNotFoundException {
+    private File writeFile(ZipInputStream zis, byte[] buffer, String fileName) throws IOException {
         File newFile = new File(addonFolderName + File.separator + fileName);
         newFile.getParentFile().mkdirs();
 
