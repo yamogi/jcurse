@@ -16,7 +16,7 @@ import org.junit.rules.TemporaryFolder;
 
 public class AddonFileHandlerTest {
 
-    private static final String EXPECTED_DIRECTORY_NAMES = "[BagBrother, Bagnon_Config, Bagnon_GuildBank, Bagnon, Bagnon_VoidStorage]";
+    private static final String EXPECTED_DIRECTORY_NAMES = "[DuneSimpleBuffs]";
     
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
@@ -25,7 +25,7 @@ public class AddonFileHandlerTest {
     
     @Before
     public void beforeClass() {
-        testAddonFileStream = this.getClass().getResourceAsStream("Bagnon_5.3.6.zip");
+        testAddonFileStream = this.getClass().getResourceAsStream("DuneSimpleBuffs.zip");
     }
     
     
