@@ -1,7 +1,6 @@
 package org.bitbucket.keiki.jcurse.io;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,8 +53,9 @@ public class AddonFileHandler {
 
     private File writeFile(ZipInputStream zis, byte[] buffer, String fileName) throws IOException {
         File newFile = new File(addonFolderName + File.separator + fileName);
-        newFile.getParentFile().mkdirs();
-
+        if (!newFile.getParentFile().exists() && !newFile.getParentFile().mkdirs()) {
+            throw new IOException("Couldn't create directories.");
+        }
         try (FileOutputStream fos = new FileOutputStream(newFile)) {             
             int len;
             while ((len = zis.read(buffer)) > 0) {
