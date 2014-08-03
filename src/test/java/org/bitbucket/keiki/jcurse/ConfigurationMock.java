@@ -23,15 +23,6 @@ public class ConfigurationMock implements Configuration {
     }
 
     @Override
-    public String getCurseBaseUrl() {
-        return null;
-    }
-
-    @Override
-    public void setCurseBaseUrl(String curseBaseUrl) {
-    }
-
-    @Override
     public void setWowFolder(String wowFolder) {
     }
 

@@ -1,5 +1,15 @@
 package org.bitbucket.keiki.jcurse;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.data.Addon;
 import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
@@ -8,12 +18,6 @@ import org.bitbucket.keiki.jcurse.io.CurseImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.*;
-
 
 public final class AddonInstallationManager {
 
@@ -21,11 +25,14 @@ public final class AddonInstallationManager {
 
     private static final int NUMBER_OF_THREADS = 5;
 
+    private static final String CURSE_BASE_URL = "http://www.curse.com/addons/wow/"; 
+
     private final AddonRepoPersistence persistence;
 
     private final Curse curse;
 
     private final Map<Addon, Addon> repository;
+    
 
     private static final ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
         
@@ -39,7 +46,7 @@ public final class AddonInstallationManager {
 
     public AddonInstallationManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
-                new CurseImpl(config.getWowAddonFolder(), config.getCurseBaseUrl()));
+                new CurseImpl(config.getWowAddonFolder(), CURSE_BASE_URL));
     }
 
     public AddonInstallationManager(AddonRepoPersistence persistence,

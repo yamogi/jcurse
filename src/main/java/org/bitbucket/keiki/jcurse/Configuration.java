@@ -8,10 +8,6 @@ public interface Configuration {
 
     String getWowAddonFolder();
 
-    String getCurseBaseUrl();
-
-    void setCurseBaseUrl(String curseBaseUrl);
-
     void setWowFolder(String wowFolder);
 
 }
