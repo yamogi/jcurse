@@ -1,6 +1,7 @@
 package org.bitbucket.keiki.jcurse.io;
 
-import static org.bitbucket.keiki.jcurse.io.Constants.*;
+import static org.bitbucket.keiki.jcurse.io.Constants.CHARSET_WEBSITE;
+import static org.bitbucket.keiki.jcurse.io.Constants.USER_AGENT;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +16,6 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.data.Addon;
@@ -59,6 +59,7 @@ public class CurseImpl implements Curse {
             return true;
         } catch (NoSuchElementException e) {
             LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
+            LOG.debug(e.getMessage(), e);
         }
         return false;
     }
@@ -113,7 +114,7 @@ public class CurseImpl implements Curse {
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
                     (new InputStreamReader(getDownloadStream(method), CHARSET_WEBSITE))) {
-                downloadUrl = readLines(addon, downloadUrl, reader);
+                downloadUrl = readLines(addon, reader);
             }
             if (downloadUrl.isEmpty()) {
                 throw new NoSuchElementException("Addon couldn't be found");
@@ -126,7 +127,7 @@ public class CurseImpl implements Curse {
         }
     }
 
-    private String readLines(Addon addon, String downloadUrl, BufferedReader reader) throws IOException {
+    private String readLines(Addon addon, BufferedReader reader) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
             if (addon.getAddonId() == 0) {
@@ -135,12 +136,12 @@ public class CurseImpl implements Curse {
                     addon.setAddonId(Integer.parseInt(parseAttribute));
                 }
             }
-            downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
+            String downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
             if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
-                break;
+                return downloadUrl;
             }
         }
-        return downloadUrl;
+        return "";
     }
 
     protected InputStream getDownloadStream(GetMethod method)
@@ -149,7 +150,7 @@ public class CurseImpl implements Curse {
     }
 
     protected int executeHttpMethod(HttpClient httpClient, GetMethod method)
-            throws IOException, HttpException {
+            throws IOException {
         return httpClient.executeMethod(method);
     }
 

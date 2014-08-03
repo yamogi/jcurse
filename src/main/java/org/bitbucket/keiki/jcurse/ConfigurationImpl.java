@@ -61,7 +61,7 @@ public final class ConfigurationImpl implements Configuration {
         }
     }
 
-    private String getWowFolder() {
+    private synchronized String getWowFolder() {
         return wowFolder;
     }
     
