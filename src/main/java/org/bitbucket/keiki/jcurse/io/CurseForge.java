@@ -18,48 +18,56 @@ import org.slf4j.LoggerFactory;
 
 public class CurseForge {
     
+    private static final String LOG_CAN_T_ACCESS = "Can't access ";
+    private static final String LOG_HTTP_STATE_CODE = "state {}";
+    private static final String HTTP_HEADER_KEY_USER_AGENT = "user-agent";
+    private static final String LOG_ACCESSING_MSG = "accessing {}";
     private static final String FILE_TYPE_ATTRIBUTE = "file-type-";
     private static final Logger LOG = LoggerFactory.getLogger(CurseForge.class);
     
     public String getDownloadUrl(Addon addon) {
         String url = "http://wow.curseforge.com/addons/" + addon.getAddonNameId() + "/files/";
         try {
-            LOG.debug("accessing {}", url);
+            LOG.debug(LOG_ACCESSING_MSG, url);
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
-            method.setRequestHeader("user-agent", USER_AGENT);
+            method.setRequestHeader(HTTP_HEADER_KEY_USER_AGENT, USER_AGENT);
             int status = executeHttp(httpClient, method);
-            LOG.debug("state {}", status);
-            String downloadUrl = "";
+            LOG.debug(LOG_HTTP_STATE_CODE, status);
+            String detailSiteUrl = "";
             try (BufferedReader reader = new BufferedReader
                     (new InputStreamReader(getStreamOverviewSite(method), CHARSET_WEBSITE))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    int indexOf = line.indexOf("col-file\"><a href");
-                    if (indexOf >= 0) {
-                        String nextLine = reader.readLine();
-                        if (nextLine == null) {
-                            break;
-                        }
-                        int indexOf2 = nextLine.indexOf(FILE_TYPE_ATTRIBUTE);
-                        char statusChar = nextLine.charAt(indexOf2 + FILE_TYPE_ATTRIBUTE.length());
-                        ReleaseStatus releaseStatus = ReleaseStatus.valueOf(statusChar);
-                        if (addon.getReleaseStatus().ordinal() <= releaseStatus.ordinal()) {
-                            String parseAttribute = WebsiteHelper.parseAttribute(line, "href");
-                            downloadUrl = getRealDownloadUrl(parseAttribute);
-                            break;
-                        }
-                    }
+                detailSiteUrl = readLines(addon, detailSiteUrl, reader);
+            }
+            if (detailSiteUrl.isEmpty()) {
+                throw new NoSuchElementException("detail site couldn't be found");
+            }
+            LOG.info(detailSiteUrl);
+            return detailSiteUrl;
+        } catch (IOException e) {
+            throw new BusinessException(LOG_CAN_T_ACCESS + url, e);
+        }
+    }
+
+    protected String readLines(Addon addon, String downloadUrl, BufferedReader reader) throws IOException {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            int indexOf = line.indexOf("col-file\"><a href");
+            if (indexOf >= 0) {
+                String nextLine = reader.readLine();
+                if (nextLine == null) {
+                    return "";
+                }
+                int indexOf2 = nextLine.indexOf(FILE_TYPE_ATTRIBUTE);
+                char statusChar = nextLine.charAt(indexOf2 + FILE_TYPE_ATTRIBUTE.length());
+                ReleaseStatus releaseStatus = ReleaseStatus.valueOf(statusChar);
+                if (addon.getReleaseStatus().ordinal() <= releaseStatus.ordinal()) {
+                    String parseAttribute = WebsiteHelper.parseAttribute(line, "href");
+                    return getDownloadUrlOfDetailSite(parseAttribute);
                 }
             }
-            if (downloadUrl.isEmpty()) {
-                throw new NoSuchElementException("Addon couldn't be found");
-            }
-            LOG.info(downloadUrl);
-            return downloadUrl;
-        } catch (IOException e) {
-            throw new BusinessException("Can't access " + url, e);
         }
+        return "";
     }
 
     protected int executeHttp(HttpClient httpClient, GetMethod method) throws IOException, HttpException {
@@ -74,15 +82,15 @@ public class CurseForge {
         return method.getResponseBodyAsStream();
     }
 
-    private String getRealDownloadUrl(String parseAttribute) {
-        String url = "http://wow.curseforge.com"+ parseAttribute;
+    private String getDownloadUrlOfDetailSite(String detailSite) {
+        String url = "http://wow.curseforge.com"+ detailSite;
         try {
-            LOG.debug("accessing {}", url);
+            LOG.debug(LOG_ACCESSING_MSG, url);
             HttpClient httpClient = new HttpClient();
             GetMethod method = new GetMethod(url);
-            method.setRequestHeader("user-agent", USER_AGENT);
+            method.setRequestHeader(HTTP_HEADER_KEY_USER_AGENT, USER_AGENT);
             int status = executeHttp(httpClient, method);
-            LOG.debug("state {}", status);
+            LOG.debug(LOG_HTTP_STATE_CODE, status);
             String downloadUrl = "";
             try (BufferedReader reader = new BufferedReader
                     (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
@@ -95,11 +103,11 @@ public class CurseForge {
                 }
             }
             if (downloadUrl.isEmpty()) {
-                throw new NoSuchElementException("Addon couldn't be found");
+                throw new NoSuchElementException("Addon download url couldn't be found");
             }
             return downloadUrl;
         } catch (IOException e) {
-            throw new BusinessException("Can't access " + url, e);
+            throw new BusinessException(LOG_CAN_T_ACCESS + url, e);
         }
     }
 
