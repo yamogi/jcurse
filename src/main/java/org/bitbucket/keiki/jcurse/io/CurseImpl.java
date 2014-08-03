@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 public class CurseImpl implements Curse {
     
     private static final String HTML_ATTRIBUTE_DOWN_URL = "data-href";
-	private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
+    private static final String HTML_ATTRIBUTE_ADDON_ID = "data-project";
     private static final int URL_ID_PART_END = 2;
     private static final int URL_ID_PART_START = 3;
 
@@ -93,16 +93,16 @@ public class CurseImpl implements Curse {
 
     @Override
     public String getDownloadUrl(Addon addon) {
-    	if (addon.getReleaseStatus() != ReleaseStatus.RELEASE) {
-    		CurseForge curseForgeHandler = new CurseForge();
-    		return curseForgeHandler.getDownloadUrl(addon);
-    	} else {
-    		return getDownloadUrlStable(addon);
-    	}
+        if (addon.getReleaseStatus() != ReleaseStatus.RELEASE) {
+            CurseForge curseForgeHandler = new CurseForge();
+            return curseForgeHandler.getDownloadUrl(addon);
+        } else {
+            return getDownloadUrlStable(addon);
+        }
     }
 
-	private String getDownloadUrlStable(Addon addon) {
-		String url = curseBaseUrl + addon.getAddonNameId() + "/download";
+    private String getDownloadUrlStable(Addon addon) {
+        String url = curseBaseUrl + addon.getAddonNameId() + "/download";
         try {
 
             LOG.debug("accessing {}", url);
@@ -116,15 +116,15 @@ public class CurseImpl implements Curse {
                     (new InputStreamReader(getDownloadStream(method), CHARSET_WEBSITE))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
-					if (addon.getAddonId() == 0) {
-						String parseAttribute = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
-						if (!parseAttribute.isEmpty()) {
-							addon.setAddonId(Integer.parseInt(parseAttribute));
-						}
-					}
-					downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
+                    if (addon.getAddonId() == 0) {
+                        String parseAttribute = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_ADDON_ID);
+                        if (!parseAttribute.isEmpty()) {
+                            addon.setAddonId(Integer.parseInt(parseAttribute));
+                        }
+                    }
+                    downloadUrl = WebsiteHelper.parseAttribute(line, HTML_ATTRIBUTE_DOWN_URL);
                     if (addon.getAddonId() != 0 && !downloadUrl.isEmpty()) {
-                    	break;
+                        break;
                     }
                 }
             }
@@ -135,19 +135,19 @@ public class CurseImpl implements Curse {
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
         } catch (NumberFormatException e) {
-        	throw new BusinessException("Can't parse addon numerical id.");
+            throw new BusinessException("Can't parse addon numerical id.");
         }
-	}
+    }
 
-	protected InputStream getDownloadStream(GetMethod method)
-			throws IOException {
-		return method.getResponseBodyAsStream();
-	}
+    protected InputStream getDownloadStream(GetMethod method)
+            throws IOException {
+        return method.getResponseBodyAsStream();
+    }
 
-	protected int executeHttpMethod(HttpClient httpClient, GetMethod method)
-			throws IOException, HttpException {
-		return httpClient.executeMethod(method);
-	}
+    protected int executeHttpMethod(HttpClient httpClient, GetMethod method)
+            throws IOException, HttpException {
+        return httpClient.executeMethod(method);
+    }
 
     @Override
     public void removeAddons(Collection<Addon> toDelete) {
