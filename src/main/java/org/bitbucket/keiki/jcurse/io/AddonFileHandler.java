@@ -39,7 +39,6 @@ public class AddonFileHandler {
             ZipEntry ze;
             while ((ze = zis.getNextEntry()) != null) {
                 if (ze.isDirectory()) {
-                    System.out.println("is directory");
                     continue;
                 }
                 String fileName = ze.getName();
