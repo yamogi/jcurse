@@ -17,14 +17,14 @@ public final class ConfigurationImpl implements Configuration {
     
     private static final String WOW_FOLDER_KEY = "wow.folder";
     
-    private String wowFolder;
+    private volatile String wowFolder;
 
     @Override
     public void load() {
         load(CONFIG_FILE_LOCATION);
     }
     
-    synchronized void load(String fileLocation) {
+    void load(String fileLocation) {
         File propertyFile = new File(fileLocation);
         Properties properties = new Properties();
         if (!propertyFile.exists()) {
@@ -61,7 +61,7 @@ public final class ConfigurationImpl implements Configuration {
         }
     }
 
-    private synchronized String getWowFolder() {
+    private String getWowFolder() {
         return wowFolder;
     }
     
