@@ -1,22 +1,16 @@
 package org.bitbucket.keiki.jcurse.data;
 
 public enum ReleaseStatus {
-    ALPHA('a',"alpha"), BETA('b', "beta"), RELEASE('r', "release");
+    ALPHA('a'), BETA('b'), RELEASE('r');
     
     private final char statusAbbr;
-    private final String status;
     
-    private ReleaseStatus(char statusAbbreviation, String status) {
+    private ReleaseStatus(char statusAbbreviation) {
         this.statusAbbr = statusAbbreviation;
-        this.status = status;
     }
     
     public char getStatusAbbr() {
         return statusAbbr;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public static ReleaseStatus valueOf(char status) {
@@ -34,15 +28,10 @@ public enum ReleaseStatus {
     }
     
     public static ReleaseStatus valueOfIgnoreCase(String status) {
-        if (ALPHA.getStatus().equalsIgnoreCase(status)) {
-            return ALPHA;
-        }
-        if (BETA.getStatus().equalsIgnoreCase(status)) {
-            return BETA;
-        }
-        if (RELEASE.getStatus().equalsIgnoreCase(status)) {
-            return RELEASE;
-        }
-        return null;
+    	try {
+    		return valueOf(status.toUpperCase());
+    	} catch (IllegalArgumentException e) {
+    		return null;
+    	}
     }
 }

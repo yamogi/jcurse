@@ -175,6 +175,6 @@ public final class AddonInstallationManager {
             repository.put(addon, addon);
         }
         persistence.saveInstalledAddons(repository.values());
-        LOG.info("Prefering " + releaseStatus.getStatus() + " from now on for " + repoAddons);
+        LOG.info("Prefering " + releaseStatus.name() + " from now on for " + repoAddons);
     }
 }
