@@ -19,16 +19,15 @@ public enum ReleaseStatus {
     }
 
     public static ReleaseStatus valueOf(char status) {
-
         switch (status) {
-        case 'r':
-            return RELEASE;
-        case 'b':
-            return BETA;
-        case 'a':
-            return ALPHA;
-        default:
-            throw new IllegalArgumentException(status + " is no valid status");
+            case 'r':
+                return RELEASE;
+            case 'b':
+                return BETA;
+            case 'a':
+                return ALPHA;
+            default:
+                throw new IllegalArgumentException(status + " is no valid status");
         }
     }
 
