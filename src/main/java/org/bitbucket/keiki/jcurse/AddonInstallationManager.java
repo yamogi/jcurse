@@ -34,7 +34,8 @@ public final class AddonInstallationManager {
     private final Map<Addon, Addon> repository;
     
 
-    private static final ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
+    private static final ExecutorService EXECUTOR_UPDATE = Executors.
+            newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
         
         @Override
         public Thread newThread(Runnable r) {
