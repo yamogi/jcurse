@@ -3,6 +3,9 @@ package org.bitbucket.keiki.jcurse.io;
 public class WebsiteHelper {
     
     private static final int OFFSET_ATTRIBUTE_CONTENT_STARTS = 2;
+    
+    private WebsiteHelper() {
+    }
 
     static String parseAttribute(String line, String attributeName) {
         String attribute = "";
