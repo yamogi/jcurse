@@ -15,6 +15,8 @@ import org.slf4j.LoggerFactory;
 
 final class Console {
 
+    private static final int TWO_ARGS = 2;
+
     private static final String SET_WOW_ARGUMENT = "--set-wow";
 
     private static final Logger LOG = LoggerFactory.getLogger(Console.class);
@@ -29,7 +31,7 @@ final class Console {
             executeArguments(Arrays.asList(args), config);
         } catch (BusinessException e) {
             LOG.error(e.getMessage());
-            LOG.debug(e.getMessage(), e);
+            LOG.debug("Somethings wrong. Known exception.", e);
             LOG.info("\r\nUsage:");
             LOG.info("jcurse add (alpha|beta) [addon name1, name2, ...]");
             LOG.info("jcurse remove [addon name1, name2, ...]");
@@ -61,8 +63,8 @@ final class Console {
     }
 
     private static boolean executeConfigChanges(String command, List<String> args, Configuration config) {
-        if (command.equals(SET_WOW_ARGUMENT)) { 
-            if (args.size() >= 2) {
+        if (SET_WOW_ARGUMENT.equals(command)) { 
+            if (args.size() >= TWO_ARGS) {
                 config.setWowFolder(args.get(1));
                 config.save();
                 LOG.info("Changed wow directory to " + args.get(1));
@@ -76,7 +78,7 @@ final class Console {
 
     private static void executeTwoArgumentsCommand(List<String> arguments,
             AddonInstallationManager repositoryManager, String command) {
-        if (arguments.size() >= 2) {
+        if (arguments.size() >= TWO_ARGS) {
             List<String> unprocessedArgs = arguments.subList(1, arguments.size());
             
             switch (command) {
