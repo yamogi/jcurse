@@ -1,6 +1,6 @@
 package org.bitbucket.keiki.jcurse.io;
 
-public class WebsiteHelper {
+public final class WebsiteHelper {
     
     private static final int OFFSET_ATTRIBUTE_CONTENT_STARTS = 2;
     
