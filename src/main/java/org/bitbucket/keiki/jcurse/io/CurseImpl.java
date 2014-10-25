@@ -59,7 +59,7 @@ public class CurseImpl implements Curse {
             return true;
         } catch (NoSuchElementException e) {
             LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
-            LOG.debug(e.getMessage(), e);
+            LOG.debug("No addon found", e);
         }
         return false;
     }
@@ -123,7 +123,7 @@ public class CurseImpl implements Curse {
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
         } catch (NumberFormatException e) {
-            throw new BusinessException("Can't parse addon numerical id.");
+            throw new BusinessException("Can't parse addon numerical id.", e);
         }
     }
 

@@ -115,13 +115,9 @@ public final class AddonInstallationManager {
     private void updateInternal(Collection<Addon> addons, final boolean forceUpdate) {
         List<Callable<Void>> futures = new ArrayList<>(addons.size());
         for (final Addon addon : addons) {
-            futures.add(new Callable<Void>() {
-
-                @Override
-                public Void call() {
-                    updateInternal(addon, forceUpdate); 
-                    return null;
-                }
+            futures.add(() -> {
+                updateInternal(addon, forceUpdate); 
+                return null;
             });
         }
         ExecutorService executerService = Executors.newFixedThreadPool(NUMBER_OF_THREADS); 
