@@ -15,7 +15,7 @@ class IntegrationTest {
 //        }
         long time = System.currentTimeMillis();
 //        Console.main("add", "bagnon", "decursive", "auctioneer", "atlasloot-enhanced", "battlegroundtargets");
-        Console.main("update",  "-f", "dunesimplebuffs");
+        Console.main("update",  "all");
 //        Console.main("export");
 //        Console.main("add",  "alpha","dunesimplebuffs");
 //        Console.main("set-release",  "beta","dunesimplebuffs");
