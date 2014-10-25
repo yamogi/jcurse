@@ -59,7 +59,7 @@ public class CurseImpl implements Curse {
             return true;
         } catch (NoSuchElementException e) {
             LOG.warn("No addon found with the name '" + newAddon.getAddonNameId() + "'. Skipping.");
-            LOG.debug(e.getMessage(), e);
+            LOG.debug("No addon found", e);
         }
         return false;
     }
