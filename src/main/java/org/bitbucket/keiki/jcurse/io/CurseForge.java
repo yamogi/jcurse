@@ -91,8 +91,7 @@ public class CurseForge {
             method.setRequestHeader(HTTP_HEADER_KEY_USER_AGENT, USER_AGENT);
             int status = executeHttp(httpClient, method);
             LOG.debug(LOG_HTTP_STATE_CODE, status);
-            String downloadUrl = "";
-            downloadUrl = extractDownloadUrlFromStream(downloadUrl, method);
+            String downloadUrl = extractDownloadUrlFromStream(method);
             if (downloadUrl.isEmpty()) {
                 throw new NoSuchElementException("Addon download url couldn't be found");
             }
@@ -102,7 +101,8 @@ public class CurseForge {
         }
     }
 
-    protected String extractDownloadUrlFromStream(String downloadUrl, GetMethod method) throws IOException {
+    protected String extractDownloadUrlFromStream(GetMethod method) throws IOException {
+        String downloadUrl = "";
         try (BufferedReader reader = new BufferedReader
                 (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
             String line;
