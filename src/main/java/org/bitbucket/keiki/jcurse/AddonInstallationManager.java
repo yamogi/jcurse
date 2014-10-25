@@ -8,7 +8,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bitbucket.keiki.jcurse.data.Addon;
@@ -33,18 +32,6 @@ public final class AddonInstallationManager {
 
     private final Map<Addon, Addon> repository;
     
-
-    private static final ExecutorService EXECUTOR_UPDATE = Executors.
-            newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
-        
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread thread = new Thread(r);
-            thread.setDaemon(true);
-            return thread;
-        }
-    }); 
-
     public AddonInstallationManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
                 new CurseImpl(config.getWowAddonFolder(), CURSE_BASE_URL));
@@ -137,11 +124,13 @@ public final class AddonInstallationManager {
                 }
             });
         }
+        ExecutorService executerService = Executors.newFixedThreadPool(NUMBER_OF_THREADS); 
         try {
-            EXECUTOR_UPDATE.invokeAll(futures);
+            executerService.invokeAll(futures);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        executerService.shutdown();
         persistence.saveInstalledAddons(repository.values());
     }
 
