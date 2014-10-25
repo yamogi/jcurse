@@ -6,7 +6,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -103,7 +102,7 @@ public class CurseForge {
         }
     }
 
-    protected String extractDownloadUrlFromStream(String downloadUrl, GetMethod method) throws IOException, UnsupportedEncodingException {
+    protected String extractDownloadUrlFromStream(String downloadUrl, GetMethod method) throws IOException {
         try (BufferedReader reader = new BufferedReader
                 (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
             String line;
