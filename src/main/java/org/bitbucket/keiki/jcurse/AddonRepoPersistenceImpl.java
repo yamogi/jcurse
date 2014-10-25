@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
@@ -24,7 +26,8 @@ public final class AddonRepoPersistenceImpl implements AddonRepoPersistence {
                 return Collections.emptyList();
             }
             ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {});
+            return mapper.readValue(repoFile, new TypeReference<Collection<Addon>>() {
+                });
         } catch (IOException e) {
             throw new BusinessException("Could not read repository file from " + repoFile.getAbsolutePath(), e);
         }

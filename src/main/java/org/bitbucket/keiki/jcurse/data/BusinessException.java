@@ -1,7 +1,7 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.data;
 
 
-public class BusinessException extends RuntimeException{
+public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -12,4 +12,4 @@ public class BusinessException extends RuntimeException{
     public BusinessException(String message) {
         super(message);
     }
-}
+} 

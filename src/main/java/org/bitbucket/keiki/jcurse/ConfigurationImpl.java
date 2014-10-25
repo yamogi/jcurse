@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+
 public final class ConfigurationImpl implements Configuration {
     
     static final String CONFIG_PATH = System.getProperty("user.home") + File.separator 
@@ -15,17 +17,14 @@ public final class ConfigurationImpl implements Configuration {
     
     private static final String WOW_FOLDER_KEY = "wow.folder";
     
-    
-    private String wowFolder;
+    private volatile String wowFolder;
 
-    private String curseBaseUrl = "http://www.curse.com/addons/wow/"; 
-    
     @Override
     public void load() {
         load(CONFIG_FILE_LOCATION);
     }
     
-    synchronized void load(String fileLocation) {
+    void load(String fileLocation) {
         File propertyFile = new File(fileLocation);
         Properties properties = new Properties();
         if (!propertyFile.exists()) {
@@ -63,9 +62,6 @@ public final class ConfigurationImpl implements Configuration {
     }
 
     private String getWowFolder() {
-        if (wowFolder.isEmpty()) {
-            throw new BusinessException("No folder for WoW given in config file (" + CONFIG_PATH + ")");
-        }
         return wowFolder;
     }
     
@@ -74,16 +70,6 @@ public final class ConfigurationImpl implements Configuration {
         return getWowFolder() + File.separator + "Interface" + File.separator + "AddOns" + File.separator; 
     }
     
-    @Override
-    public String getCurseBaseUrl() {
-        return curseBaseUrl;
-    }
-
-    @Override
-    public void setCurseBaseUrl(String curseBaseUrl) {
-        this.curseBaseUrl = curseBaseUrl;
-    }
-
     @Override
     public void setWowFolder(String wowFolder) {
         File wowPath = new File(wowFolder);

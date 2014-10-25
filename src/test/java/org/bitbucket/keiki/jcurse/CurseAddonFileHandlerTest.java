@@ -2,6 +2,9 @@ package org.bitbucket.keiki.jcurse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.io.CurseImpl;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 
@@ -58,7 +61,7 @@ public class CurseAddonFileHandlerTest {
     
     @Test (expected = BusinessException.class)
     public void testDownloadToWoWAddonNotFoundUrl() {
-        CurseAddonFileHandler.extractZipFileName("file:bagnon-54.zip");
+        CurseImpl.extractZipFileName("file:bagnon-54.zip");
     }
     
     @Test
@@ -76,7 +79,7 @@ public class CurseAddonFileHandlerTest {
         folders.add("test3");
         addon.setFolders(folders);
         
-        CurseAddonFileHandler fileHandler = new CurseAddonFileHandler(addonPath, baseUrl);
+        CurseImpl fileHandler = new CurseImpl(addonPath, baseUrl);
         fileHandler.removeAddons(addons);
         
         assertEquals(0, new File(addonPath).listFiles().length);

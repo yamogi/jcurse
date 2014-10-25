@@ -1,20 +1,20 @@
-package org.bitbucket.keiki.jcurse;
+package org.bitbucket.keiki.jcurse.io;
 
 import java.util.Collection;
 import java.util.List;
 
-interface AddonFileHandler {
+import org.bitbucket.keiki.jcurse.data.Addon;
 
-    boolean downloadToWow(Addon newAddon);
+public interface Curse {
 
     void removeAddons(Collection<Addon> toDelete);
-
-    void removeAddonFolders(Collection<String> toDelete);
 
     List<Addon> downloadToWow(List<Addon> toDownload);
 
     void downloadToWow(Addon newAddon, String downloadUrl);
 
     String getDownloadUrl(Addon gameAddonNameId);
+
+    void removeAddon(Addon toDelete);
 
 }

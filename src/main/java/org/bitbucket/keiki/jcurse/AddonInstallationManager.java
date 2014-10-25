@@ -1,45 +1,44 @@
 package org.bitbucket.keiki.jcurse;
 
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.apache.commons.lang3.StringUtils;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
+import org.bitbucket.keiki.jcurse.io.Curse;
+import org.bitbucket.keiki.jcurse.io.CurseImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
-public final class AddonRepositoryManager {
+public final class AddonInstallationManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AddonRepositoryManager.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AddonInstallationManager.class);
 
     private static final int NUMBER_OF_THREADS = 5;
 
+    private static final String CURSE_BASE_URL = "http://www.curse.com/addons/wow/"; 
+
     private final AddonRepoPersistence persistence;
 
-    private final AddonFileHandler curse;
+    private final Curse curse;
 
     private final Map<Addon, Addon> repository;
-
-    private static final ExecutorService EXECUTOR_UPDATE = Executors.newFixedThreadPool(NUMBER_OF_THREADS, new ThreadFactory() {
-        
-        @Override
-        public Thread newThread(Runnable r) {
-            Thread thread = new Thread(r);
-            thread.setDaemon(true);
-            return thread;
-        }
-    }); 
-
-    public AddonRepositoryManager(Configuration config) {
+    
+    public AddonInstallationManager(Configuration config) {
         this(new AddonRepoPersistenceImpl(ConfigurationImpl.CONFIG_PATH + "repository"),
-                new CurseAddonFileHandler(config.getWowAddonFolder(), config.getCurseBaseUrl()));
+                new CurseImpl(config.getWowAddonFolder(), CURSE_BASE_URL));
     }
 
-    public AddonRepositoryManager(AddonRepoPersistence persistence,
-            AddonFileHandler addonFileHandler) {
+    public AddonInstallationManager(AddonRepoPersistence persistence,
+            Curse addonFileHandler) {
         this.persistence = persistence;
         this.curse = addonFileHandler;
         Collection<Addon> addons = persistence.loadInstalledAddons();
@@ -125,23 +124,25 @@ public final class AddonRepositoryManager {
                 }
             });
         }
+        ExecutorService executerService = Executors.newFixedThreadPool(NUMBER_OF_THREADS); 
         try {
-            EXECUTOR_UPDATE.invokeAll(futures);
+            executerService.invokeAll(futures);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+        executerService.shutdown();
         persistence.saveInstalledAddons(repository.values());
     }
 
     private void updateInternal(Addon addon, boolean forceUpdate) {
         String downloadUrl = curse.getDownloadUrl(addon);
-        int fileName = CurseAddonFileHandler.extractFileId(StringUtils.split(downloadUrl, '/'));
+        int fileName = CurseImpl.extractFileId(StringUtils.split(downloadUrl, '/'));
         if (!forceUpdate && addon.getVersionId() == fileName) {
             LOG.info(addon.getAddonNameId() + " already up2date");
             return;
         }
         LOG.info("updating " + addon.getAddonNameId());
-        curse.removeAddonFolders(repository.get(addon).getFolders());
+        curse.removeAddon(repository.get(addon));
         curse.downloadToWow(addon, downloadUrl);
 
         repository.put(addon, addon);
@@ -164,6 +165,6 @@ public final class AddonRepositoryManager {
             repository.put(addon, addon);
         }
         persistence.saveInstalledAddons(repository.values());
-        LOG.info("Prefering " + releaseStatus.getStatus() + " from now on for " + repoAddons);
+        LOG.info("Prefering " + releaseStatus.name() + " from now on for " + repoAddons);
     }
 }

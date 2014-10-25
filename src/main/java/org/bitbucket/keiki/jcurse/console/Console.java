@@ -4,16 +4,18 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.bitbucket.keiki.jcurse.Addon;
-import org.bitbucket.keiki.jcurse.AddonRepositoryManager;
-import org.bitbucket.keiki.jcurse.BusinessException;
+import org.bitbucket.keiki.jcurse.AddonInstallationManager;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
-import org.bitbucket.keiki.jcurse.ReleaseStatus;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.data.ReleaseStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 final class Console {
+
+    private static final int TWO_ARGS = 2;
 
     private static final String SET_WOW_ARGUMENT = "--set-wow";
 
@@ -29,7 +31,7 @@ final class Console {
             executeArguments(Arrays.asList(args), config);
         } catch (BusinessException e) {
             LOG.error(e.getMessage());
-            LOG.debug(e.getMessage(), e);
+            LOG.debug("Somethings wrong. Known exception.", e);
             LOG.info("\r\nUsage:");
             LOG.info("jcurse add (alpha|beta) [addon name1, name2, ...]");
             LOG.info("jcurse remove [addon name1, name2, ...]");
@@ -43,7 +45,7 @@ final class Console {
     }
 
     static void executeArguments(List<String> arguments, Configuration config) {
-        if (arguments.size() < 1) {
+        if (arguments.isEmpty()) {
             throw new BusinessException("Number of arguments are wrong");
         }
         String command = arguments.get(0);
@@ -51,18 +53,18 @@ final class Console {
             return;
         }
         config.load();
-        executeCommands(arguments, new AddonRepositoryManager(config), command);
+        executeCommands(arguments, new AddonInstallationManager(config), command);
     }
 
     static void executeCommands(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
+            AddonInstallationManager repositoryManager, String command) {
         executeOneArgumentCommand(arguments, repositoryManager, command);
         executeTwoArgumentsCommand(arguments, repositoryManager, command);
     }
 
     private static boolean executeConfigChanges(String command, List<String> args, Configuration config) {
-        if (command.equals(SET_WOW_ARGUMENT)) { 
-            if (args.size() >= 2) {
+        if (SET_WOW_ARGUMENT.equals(command)) { 
+            if (args.size() >= TWO_ARGS) {
                 config.setWowFolder(args.get(1));
                 config.save();
                 LOG.info("Changed wow directory to " + args.get(1));
@@ -75,13 +77,13 @@ final class Console {
     }
 
     private static void executeTwoArgumentsCommand(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
-        if (arguments.size() >= 2) {
+            AddonInstallationManager repositoryManager, String command) {
+        if (arguments.size() >= TWO_ARGS) {
             List<String> unprocessedArgs = arguments.subList(1, arguments.size());
             
             switch (command) {
                 case "add":
-                	add(repositoryManager, unprocessedArgs);
+                    add(repositoryManager, unprocessedArgs);
                     break;
                 case "remove":
                     repositoryManager.remove(unprocessedArgs);
@@ -91,39 +93,39 @@ final class Console {
                     update(repositoryManager, unprocessedArgs);
                     break;
                 case "set":
-                	setReleaseStatus(repositoryManager, unprocessedArgs);
-                	break;
+                    setReleaseStatus(repositoryManager, unprocessedArgs);
+                    break;
                 default:
                     throw new BusinessException("Unrecognized command " + command);
             }
         }
     }
 
-	private static void setReleaseStatus(AddonRepositoryManager repositoryManager, List<String> unprocessedArgs) {
-	    ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
-	    if (status == null) {
-	        throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
-	    }
-	    repositoryManager.setReleaseStatus(status, unprocessedArgs.subList(1, unprocessedArgs.size()));
+    private static void setReleaseStatus(AddonInstallationManager repositoryManager, List<String> unprocessedArgs) {
+        ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+        if (status == null) {
+            throw new BusinessException("status '" + unprocessedArgs.get(0) + "' is unknown");
+        }
+        repositoryManager.setReleaseStatus(status, unprocessedArgs.subList(1, unprocessedArgs.size()));
     }
 
     private static void add(
-			AddonRepositoryManager repositoryManager,
-			List<String> unprocessedArgs) {
-		ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
-		List<String> subList;
-		if (status == null) {
-			status = ReleaseStatus.RELEASE;
-			subList = unprocessedArgs;
-		} else {
-		    subList = unprocessedArgs.subList(1, unprocessedArgs.size());
-		}
-		
-		List<Addon> added = repositoryManager.add(subList, status);
-		LOG.info("added " + added);
-	}
+            AddonInstallationManager repositoryManager,
+            List<String> unprocessedArgs) {
+        ReleaseStatus status = ReleaseStatus.valueOfIgnoreCase(unprocessedArgs.get(0));
+        List<String> subList;
+        if (status == null) {
+            status = ReleaseStatus.RELEASE;
+            subList = unprocessedArgs;
+        } else {
+            subList = unprocessedArgs.subList(1, unprocessedArgs.size());
+        }
+        
+        List<Addon> added = repositoryManager.add(subList, status);
+        LOG.info("added " + added);
+    }
 
-    private static void update(AddonRepositoryManager repositoryManager, List<String> unprocessedArgsPara) {
+    private static void update(AddonInstallationManager repositoryManager, List<String> unprocessedArgsPara) {
         List<String> unprocessedArgs = unprocessedArgsPara;
         String secondParameter = unprocessedArgs.get(0);
         boolean forceUpdate = false;
@@ -143,7 +145,7 @@ final class Console {
     }
 
     private static void executeOneArgumentCommand(List<String> arguments,
-            AddonRepositoryManager repositoryManager, String command) {
+            AddonInstallationManager repositoryManager, String command) {
         if (arguments.size() == 1) {
             switch (command) {
                 case "list":

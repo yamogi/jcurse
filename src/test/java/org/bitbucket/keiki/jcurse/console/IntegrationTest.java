@@ -15,9 +15,10 @@ class IntegrationTest {
 //        }
         long time = System.currentTimeMillis();
 //        Console.main("add", "bagnon", "decursive", "auctioneer", "atlasloot-enhanced", "battlegroundtargets");
-//        Console.main("remove",  "dunesimplebuffs");
+        Console.main("update",  "-f", "dunesimplebuffs");
+//        Console.main("export");
 //        Console.main("add",  "alpha","dunesimplebuffs");
-        Console.main("set-release",  "beta","dunesimplebuffs");
+//        Console.main("set-release",  "beta","dunesimplebuffs");
         LOG.info((System.currentTimeMillis() - time) / 1000 + " seconds");
         
     }

@@ -7,11 +7,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.bitbucket.keiki.jcurse.data.BusinessException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-public class ConfigurationTest {
+public class ConfigurationImplTest {
 
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
