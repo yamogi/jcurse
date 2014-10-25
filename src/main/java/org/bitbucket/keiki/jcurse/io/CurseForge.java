@@ -1,5 +1,6 @@
 package org.bitbucket.keiki.jcurse.io;
-import static org.bitbucket.keiki.jcurse.io.Constants.*;
+import static org.bitbucket.keiki.jcurse.io.Constants.CHARSET_WEBSITE;
+import static org.bitbucket.keiki.jcurse.io.Constants.USER_AGENT;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,19 +38,19 @@ public class CurseForge {
             String detailSiteUrl = "";
             try (BufferedReader reader = new BufferedReader
                     (new InputStreamReader(getStreamOverviewSite(method), CHARSET_WEBSITE))) {
-                detailSiteUrl = readLines(addon, detailSiteUrl, reader);
+                detailSiteUrl = readLines(addon, reader);
             }
             if (detailSiteUrl.isEmpty()) {
                 throw new NoSuchElementException("detail site couldn't be found");
             }
-            LOG.info(detailSiteUrl);
+            LOG.debug(detailSiteUrl);
             return detailSiteUrl;
         } catch (IOException e) {
             throw new BusinessException(LOG_CAN_T_ACCESS + url, e);
         }
     }
 
-    protected String readLines(Addon addon, String downloadUrl, BufferedReader reader) throws IOException {
+    protected String readLines(Addon addon, BufferedReader reader) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
             int indexOf = line.indexOf("col-file\"><a href");
