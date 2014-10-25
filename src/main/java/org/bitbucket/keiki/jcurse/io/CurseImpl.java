@@ -123,7 +123,7 @@ public class CurseImpl implements Curse {
         } catch (IOException e) {
             throw new BusinessException("Can't access " + url, e);
         } catch (NumberFormatException e) {
-            throw new BusinessException("Can't parse addon numerical id.");
+            throw new BusinessException("Can't parse addon numerical id.", e);
         }
     }
 
