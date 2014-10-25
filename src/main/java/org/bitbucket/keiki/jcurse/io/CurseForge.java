@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -92,16 +93,7 @@ public class CurseForge {
             int status = executeHttp(httpClient, method);
             LOG.debug(LOG_HTTP_STATE_CODE, status);
             String downloadUrl = "";
-            try (BufferedReader reader = new BufferedReader
-                    (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    if (line.contains("user-action-download")) {
-                        downloadUrl = WebsiteHelper.parseAttribute(line, "href");
-                    }
-                    
-                }
-            }
+            downloadUrl = extractDownloadUrlFromStream(downloadUrl, method);
             if (downloadUrl.isEmpty()) {
                 throw new NoSuchElementException("Addon download url couldn't be found");
             }
@@ -109,6 +101,19 @@ public class CurseForge {
         } catch (IOException e) {
             throw new BusinessException(LOG_CAN_T_ACCESS + url, e);
         }
+    }
+
+    protected String extractDownloadUrlFromStream(String downloadUrl, GetMethod method) throws IOException, UnsupportedEncodingException {
+        try (BufferedReader reader = new BufferedReader
+                (new InputStreamReader(getStreamDetailSite(method), CHARSET_WEBSITE))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains("user-action-download")) {
+                    downloadUrl = WebsiteHelper.parseAttribute(line, "href");
+                }
+            }
+        }
+        return downloadUrl;
     }
 
 }
