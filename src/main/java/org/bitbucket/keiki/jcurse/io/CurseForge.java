@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.bitbucket.keiki.jcurse.data.Addon;
 import org.bitbucket.keiki.jcurse.data.BusinessException;
@@ -71,7 +70,7 @@ public class CurseForge {
         return "";
     }
 
-    protected int executeHttp(HttpClient httpClient, GetMethod method) throws IOException, HttpException {
+    protected int executeHttp(HttpClient httpClient, GetMethod method) throws IOException {
         return httpClient.executeMethod(method);
     }
 
