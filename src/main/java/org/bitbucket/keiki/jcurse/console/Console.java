@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.bitbucket.keiki.jcurse.AddonInstallationManager;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
@@ -26,6 +27,10 @@ final class Console {
     }
     
     public static void main(String... args) {
+        if (SystemUtils.IS_OS_WINDOWS) {
+            LOG.error("This application is not allowed to run on windows. Use the official Curse client.");
+            return;
+        }
         try {
             Configuration config = new ConfigurationImpl();
             executeArguments(Arrays.asList(args), config);
