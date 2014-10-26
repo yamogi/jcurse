@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
 import org.bitbucket.keiki.jcurse.AddonInstallationManager;
 import org.bitbucket.keiki.jcurse.Configuration;
 import org.bitbucket.keiki.jcurse.ConfigurationImpl;
@@ -26,6 +27,10 @@ final class Console {
     }
     
     public static void main(String... args) {
+        if (SystemUtils.IS_OS_WINDOWS) {
+            LOG.error("This application is not allowed to run on windows. Use the official Curse client.");
+            return;
+        }
         try {
             Configuration config = new ConfigurationImpl();
             executeArguments(Arrays.asList(args), config);
@@ -78,26 +83,26 @@ final class Console {
 
     private static void executeTwoArgumentsCommand(List<String> arguments,
             AddonInstallationManager repositoryManager, String command) {
-        if (arguments.size() >= TWO_ARGS) {
-            List<String> unprocessedArgs = arguments.subList(1, arguments.size());
-            
-            switch (command) {
-                case "add":
-                    add(repositoryManager, unprocessedArgs);
-                    break;
-                case "remove":
-                    repositoryManager.remove(unprocessedArgs);
-                    LOG.info("removed " + unprocessedArgs);
-                    break;
-                case "update":
-                    update(repositoryManager, unprocessedArgs);
-                    break;
-                case "set":
-                    setReleaseStatus(repositoryManager, unprocessedArgs);
-                    break;
-                default:
-                    throw new BusinessException("Unrecognized command " + command);
-            }
+        if (arguments.size() < TWO_ARGS) {
+            return;
+        }
+        List<String> unprocessedArgs = arguments.subList(1, arguments.size());
+        switch (command) {
+            case "add":
+                add(repositoryManager, unprocessedArgs);
+                break;
+            case "remove":
+                repositoryManager.remove(unprocessedArgs);
+                LOG.info("removed " + unprocessedArgs);
+                break;
+            case "update":
+                update(repositoryManager, unprocessedArgs);
+                break;
+            case "set":
+                setReleaseStatus(repositoryManager, unprocessedArgs);
+                break;
+            default:
+                throw new BusinessException("Unrecognized command " + command);
         }
     }
 
@@ -146,20 +151,21 @@ final class Console {
 
     private static void executeOneArgumentCommand(List<String> arguments,
             AddonInstallationManager repositoryManager, String command) {
-        if (arguments.size() == 1) {
-            switch (command) {
-                case "list":
-                    listAddons(repositoryManager.getAddons(), false);
-                    break;
-                case "listv":
-                    listAddons(repositoryManager.getAddons(), true);
-                    break;
-                case "export":
-                    exportAddons(repositoryManager.getAddons());
-                    break;
-                default:
-                    throw new BusinessException("Unregonized command " + command);
-            }
+        if (arguments.size() != 1) {
+            return;
+        }
+        switch (command) {
+            case "list":
+                listAddons(repositoryManager.getAddons(), false);
+                break;
+            case "listv":
+                listAddons(repositoryManager.getAddons(), true);
+                break;
+            case "export":
+                exportAddons(repositoryManager.getAddons());
+                break;
+            default:
+                throw new BusinessException("Unregonized command " + command);
         }
     }
 
