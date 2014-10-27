@@ -1,12 +1,6 @@
 package org.bitbucket.keiki.jcurse;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.bitbucket.keiki.jcurse.data.Addon;
-import org.bitbucket.keiki.jcurse.data.BusinessException;
-import org.bitbucket.keiki.jcurse.io.CurseImpl;
-import org.junit.*;
-import org.junit.rules.TemporaryFolder;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,43 +9,22 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import org.bitbucket.keiki.jcurse.data.Addon;
+import org.bitbucket.keiki.jcurse.data.BusinessException;
+import org.bitbucket.keiki.jcurse.io.CurseImpl;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 public class CurseAddonFileHandlerTest {
 
     @Rule
     public TemporaryFolder folder = new TemporaryFolder();
 
-    private static final String URL_PLACEHOLDER = "#BASE_URL_TO_REPLACE#";
     private static String baseUrl = null;
-    private static String fileUrl = null;
     private static String addonPath = null;
 
-    @BeforeClass
-    public static void beforeClass() throws IOException {
-        baseUrl = Thread.currentThread().getContextClassLoader().
-                getResource("websites/123/456/").toString();
-
-        fileUrl = baseUrl
-                + File.separator + "bagnon" + File.separator + "download";
-        String substring = fileUrl.substring(5);
-
-        File file = new File(substring);
-        String content = new String(FileUtils.readFileToString(file));
-        String replaceOnce = StringUtils.replaceOnce(content, URL_PLACEHOLDER, baseUrl);
-        FileUtils.write(file, replaceOnce);
-    }
-
-    
-    @AfterClass
-    public static void afterClass() throws IOException {
-        String substring = fileUrl.substring(5);
-
-        File file = new File(substring);
-        String content = new String(FileUtils.readFileToString(file));
-        String replaceOnce = StringUtils.replaceOnce(content, baseUrl, URL_PLACEHOLDER);
-        FileUtils.write(file, replaceOnce);
-    }
 
     @Before
     public void before() {
