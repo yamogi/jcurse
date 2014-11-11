@@ -25,13 +25,13 @@ public class AddonRepoPersistenceTest {
     @Test
     public void testReadWriteJsonFile() throws IOException {
         AddonRepoPersistence persistence = new AddonRepoPersistenceImpl(folder.newFile().getAbsolutePath());
-        List<Addon> addons = Addon.newInstance(Arrays.asList("test1","test2","test3"));
+        List<Addon> addons = Addon.newInstance(Arrays.asList("test1","test3"));
+        
         persistence.saveInstalledAddons(addons);
         
         Collection<Addon> loadInstalledAddons = persistence.loadInstalledAddons();
         Iterator<Addon> iterator = loadInstalledAddons.iterator();
         assertEquals("test1", iterator.next().getAddonNameId());
-        assertEquals("test2", iterator.next().getAddonNameId());
         assertEquals("test3", iterator.next().getAddonNameId());
     }
     
