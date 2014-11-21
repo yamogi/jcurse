@@ -8,9 +8,10 @@ It only supports the game World of Warcraft. Other games are not in my focus, be
 Requirements
 ============
 
-* Only Linux is tested. Other operation systems (Windows, Mac, ...) might work too, but they are not tested and I might give no support for that.
-	* For Windows especially, because for that the official curse client exists. I even consider prohibit this client to stop working on windows.
-* a so called Java 7 runtime environment is needed to run this (e.g. openjdk-7-jre). I can't tell you how to install this, because it depends on your distribution. If you can call java -version and a java version like 1.7 is printed, you should be fine.
+* Only Linux is tested. Other operation systems (Mac, ...) might work too, but they are not tested and I might give no support for that.
+	* Windows is prohibit to use, because of the already existing official client.
+* a so called Java 8 runtime environment is needed to run this (e.g. openjdk-8-jre). I can't tell you how to install this, because it depends on your distribution. If you can call java -version and a java version like 1.8 is printed, you should be fine.
+** For ubuntu you can use http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 * World of Warcraft installed in your Linux file system. Installing it in NTFS file system may result in a unexpected behavior of WoW and this client.
 * The directory names for your addons are case-sensitiv and have to be "Interface/AddOns" in your WoW directory. Otherwise this client will not work!
 
@@ -33,7 +34,7 @@ Each addon has a short name on the curse site. So if you want to download Deadly
 **Adding addons**
 
 	jcurse add <addon1-name> <addon2-name> <...>
-
+	
 **Removing addons**
 
 	jcurse remove <addon1-name> <addon2-name> <...> 
@@ -46,6 +47,15 @@ Each addon has a short name on the curse site. So if you want to download Deadly
 
 	jcurse update <addon1-name> <addon2-name> <...>
 
+**Add addon in pre stable status**
+	
+	jcurse add alpha <addon-name>...
+	jcurse add beta <addon-name>... 
+	
+**Set to non release status**
+
+	jcurse set [alpha|beta|release] [addon name, ...
+
 **List all installed addons**
 
 	jcurse list
@@ -53,7 +63,13 @@ Each addon has a short name on the curse site. So if you want to download Deadly
 **Export for later reinstall**
 
 	jcurse export
-
+	
+**Force update, if already same version**
+Maybe used after addon folder was deleted, but jcurse doesn't know about it
+		
+	jcurse --force update all
+	jcurse --force update <addon-name>...
+	jcurse -f update all
 
 
 Switch WoW directory
@@ -73,6 +89,25 @@ Switch WoW directory
 
 Changelog
 =========
+
+1.0
+-----
+
+*New features*
+* #11: Change specific addon to other than stable release.
+* #17: Force update of addon
+
+*Bugfixes/tasks*
+* #28: Java 8 upgrade
+* #32: Check and Update documentation
+* #37: Fix build on private hudson
+* #35: Invalid cookie header, if alpha/beta is used
+* #23: Prohibit using client on Windows.
+* #36: Make code coverage working again (private site)
+* #30: Refactoring to separate classes.
+
+* #19: Recognize addon version using some kind of id if possible
+ 
 
 0.2
 -----
