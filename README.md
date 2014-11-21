@@ -11,7 +11,7 @@ Requirements
 * Only Linux is tested. Other operation systems (Mac, ...) might work too, but they are not tested and I might give no support for that.
 	* Windows is prohibit to use, because of the already existing official client.
 * a so called Java 8 runtime environment is needed to run this (e.g. openjdk-8-jre). I can't tell you how to install this, because it depends on your distribution. If you can call java -version and a java version like 1.8 is printed, you should be fine.
-** For ubuntu you can use http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
+	* For ubuntu you can use http://www.webupd8.org/2012/09/install-oracle-java-8-in-ubuntu-via-ppa.html
 * World of Warcraft installed in your Linux file system. Installing it in NTFS file system may result in a unexpected behavior of WoW and this client.
 * The directory names for your addons are case-sensitiv and have to be "Interface/AddOns" in your WoW directory. Otherwise this client will not work!
 
