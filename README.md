@@ -25,6 +25,20 @@ First time configuration
 2. Uncompress it to your favourite directory. To make this right this should either be /opt/ or in your user directory.
 3. Set your WoW directory
 	./jcurse --set-wow /home/user/.wine/drive_c/Program\ Files\ \(x86)/World\ of\ Warcraft/
+	
+Upgrade (e.g. from 0.x to 1.x)
+------
+
+1. export currently used addons with your old client
+
+	jcurse export
+	
+2. Save the commandline output
+3. Remove the repository rm ~/.jcurse/repository
+4. Use previously saved addon names with new client to add them
+
+	jcurse add <addon1> <addon2> ...
+
 
 Use it
 ------
@@ -94,19 +108,20 @@ Changelog
 -----
 
 *New features*
-* #11: Change specific addon to other than stable release.
-* #17: Force update of addon
+
+* issue #11: Change specific addon to other than stable release.
+* issue #17: Force update of addon
+* issue #19: Recognize addon version using some kind of id if possible
 
 *Bugfixes/tasks*
-* #28: Java 8 upgrade
-* #32: Check and Update documentation
-* #37: Fix build on private hudson
-* #35: Invalid cookie header, if alpha/beta is used
-* #23: Prohibit using client on Windows.
-* #36: Make code coverage working again (private site)
-* #30: Refactoring to separate classes.
 
-* #19: Recognize addon version using some kind of id if possible
+* issue #28: Java 8 upgrade
+* issue #32: Check and Update documentation
+* issue #37: Fix build on private hudson
+* issue #35: Invalid cookie header, if alpha/beta is used
+* issue #23: Prohibit using client on Windows.
+* issue #36: Make code coverage working again (private site)
+* issue #30: Refactoring to separate classes.
  
 
 0.2
