@@ -1,3 +1,7 @@
+**Currently I'm taking a break from WoW. If or when I'll be back is unknown.**
+If you find an issue please create a bug report. I still may find the time to fix it.
+
+
 jcurse
 ======
 
