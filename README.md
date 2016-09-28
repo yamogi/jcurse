@@ -1,3 +1,15 @@
+To use:
+
+1. git clone https://github.com/yamogi/jcurse
+2. cd jcurse
+3. mvn clean install
+4. java -jar target/jcurse-2.0-SNAPSHOT-run.jar
+
+
+The below was all written by the original author.
+
+===============================================================================
+
 **Currently I'm taking a break from WoW. If or when I'll be back is unknown.**
 If you find an issue please create a bug report. I still may find the time to fix it.
 
