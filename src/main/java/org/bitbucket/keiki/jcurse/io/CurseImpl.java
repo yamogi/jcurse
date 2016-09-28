@@ -70,7 +70,12 @@ public class CurseImpl implements Curse {
             URLConnection connection = website.openConnection();
             connection.setRequestProperty("User-Agent", USER_AGENT);
 
-            return folderHandler.download(connection.getInputStream());
+            String location = connection.getHeaderField("Location");
+            if (location == null) {
+                return folderHandler.download(connection.getInputStream());
+            } else {
+                return downloadAndExtract(location);
+            }
         } catch(IOException e) {
             throw new BusinessException("Problems reading data from Curse.", e);
         }

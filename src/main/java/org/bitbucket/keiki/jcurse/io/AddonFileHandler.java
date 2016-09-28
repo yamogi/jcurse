@@ -37,16 +37,25 @@ public class AddonFileHandler {
     private Set<String> downloadZipInputstream(ZipInputStream zis) throws IOException {
         Set<String> addonFolders = new HashSet<>();
         byte[] buffer = new byte[DOWNLOAD_BUFFER_SIZE];
+
+        boolean emptyZip = true;
+
         ZipEntry ze;
         while ((ze = zis.getNextEntry()) != null) {
             if (ze.isDirectory()) {
                 continue;
             }
+            emptyZip = false;
+
             String fileName = ze.getName();
             int index = fileName.indexOf('/');
             addonFolders.add(fileName.substring(0, index));
 
             writeFile(zis, buffer, fileName);
+        }
+
+        if (emptyZip) {
+            throw new IOException("Got an empty zip file.");
         }
         return addonFolders;
     }
